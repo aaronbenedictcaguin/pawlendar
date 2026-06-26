@@ -8,9 +8,11 @@ app.use(express.json());
 
 //routes
 const ownerRoutes = require("./routes/owner.routes");
+const authRoutes = require("./routes/auth.routes");
 const petRoutes = require("./routes/pet.routes");
 
 app.use("/api/owners", ownerRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/pets", petRoutes);
 
 app.get("/", (req, res) => {

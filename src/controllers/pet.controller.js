@@ -107,7 +107,7 @@ exports.updatePet = (req, res) => {
 exports.deletePet = (req, res) => {
     const {id} = req.params;
 
-    const sql = "DELETE FROM PET WHERE pet_id = ?";
+    const sql = "UPDATE PET SET active_flag = FALSE WHERE pet_id = ?";
 
     db.query(sql, [id], (err, result) => {
         if (err) {

@@ -790,3 +790,152 @@ nav a.active {
     }
 }
 
+/* new additions 25/06/2026 */
+.appointments-hero {
+    background: #FDF2D5;
+    padding: 120px 40px;
+    text-align: center;
+}
+
+.appointments-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.calendar-container {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(74, 35, 40, 0.04);
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.calendar-header {
+    text-align: center;
+    font-weight: 700;
+    color: #4A2328;
+}
+
+.calendar-day {
+    background: #FFF9E6;
+    border-radius: 15px;
+    min-height: 120px;
+    padding: 10px;
+}
+
+.day-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #4A2328;
+    text-align: center;
+}
+
+.day-divider {
+    height: 2px;
+    background: #C1EBE9;
+    margin: 8px 0;
+}
+
+.day-staff {
+    font-size: 12px;
+    text-align: center;
+    color: #5C3338;
+    line-height: 1.4;
+}
+
+.booked {
+    background: #F5AC53;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-section,
+.capacity-section,
+.staff-section {
+    padding: 80px 120px;
+}
+
+.calendar-section h2,
+.capacity-section h2,
+.staff-section h2 {
+    text-align: center;
+    font-size: 38px;
+    color: #4A2328;
+    margin-bottom: 40px;
+}
+
+.capacity-card {
+    background: white;
+    padding: 35px;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(74, 35, 40, 0.04);
+
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.capacity-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.bar {
+    flex: 1;
+    height: 16px;
+    background: #EEE;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: #F5AC53;
+}
+
+.staff-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.staff-card {
+    background: white;
+    width: 320px;
+    padding: 35px;
+
+    border-radius: 25px;
+    border-top: 6px solid #C1EBE9;
+
+    box-shadow: 0 10px 25px rgba(74, 35, 40, 0.04);
+}
+
+.staff-avatar {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.staff-card h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.staff-card p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.staff-card .main-btn {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.inactive {
+    background: #EEE8D5;
+    color: #AAA;
+}

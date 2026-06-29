@@ -2,79 +2,36 @@ const db = require("../config/db");
 
 // Create Pet
 exports.createPet = (req, res) => {
+    const owner_id = req.user.owner_id;
     const {
-        owner_id,
         pet_name,
         species,
         breed,
         gender,
         birth_date,
-        weight
+        weight,
+        size,
+        color,
+        vaccination_proof_url,
+        photo_url
     } = req.body;
 
     const sql = `
         INSERT INTO PET
-        (owner_id, pet_name, species, breed, gender, birth_date, weight)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    db.query(
-        sql,
-        [
+        (
             owner_id,
             pet_name,
             species,
             breed,
             gender,
             birth_date,
-            weight
-        ],
-        (err, result) => {
-            if (err) {
-                return res.status(500).json({
-                    error: err.message
-                });
-            }
-
-            res.json({
-                message: "Pet created successfully",
-                pet_id: result.insertId
-            });
-        }
-    );
-};
-
-// Get all pets
-exports.getPets = (req, res) => {
-    const sql = "SELECT * FROM PET";
-
-    db.query(sql, (err, results) => {
-        if (err) {
-            return res.status(500).json({
-                error: err.message
-            });
-        }
-
-        res.json(results);
-    });
-};
-
-exports.updatePet = (req, res) => {
-    const {id} = req.params;
-    const {
-        owner_id,
-        pet_name,
-        species,
-        breed,
-        gender,
-        birth_date,
-        weight
-    } = req.body;
-
-    const sql = `
-        UPDATE PET
-        SET owner_id = ?, pet_name = ?, species = ?, breed = ?, gender = ?, birth_date = ?, weight = ?
-        WHERE pet_id = ?
+            weight,
+            size,
+            color,
+            vaccination_proof_url,
+            photo_url
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
@@ -87,12 +44,127 @@ exports.updatePet = (req, res) => {
             gender,
             birth_date,
             weight,
-            id
+            size,
+            color,
+            vaccination_proof_url,
+            photo_url
         ],
         (err, result) => {
             if (err) {
                 return res.status(500).json({
                     error: err.message
+                });
+            }
+
+            res.status(201).json({
+                message: "Pet created successfully",
+                pet_id: result.insertId
+            });
+        }
+    );
+};
+
+// Get all pets
+exports.getPets = (req, res) => {
+    const owner_id = req.user.owner_id;
+    const sql = "SELECT * FROM PET WHERE owner_id = ? AND active_flag = TRUE ORDER BY pet_name ASC;";
+
+    db.query(sql, [owner_id], (err, results) => {
+        if (err) {
+            return res.status(500).json({
+                error: err.message
+            });
+        }
+
+        res.json(results);
+    });
+};
+
+exports.getPetById = (req, res) => {
+
+    const owner_id = req.user.owner_id;
+    const { id } = req.params;
+
+    const sql =
+        "SELECT * FROM PET WHERE pet_id = ? AND owner_id = ? AND active_flag = TRUE;";
+
+    db.query(sql,[id, owner_id],(err,results)=>{
+
+        if(err){
+            return res.status(500).json({
+                error: err.message
+            });
+        }
+
+        if(results.length===0){
+            return res.status(404).json({
+                message:"Pet not found"
+            });
+        }
+
+        res.json(results[0]);
+
+    });
+
+};
+
+exports.updatePet = (req, res) => {
+    const owner_id = req.user.owner_id;
+    const {id} = req.params;
+    const {
+        pet_name,
+        species,
+        breed,
+        gender,
+        birth_date,
+        weight,
+        size,
+        color,
+        vaccination_proof_url,
+        photo_url
+    } = req.body;
+
+    const sql = `
+        UPDATE PET
+            SET pet_name = ?,
+            species = ?,
+            breed = ?,
+            gender = ?,
+            birth_date = ?,
+            weight = ?,
+            size = ?,
+            color = ?,
+            vaccination_proof_url = ?,
+            photo_url = ?
+        WHERE pet_id = ? AND owner_id = ?
+        `;
+
+    db.query(
+        sql,
+        [
+            pet_name,
+            species,
+            breed,
+            gender,
+            birth_date,
+            weight,
+            size,
+            color,
+            vaccination_proof_url,
+            photo_url,
+            id,
+            owner_id
+        ],
+        (err, result) => {
+            if (err) {
+                return res.status(500).json({
+                    error: err.message
+                });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({
+                    message: "Pet not found"
                 });
             }
 
@@ -106,15 +178,22 @@ exports.updatePet = (req, res) => {
 // Delete Pet
 exports.deletePet = (req, res) => {
     const {id} = req.params;
+    const owner_id = req.user.owner_id;
 
-    const sql = "UPDATE PET SET active_flag = FALSE WHERE pet_id = ?";
+    const sql = "UPDATE PET SET active_flag = FALSE WHERE pet_id = ? AND owner_id = ?";
 
-    db.query(sql, [id], (err, result) => {
+    db.query(sql, [id, owner_id], (err, result) => {
         if (err) {
             return res.status(500).json({
                 error: err.message
             });
         }
+
+        if (result.affectedRows === 0) {
+                return res.status(404).json({
+                    message: "Pet not found"
+                });
+            }
 
         res.json({
             message: "Pet deleted successfully"

@@ -5,20 +5,20 @@ exports.createService = (req, res) => {
 
     const {
         service_name,
+        category,
         description,
         price,
-        duration_minutes,
-        category
+        duration_minutes
     } = req.body;
 
     const sql = `
         INSERT INTO SERVICE_MENU
         (
             service_name,
+            category,
             description,
             price,
             duration_minutes,
-            category,
             active_flag
         )
         VALUES (?, ?, ?, ?, ?, TRUE)
@@ -28,10 +28,10 @@ exports.createService = (req, res) => {
         sql,
         [
             service_name,
+            category,
             description,
             price,
-            duration_minutes,
-            category
+            duration_minutes
         ],
         (err, result) => {
 
@@ -41,7 +41,7 @@ exports.createService = (req, res) => {
                 });
             }
 
-            res.json({
+            res.status(201).json({
                 message: "Service created successfully",
                 service_id: result.insertId
             });
@@ -56,7 +56,12 @@ exports.createService = (req, res) => {
 exports.getServices = (req, res) => {
 
     const sql = `
-        SELECT *
+        SELECT 
+        service_name,
+        category,
+        description,
+        price,
+        duration_minutes
         FROM SERVICE_MENU
         WHERE active_flag = TRUE
         ORDER BY service_name
@@ -83,7 +88,12 @@ exports.getService = (req, res) => {
     const { id } = req.params;
 
     const sql = `
-        SELECT *
+        SELECT 
+        service_name,
+        category,
+        description,
+        price,
+        duration_minutes
         FROM SERVICE_MENU
         WHERE service_id = ? AND active_flag = TRUE
     `;
@@ -118,22 +128,21 @@ exports.updateService = (req, res) => {
 
     const {
         service_name,
+        category,
         description,
         price,
-        duration_minutes,
-        category,
-        active_flag
+        duration_minutes
     } = req.body;
 
     const sql = `
         UPDATE SERVICE_MENU
         SET
             service_name = ?,
+            category = ?,
             description = ?,
             price = ?,
             duration_minutes = ?,
-            category = ?,
-            active_flag = ?
+            updated_at = NOW()
         WHERE service_id = ? AND active_flag = TRUE
     `;
 
@@ -141,11 +150,10 @@ exports.updateService = (req, res) => {
         sql,
         [
             service_name,
+            category,
             description,
             price,
             duration_minutes,
-            category,
-            active_flag,
             id
         ],
         (err, result) => {

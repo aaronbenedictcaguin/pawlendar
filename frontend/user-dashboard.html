@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pawlendar | About Us </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-card">
+            <div class="dashboard-content">
+
+                <!-- Profile -->
+
+                <section class="profile-section">
+
+                    <div class="profile-top">
+
+                        <img src="images/default-profile.jpg"
+                            alt="Profile Picture"
+                            class="profile-picture">
+
+                        <div class="profile-info">
+
+                            <h2>Ian Dela Cruz</h2>
+
+                            <p class="contact">
+                                idcidcidc@gmail.com
+                            </p>
+
+                            <p class="contact">
+                                +63 912 345 6789
+                            </p>
+
+                        </div>
+
+                        <button class="icon-btn">
+                            <i class="fa-solid fa-gear"></i>
+                        </button>
+
+                    </div>
+
+                </section>
+
+                <hr>
+
+                <!-- Pets -->
+
+                <section class="pets-section">
+
+                    <div class="section-header">
+
+                        <h3>My Pets</h3>
+
+                    </div>
+
+                    <div class="pet-grid">
+
+                        <div class="pet-card">
+
+                            <img src="images/trixie.jpg"
+                                alt="Pet">
+
+                            <h4>
+                                Trixie 🐈♀
+                            </h4>
+
+                            <p>Cat</p>
+
+                            <small>Persian</small>
+
+                            <div class="pet-actions">
+
+                                <button class="circle-btn">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="circle-btn delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="pet-card">
+
+                            <img src="images/trixie.jpg"
+                                alt="Pet">
+
+                            <h4>
+                                Bruno 🐕♂
+                            </h4>
+
+                            <p>Dog</p>
+
+                            <small>Golden Retriever</small>
+
+                            <div class="pet-actions">
+
+                                <button class="circle-btn">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="circle-btn delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <button class="main-btn add-pet">
+                        Add Pet
+                    </button>
+
+                </section>
+
+                <hr>
+
+                <!-- Appointments -->
+
+                <section class="appointments-section">
+
+                    <h3>Upcoming Appointments</h3>
+
+                    <div class="appointment-card">
+
+                        <strong>July 12, 2026</strong>
+
+                        <p>Trixie • Full Grooming</p>
+
+                        <small>Sarah Lim</small>
+
+                    </div>
+
+                    <div class="appointment-card">
+
+                        <strong>July 25, 2026</strong>
+
+                        <p>Bruno • Bath & Brush</p>
+
+                        <small>Mark Reyes</small>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+
+        <div class="pet-panel">
+
+            <h2>Add New Pet</h2>
+
+            <form>
+
+                <div class="input-group">
+                    <label>Pet Name</label>
+                    <input type="text">
+                </div>
+
+                <div class="input-group">
+                    <label>Species</label>
+                    <select>
+                        <option>Dog</option>
+                        <option>Cat</option>
+                        <option>Rabbit</option>
+                        <option>Bird</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Breed</label>
+                    <input type="text">
+                </div>
+
+                <div class="input-group">
+                    <label>Gender</label>
+                <select>
+                    <option>Male ♂</option>
+                    <option>Female ♀</option>
+                </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number">
+                </div>
+
+                <div class="input-group">
+                    <label>Weight (kg)</label>
+                    <input type="number">
+                </div>
+
+                <div class="input-group">
+                    <label>Size</label>
+                    <select>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                        <option>Extra Large</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Vaccination Proof</label>
+                    <input type="file" accept="image/*">
+                </div>
+
+                <div class="input-group">
+                    <label>Pet Photo</label>
+                    <input type="file" accept="image/*">
+                </div>
+
+                <div class="input-group">
+                    <label>Medical Notes</label>
+
+                    <textarea rows="5"></textarea>
+                </div>
+
+                <div class="panel-buttons">
+
+                    <button type="button" class="outline-btn">
+                        Cancel
+                    </button>
+
+                    <button class="main-btn">
+                        Save Pet
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+        
+    </main>
+
+    <footer>
+        <h3>🐾 Pawlendar Grooming Scheduler</h3>
+        <p>Making every paw happy.</p>
+        <p>@2026 Pawlendar. All rights reserved.</p>
+    </footer>
+
+</body>
+
+<script>
+    const dashboard = document.querySelector(".dashboard-page");
+
+    document.querySelector(".add-pet").onclick = () =>
+        dashboard.classList.add("panel-open");
+
+    document.querySelector(".outline-btn").onclick = () =>
+        dashboard.classList.remove("panel-open");
+</script>
+
+</html>

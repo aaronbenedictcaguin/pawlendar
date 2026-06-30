@@ -32,3 +32,19 @@ exports.getOwners = (req, res) => {
         });
     });
 };
+
+exports.getMe = (req, res) => {
+    const owner_id = req.user.owner_id;
+
+    const sql = `
+        SELECT owner_id, first_name, last_name, email, phone_number
+        FROM owner
+        WHERE owner_id = ?
+    `;
+
+    db.query(sql, [owner_id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        res.json(result[0]);
+    });
+};

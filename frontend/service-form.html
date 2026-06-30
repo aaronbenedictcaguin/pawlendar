@@ -59,7 +59,7 @@
             Fill in the details below to add a new grooming service to the Pawlendar catalog.
         </p>
 
-        <form>
+        <form id="serviceForm">
 
             <div class="input-group">
                 <label>
@@ -67,8 +67,10 @@
                 </label>
 
                 <input
+                    id="service_name"
                     type="text"
-                    placeholder="Enter service name">
+                    placeholder="Enter service name" 
+                    required>
             </div>
 
             <div class="input-group">
@@ -76,13 +78,16 @@
                     Category
                 </label>
 
-                <select>
-                    <option>Select a category</option>
-                    <option>Bath & Grooming</option>
-                    <option>Hair Styling</option>
-                    <option>Treatment</option>
-                    <option>Spa Package</option>
-                    <option>Add-on Service</option>
+                <select id="category" required>
+
+                <option value="">Select a category</option>
+
+                <option>Bath & Grooming</option>
+                <option>Hair Styling</option>
+                <option>Treatment</option>
+                <option>Spa Package</option>
+                <option>Add-on Service</option>
+
                 </select>
             </div>
 
@@ -92,8 +97,10 @@
                 </label>
 
                 <textarea
+                    id="description"
                     rows="5"
-                    placeholder="Describe the service..."></textarea>
+                    placeholder="Describe the service..."
+                    required></textarea>
             </div>
 
             <div class="input-row">
@@ -105,8 +112,10 @@
                     </label>
 
                     <input
+                        id="price"
                         type="number"
-                        placeholder="2000">
+                        placeholder="2000"
+                        required>
 
                 </div>
 
@@ -117,8 +126,10 @@
                     </label>
 
                     <input
+                        id="duration_minutes"
                         type="number"
-                        placeholder="90">
+                        placeholder="90"
+                        required>
 
                 </div>
 
@@ -133,5 +144,6 @@
     </div>
 </div>
 
+<script src="service-form.js"></script>
 </body>
 </html>

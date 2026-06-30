@@ -28,16 +28,12 @@
 
                         <div class="profile-info">
 
-                            <h2>Ian Dela Cruz</h2>
+                            <h2 class="owner-name">Loading...</h2>
 
-                            <p class="contact">
-                                idcidcidc@gmail.com
-                            </p>
+                            <p class="contact owner-email">Loading...</p>
 
-                            <p class="contact">
-                                +63 912 345 6789
-                            </p>
-
+                            <p class="contact owner-phone">Loading...</p>
+                            
                         </div>
 
                         <button class="icon-btn">
@@ -60,63 +56,7 @@
 
                     </div>
 
-                    <div class="pet-grid">
-
-                        <div class="pet-card">
-
-                            <img src="images/trixie.jpg"
-                                alt="Pet">
-
-                            <h4>
-                                Trixie 🐈♀
-                            </h4>
-
-                            <p>Cat</p>
-
-                            <small>Persian</small>
-
-                            <div class="pet-actions">
-
-                                <button class="circle-btn">
-                                    <i class="fa-solid fa-pen"></i>
-                                </button>
-
-                                <button class="circle-btn delete">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <div class="pet-card">
-
-                            <img src="images/trixie.jpg"
-                                alt="Pet">
-
-                            <h4>
-                                Bruno 🐕♂
-                            </h4>
-
-                            <p>Dog</p>
-
-                            <small>Golden Retriever</small>
-
-                            <div class="pet-actions">
-
-                                <button class="circle-btn">
-                                    <i class="fa-solid fa-pen"></i>
-                                </button>
-
-                                <button class="circle-btn delete">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <div class="pet-grid"></div>
 
                     <button class="main-btn add-pet">
                         Add Pet
@@ -161,16 +101,16 @@
 
             <h2>Add New Pet</h2>
 
-            <form>
+            <form id="petForm">
 
                 <div class="input-group">
                     <label>Pet Name</label>
-                    <input type="text">
+                    <input type="text" id="pet_name" required>
                 </div>
 
                 <div class="input-group">
                     <label>Species</label>
-                    <select>
+                    <select id="species" required>
                         <option>Dog</option>
                         <option>Cat</option>
                         <option>Rabbit</option>
@@ -181,30 +121,30 @@
 
                 <div class="input-group">
                     <label>Breed</label>
-                    <input type="text">
+                    <input type="text" id="breed" required>
                 </div>
 
                 <div class="input-group">
                     <label>Gender</label>
-                <select>
-                    <option>Male ♂</option>
-                    <option>Female ♀</option>
-                </select>
+                    <select id="gender" required>
+                        <option value="M">Male ♂</option>
+                        <option value="F">Female ♀</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
-                    <label>Age</label>
-                    <input type="number">
+                    <label>Date of Birth</label>
+                    <input type="date" id="birth_date">
                 </div>
 
                 <div class="input-group">
                     <label>Weight (kg)</label>
-                    <input type="number">
+                    <input type="number" id="weight">
                 </div>
 
                 <div class="input-group">
                     <label>Size</label>
-                    <select>
+                    <select id="size">
                         <option>Small</option>
                         <option>Medium</option>
                         <option>Large</option>
@@ -214,30 +154,22 @@
 
                 <div class="input-group">
                     <label>Vaccination Proof</label>
-                    <input type="file" accept="image/*">
+                    <input type="file" id="vaccination">
                 </div>
 
                 <div class="input-group">
                     <label>Pet Photo</label>
-                    <input type="file" accept="image/*">
+                    <input type="file" id="photo">
                 </div>
 
                 <div class="input-group">
                     <label>Medical Notes</label>
-
-                    <textarea rows="5"></textarea>
+                    <textarea rows="5" id="notes"></textarea>
                 </div>
 
                 <div class="panel-buttons">
-
-                    <button type="button" class="outline-btn">
-                        Cancel
-                    </button>
-
-                    <button class="main-btn">
-                        Save Pet
-                    </button>
-
+                    <button type="button" class="outline-btn">Cancel</button>
+                    <button type="submit" class="main-btn">Save Pet</button>
                 </div>
 
             </form>
@@ -252,6 +184,7 @@
         <p>@2026 Pawlendar. All rights reserved.</p>
     </footer>
 
+    <script src="dashboard.js"></script>
 </body>
 
 <script>

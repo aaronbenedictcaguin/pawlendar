@@ -2,16 +2,18 @@ module.exports.validateService = (req, res, next) => {
 
     const {
         service_name,
+        category,
         description,
         price,
         duration_minutes
     } = req.body;
 
     if (
-        !service_name ||
-        !description ||
-        price == null ||
-        duration_minutes == null
+    !service_name ||
+    !category ||
+    !description ||
+    price == null ||
+    duration_minutes == null
     ) {
         return res.status(400).json({
             message: "Missing required service information"

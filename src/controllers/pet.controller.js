@@ -17,7 +17,7 @@ exports.createPet = (req, res) => {
     } = req.body;
 
     const sql = `
-        INSERT INTO PET
+        INSERT INTO pet
         (
             owner_id,
             pet_name,
@@ -80,7 +80,7 @@ exports.getPets = (req, res) => {
                     vaccination_status,
                     vaccination_proof_url,
                     photo_url
-                FROM PET
+                FROM pet
                 WHERE owner_id = ?
                 AND active_flag = TRUE;`;
 
@@ -114,7 +114,7 @@ exports.getPetById = (req, res) => {
             vaccination_status,
             vaccination_proof_url,
             photo_url 
-        FROM PET 
+        FROM pet 
         WHERE pet_id = ? 
         AND owner_id = ? 
         AND active_flag = TRUE;`;
@@ -156,7 +156,7 @@ exports.updatePet = (req, res) => {
     } = req.body;
 
     const sql = `
-        UPDATE PET
+        UPDATE pet
             SET pet_name = ?,
             species = ?,
             breed = ?,
@@ -211,7 +211,7 @@ exports.deletePet = (req, res) => {
     const {id} = req.params;
     const owner_id = req.user.owner_id;
 
-    const sql = "UPDATE PET SET active_flag = FALSE, updated_at = NOW() WHERE pet_id = ? AND owner_id = ?";
+    const sql = "UPDATE pet SET active_flag = FALSE, updated_at = NOW() WHERE pet_id = ? AND owner_id = ?";
 
     db.query(sql, [id, owner_id], (err, result) => {
         if (err) {

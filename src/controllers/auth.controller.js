@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
         db.query(
             `
             SELECT email, phone_number
-            FROM OWNER
+            FROM owner
             WHERE email = ? OR phone_number = ?
             `,
             [email, phone_number],
@@ -58,7 +58,7 @@ exports.register = async (req, res) => {
 
                 db.query(
                     `
-                    INSERT INTO OWNER
+                    INSERT INTO owner
                     (
                     first_name,
                     last_name,
@@ -125,7 +125,7 @@ exports.login = async (req, res) => {
         db.query(
             `
             SELECT *
-            FROM OWNER
+            FROM owner
             WHERE email = ?
             AND active_flag = TRUE
             `,

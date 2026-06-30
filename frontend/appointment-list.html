@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Appointments | Pawlendar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+
+        <div class="logo">
+            <i class="fa-solid fa-paw"></i> Pawlendar
+        </div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="staff-info.html">Staffs</a></li>
+            <li><a href="my-appointments.html" class="active">My Appointments</a></li>
+        </ul>
+
+        <button class="nav-btn">
+            My Account
+        </button>
+
+    </nav>
+
+</header>
+
+<section class="appointments-hero">
+
+    <div class="appointments-hero-content">
+
+        <h1>My Grooming Appointments</h1>
+
+        <p>
+            View, manage, or remove your upcoming grooming appointments.
+        </p>
+
+        <a href="appointment.html" class="main-btn">
+            + Book New Appointment
+        </a>
+
+    </div>
+
+</section>
+
+<section class="appointments-dashboard">
+
+    <h2>Your Appointments</h2>
+
+    <div class="appointments-grid">
+
+        <!-- Appointment Card -->
+
+        <div class="appointment-card" data-appointment-id="001">
+
+            <div class="appointment-header">
+
+                <h3>🐶 Buddy</h3>
+
+                <span class="status confirmed">
+                    Confirmed
+                </span>
+
+            </div>
+
+            <div class="appointment-body">
+
+                <p><strong>Service:</strong> Full Grooming</p>
+                <p><strong>Date:</strong> July 12, 2026</p>
+                <p><strong>Time:</strong> 9:00 AM</p>
+                <p><strong>Groomer:</strong> Sarah Lim</p>
+
+            </div>
+
+            <div class="appointment-actions">
+
+                <button class="outline-btn">
+                    View Details
+                </button>
+
+                <button class="delete-btn">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Appointment Card -->
+
+        <div class="appointment-card" data-appointment-id="002">
+
+            <div class="appointment-header">
+
+                <h3>🐱 Luna</h3>
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+            </div>
+
+            <div class="appointment-body">
+
+                <p><strong>Service:</strong> Bath & Brush</p>
+                <p><strong>Date:</strong> July 16, 2026</p>
+                <p><strong>Time:</strong> 1:30 PM</p>
+                <p><strong>Groomer:</strong> Mark Reyes</p>
+
+            </div>
+
+            <div class="appointment-actions">
+
+                <button class="outline-btn">
+                    View Details
+                </button>
+
+                <button class="delete-btn">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="appointment-card" data-appointment-id="003">
+
+            <div class="appointment-header">
+
+                <h3>🐩 Coco</h3>
+
+                <span class="status completed">
+                    Completed
+                </span>
+
+            </div>
+
+            <div class="appointment-body">
+
+                <p><strong>Service:</strong> Nail Trim</p>
+                <p><strong>Date:</strong> June 28, 2026</p>
+                <p><strong>Time:</strong> 10:00 AM</p>
+                <p><strong>Groomer:</strong> Miles Garcia</p>
+
+            </div>
+
+            <div class="appointment-actions">
+
+                <button class="outline-btn">
+                    View Details
+                </button>
+
+                <button class="delete-btn">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Appointment Card -->
+
+        <div class="appointment-card" data-appointment-id="004">
+
+            <div class="appointment-header">
+
+                <h3>🐕 Max</h3>
+
+                <span class="status cancelled">
+                    Cancelled
+                </span>
+
+            </div>
+
+            <div class="appointment-body">
+
+                <p><strong>Service:</strong> Premium Grooming</p>
+                <p><strong>Date:</strong> June 15, 2026</p>
+                <p><strong>Time:</strong> 11:30 AM</p>
+                <p><strong>Groomer:</strong> Jennie Osbourne</p>
+
+            </div>
+
+            <div class="appointment-actions">
+
+                <button class="outline-btn">
+                    View Details
+                </button>
+
+                <button class="delete-btn">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <h3>🐾 Pawlendar</h3>
+
+    <p>
+        Making pet grooming appointments simple, organized, and stress-free.
+    </p>
+
+</footer>
+
+</body>
+
+</html>

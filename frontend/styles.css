@@ -939,3 +939,148 @@ nav a.active {
     background: #EEE8D5;
     color: #AAA;
 }
+
+/* appointments page additions */
+
+.appointments-dashboard{
+    padding:80px 120px;
+}
+
+.appointments-dashboard h2{
+    text-align:center;
+    font-size:38px;
+    color:#4A2328;
+    margin-bottom:45px;
+}
+
+.appointments-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+}
+
+.appointment-card{
+    background:white;
+    border-radius:25px;
+    border-top:6px solid #F5AC53;
+    box-shadow:0 10px 25px rgba(74,35,40,.05);
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:.3s ease;
+}
+
+.appointment-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 18px 35px rgba(74,35,40,.12);
+}
+
+.appointment-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:20px;
+}
+
+.appointment-header h3{
+    color:#4A2328;
+}
+
+.appointment-body{
+    line-height:1.8;
+    color:#5C3338;
+    margin-bottom:25px;
+}
+
+.status{
+    padding:7px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.status.confirmed{
+    background:#CDEFD8;
+    color:#1C6E3D;
+}
+
+.status.pending{
+    background:#FFF2C7;
+    color:#8A6A00;
+}
+
+.status.completed{
+    background:#CDE7F9;
+    color:#2C5F9E;
+}
+
+.status.cancelled{
+    background:#FFD9D9;
+    color:#A52A2A;
+}
+
+.appointment-actions{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.delete-btn{
+    background:#D9534F;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s ease;
+}
+
+.delete-btn:hover{
+    background:#C9302C;
+}
+
+@media(max-width:1300px){
+
+    .appointments-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:950px){
+
+    .appointments-dashboard{
+        padding:60px 30px;
+    }
+
+    .appointments-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .appointments-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+.appointments-hero-content h1{
+    font-size:56px;
+    margin-bottom:24px;
+}
+
+.appointments-hero-content p{
+    font-size:20px;
+    line-height:1.8;
+    max-width:700px;
+    margin:0 auto 40px auto;
+}
+
+.appointments-hero .main-btn{
+    margin-top:10px;
+}

@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             species: document.getElementById("species").value,
             breed: document.getElementById("breed").value,
             gender: document.getElementById("gender").value,
-            birth_date: document.getElementById("birth_date").value,
+            birth_date: document.getElementById("birth_date").value || null,
             weight: document.getElementById("weight").value || null,
             size: document.getElementById("size").value || null
         };

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pawlendar | Dashboard</title>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="dashboard-dev.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <main class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-profile">
+
+                <img src="images/default-profile.jpg"
+                    alt="Profile Picture"
+                    class="profile-picture">
+
+                <p class="welcome-text">
+                    Welcome!
+                </p>
+
+                <h2 class="owner-name">
+                    Loading...
+                </h2>
+
+                <p class="owner-email">
+                    Loading...
+                </p>
+
+                <p class="owner-phone">
+                    Loading...
+                </p>
+
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <button class="nav-item active">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Overview</span>
+                </button>
+
+                <button class="nav-item">
+                    <i class="fa-solid fa-paw"></i>
+                    <span>My Pets</span>
+                </button>
+
+                <button class="nav-item">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Appointments</span>
+                </button>
+
+                <button class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </button>
+
+                <button class="nav-item logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Log Out</span>
+                </button>
+
+            </nav>
+
+        </aside>
+
+        <!-- CONTENT -->
+
+        <section class="content-panel">
+
+            <div class="content-wrapper">
+
+                <header class="dashboard-header">
+
+                    <h1>Dashboard Overview</h1>
+
+                    <p>
+                        Welcome back! Here's what's happening with your pets today.
+                    </p>
+
+                </header>
+
+                <hr>
+
+                <!-- PETS -->
+
+                <section class="pets-section">
+
+                    <div class="section-header">
+
+                        <h3>My Pets</h3>
+
+                        <a href="#">View All</a>
+
+                    </div>
+
+                    <div class="pet-grid">
+
+    <div class="pet-list">
+
+        <div class="pet-card">
+
+                    <img src="images/trixie.jpg" alt="Trixie">
+
+                    <h4>Trixie</h4>
+
+                    <p>Cat</p>
+
+                    <small>Persian</small>
+
+                </div>
+
+                <div class="pet-card">
+
+                    <img src="images/default-profile.jpg" alt="Bruno">
+
+                    <h4>Bruno</h4>
+
+                    <p>Dog</p>
+
+                    <small>Golden Retriever</small>
+
+                </div>
+
+                <div class="pet-card">
+
+                    <img src="images/default-profile.jpg" alt="Mochi">
+
+                    <h4>Mochi</h4>
+
+                    <p>Rabbit</p>
+
+                    <small>Holland Lop</small>
+
+                </div>
+
+                <div class="pet-card">
+
+                    <img src="images/default-profile.jpg" alt="Kiwi">
+
+                    <h4>Kiwi</h4>
+
+                    <p>Bird</p>
+
+                    <small>Cockatiel</small>
+
+                </div>
+
+            </div>
+
+            <a href="add-pets-menu.html" class="pet-card add-pet-card">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>Add Pet</span>
+
+            </a>
+
+        </div>
+
+                </section>
+
+                <hr>
+
+                <!-- APPOINTMENTS -->
+
+                <section class="appointments-section">
+
+                    <div class="section-header">
+
+                        <h3>Upcoming Appointments</h3>
+
+                        <a href="#">View Calendar</a>
+
+                    </div>
+
+                    <div class="appointments-grid">
+
+                        <div class="appointment-card">
+
+                            <strong>July 12, 2026</strong>
+
+                            <p>Trixie</p>
+
+                            <small>Full Grooming</small>
+
+                            <span class="status pending">Scheduled</span>
+
+                        </div>
+
+                        <div class="appointment-card">
+
+                            <strong>July 25, 2026</strong>
+
+                            <p>Bruno</p>
+
+                            <small>Bath & Brush</small>
+
+                            <span class="status confirmed">Confirmed</span>
+
+                        </div>
+
+                        <div class="appointment-card">
+
+                            <strong>August 2, 2026</strong>
+
+                            <p>Mochi</p>
+
+                            <small>Nail Trim</small>
+
+                            <span class="status progress">In Progress</span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <h3>🐾 Pawlendar Grooming Scheduler</h3>
+
+        <p>Making every paw happy.</p>
+
+        <p>©2026 Pawlendar. All rights reserved.</p>
+
+    </footer>
+
+    <script src="dashboard-dev.js"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pawlendar | Dashboard</title>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="add-pets-menu.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <main class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-profile">
+
+                <img src="images/default-profile.jpg"
+                    alt="Profile Picture"
+                    class="profile-picture">
+
+                <p class="welcome-text">
+                    Welcome!
+                </p>
+
+                <h2 class="owner-name">
+                    Loading...
+                </h2>
+
+                <p class="owner-email">
+                    Loading...
+                </p>
+
+                <p class="owner-phone">
+                    Loading...
+                </p>
+
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <button class="nav-item active">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Overview</span>
+                </button>
+
+                <button class="nav-item">
+                    <i class="fa-solid fa-paw"></i>
+                    <span>My Pets</span>
+                </button>
+
+                <button class="nav-item">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Appointments</span>
+                </button>
+
+                <button class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </button>
+
+                <button class="nav-item logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Log Out</span>
+                </button>
+
+            </nav>
+
+        </aside>
+
+        <!-- CONTENT -->
+
+        <section class="content-panel">
+
+            <div class="content-wrapper">
+
+                <header class="dashboard-header">
+
+                    <h1>Add New Pet</h1>
+
+                    <p>
+                        Fill in your pet's information below to add them to your Pawlendar account.
+                    </p>
+
+                </header>
+
+                <hr>
+
+                <form id="petForm">
+
+                    <div class="input-group">
+
+                        <label for="pet_name">Pet Name</label>
+
+                        <input type="text"
+                            id="pet_name"
+                            placeholder="Enter your pet's name"
+                            required>
+
+                    </div>
+
+                    <div class="form-row two-columns">
+
+                        <div class="input-group">
+
+                            <label for="species">Species</label>
+
+                            <select id="species" required>
+
+                                <option value="">Select Species</option>
+
+                                <option>Dog</option>
+                                <option>Cat</option>
+                                <option>Rabbit</option>
+                                <option>Bird</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label for="breed">Breed</label>
+
+                            <input type="text"
+                                id="breed"
+                                placeholder="Golden Retriever">
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row four-columns">
+
+                        <div class="input-group">
+
+                            <label for="gender">Gender</label>
+
+                            <select id="gender">
+
+                                <option value="">Select Gender</option>
+
+                                <option value="M">Male ♂</option>
+
+                                <option value="F">Female ♀</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label for="birth_date">Date of Birth</label>
+
+                            <input type="date"
+                                id="birth_date">
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label for="weight">Weight (kg)</label>
+
+                            <input type="number"
+                                id="weight"
+                                min="0"
+                                step="0.1">
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label for="size">Size</label>
+
+                            <select id="size">
+
+                                <option value="">Select Size</option>
+
+                                <option>Small</option>
+
+                                <option>Medium</option>
+
+                                <option>Large</option>
+
+                                <option>Extra Large</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="vaccination">Vaccination Proof</label>
+
+                        <input type="file"
+                            id="vaccination"
+                            accept=".jpg,.jpeg,.png,.pdf">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="photo">Pet Photo</label>
+
+                        <input type="file"
+                            id="photo"
+                            accept="image/*">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="notes">Medical Notes</label>
+
+                        <textarea id="notes"
+                                rows="5"
+                                placeholder="Allergies, medications, special instructions..."></textarea>
+
+                    </div>
+
+                    <div class="panel-buttons">
+
+                        <a href="dashboard-dev.html"
+                        class="outline-btn">
+
+                            Cancel
+
+                        </a>
+
+                        <button type="submit"
+                                class="main-btn">
+
+                            Save Pet
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <h3>🐾 Pawlendar Grooming Scheduler</h3>
+
+        <p>Making every paw happy.</p>
+
+        <p>©2026 Pawlendar. All rights reserved.</p>
+
+    </footer>
+
+    <script src="add-pets-menu.js"></script>
+
+</body>
+
+</html>

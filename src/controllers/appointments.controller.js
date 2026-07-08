@@ -203,6 +203,42 @@ exports.getAppointmentById = (req, res) => {
     });
 };
 
+exports.getAllAppointments = (req,res)=>{
+
+    const sql = `
+        SELECT 
+            a.appointment_id,
+            a.status,
+            a.start_datetime,
+            a.end_datetime,
+            p.pet_name,
+            u.first_name,
+            u.last_name
+        FROM appointments a
+
+        JOIN pet p
+        ON a.pet_id = p.pet_id
+
+        JOIN user u
+        ON p.user_id = u.user_id
+    `;
+
+
+    db.query(sql,(err,results)=>{
+
+        if(err){
+            return res.status(500).json({
+                error:err.message
+            });
+        }
+
+
+        res.json(results);
+
+    });
+
+};
+
 exports.updateStatus = (req, res) => {
 
     const { id } = req.params;

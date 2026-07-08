@@ -1,107 +1,172 @@
 loadAppointments();
 
+
 async function loadAppointments(){
 
-    const response = await fetch("http://localhost:3000/api/appointments");
+    const token = localStorage.getItem("token");
 
-        if(!response.ok){
 
-            alert("Failed to update appointment.");
-
-            return;
-
+    const response = await fetch(
+        "http://localhost:3000/api/appointments/admin/appointments",
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
         }
+    );
+
+
+    if(!response.ok){
+
+        alert("Failed to load appointments");
+
+        return;
+
+    }
+
 
     const result = await response.json();
 
-    displayAppointments(result.data);
+
+    displayAppointments(result);
 
 }
+
+
+
 
 function displayAppointments(appointments){
 
-    const container = document.getElementById("appointmentContainer");
+    const container =
+    document.getElementById("appointmentContainer");
+
 
     let html = "";
 
+
     appointments.forEach(appointment=>{
 
-        const isCompleted =
-            appointment.status === "Completed"
-                ? "disabled"
-                : "";
+
+        const completed =
+        appointment.status === "Completed"
+        ? "disabled"
+        : "";
+
+
 
         html += `
-            <div class="appointment-card">
 
-                <h3>Appointment #${appointment.appointment_id}</h3>
+        <div class="appointment-card">
 
-                <p>Status: ${appointment.status}</p>
 
-                <button
-                    ${isCompleted}
-                    onclick="changeStatus(
-                        ${appointment.appointment_id},
-                        '${appointment.status}'
-                    )">
+            <h3>
+            Appointment #${appointment.appointment_id}
+            </h3>
 
-                    ${getButtonText(appointment.status)}
 
-                </button>
+            <p>
+            Status:
+            <span class="status-badge">
+            ${appointment.status}
+            </span>
+            </p>
 
-            </div>
+
+
+            <button
+            ${completed}
+            onclick="
+            changeStatus(
+            ${appointment.appointment_id},
+            '${appointment.status}'
+            )">
+
+            ${getButtonText(appointment.status)}
+
+            </button>
+
+
+        </div>
+
         `;
+
 
     });
 
+
     container.innerHTML = html;
+
 
 }
 
+
+
+
+
 function getButtonText(status){
 
+
     switch(status){
+
 
         case "Scheduled":
             return "Check In";
 
+
         case "Checked In":
             return "Start Grooming";
+
 
         case "In Progress":
             return "Ready for Pickup";
 
+
         case "Ready for Pickup":
             return "Complete";
+
 
         case "Completed":
             return "Completed";
 
+
         default:
             return "Update";
+
 
     }
 
 }
 
+
+
+
+
 function getNextStatus(status){
 
+
     switch(status){
+
 
         case "Scheduled":
             return "Checked In";
 
+
         case "Checked In":
             return "In Progress";
+
 
         case "In Progress":
             return "Ready for Pickup";
 
+
         case "Ready for Pickup":
             return "Completed";
 
+
         default:
             return status;
+
 
     }
 
@@ -109,7 +174,14 @@ function getNextStatus(status){
 
 async function changeStatus(id,currentStatus){
 
-    const status = getNextStatus(currentStatus);
+
+    const token = localStorage.getItem("token");
+
+
+    const nextStatus =
+    getNextStatus(currentStatus);
+
+
 
     const response = await fetch(
 
@@ -117,17 +189,18 @@ async function changeStatus(id,currentStatus){
 
         {
 
-            method: "PUT",
+            method:"PUT",
+
 
             headers: {
-
-                "Content-Type":"application/json"
-
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
             },
+
 
             body:JSON.stringify({
 
-                status
+                status:nextStatus
 
             })
 
@@ -135,14 +208,18 @@ async function changeStatus(id,currentStatus){
 
     );
 
+
+
     if(!response.ok){
 
-        alert("Failed to update status.");
+        alert("Failed to update status");
 
         return;
 
     }
 
+
     loadAppointments();
+
 
 }

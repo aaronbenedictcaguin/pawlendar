@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawlendar | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+
+        <div class="logo">Pawlendar</div>
+
+        <ul>
+            <li><a class="active" href="#">Dashboard</a></li>
+            <li><a href="admin-appointment.html">Appointments</a></li>
+            <li><a href="#">Customers</a></li>
+            <li><a href="#">Inventory</a></li>
+        </ul>
+
+        <button class="nav-btn">Logout</button>
+
+    </nav>
+
+</header>
+
+
+<section class="appointments-hero">
+
+    <div class="appointments-hero-content">
+
+        <h1>Admin Dashboard</h1>
+
+        <p>
+            Monitor today's grooming operations and appointment statistics.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="dashboard">
+
+    <h2>Today's Operations</h2>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3 id="todayAppointments">0</h3>
+            <p>Today's Appointments</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="checkedInPets">0</h3>
+            <p>Pets Checked In</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="groomingPets">0</h3>
+            <p>Currently Grooming</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="readyForPickup">0</h3>
+            <p>Ready for Pickup</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="completedAppointments">0</h3>
+            <p>Completed Today</p>
+        </div>
+
+    </div>
+
+    <p class="updated">
+        Last Updated:
+        <span id="lastUpdated"></span>
+    </p>
+</section>
+
+<script src="admin-dashboard.js"></script>
+
+</body>
+
+</html>

@@ -13,6 +13,8 @@ router.get("/", authMiddleware, appointmentController.getAppointments);
 
 router.get("/availability", authMiddleware, appointmentController.checkAvailability);
 
+router.get("/admin/appointments", authMiddleware, adminMiddleware, appointmentController.getAllAppointments);
+
 router.get("/:id", authMiddleware,appointmentController.getAppointmentById);
 
 router.put("/:id/status", authMiddleware, adminMiddleware, appointmentController.updateStatus);

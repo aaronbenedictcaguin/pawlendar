@@ -78,8 +78,6 @@ exports.getAppointmentById = (req, res) => {
 exports.updateStatus = (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
-
-    // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
     const sql = `
         UPDATE appointments
         SET status = ?
@@ -87,11 +85,12 @@ exports.updateStatus = (req, res) => {
     `;
 
     db.query(sql, [status, id], (err, result) => {
-            if (err) {return res.status(500).json({error: err.message});}
-
-            res.json({message: "Appointment updated successfully", data: result});
+        if (err) {
+            return res.status(500).json({ error: err.message });
         }
-    );
+
+        res.json({ message: "Appointment updated successfully", data: result });
+    });
 };
 
 exports.cancelAppointment = (req, res) => {

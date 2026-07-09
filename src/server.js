@@ -13,11 +13,13 @@ const ownerRoutes = require("./routes/owner.routes");
 const authRoutes = require("./routes/auth.routes");
 const petRoutes = require("./routes/pet.routes");
 const serviceRoutes = require("./routes/service.routes");
+const loyaltyRoutes = require("./routes/loyalty.routes");
 
 app.use("/api/owners", ownerRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/pets", petRoutes);
 app.use("/api/services", serviceRoutes);
+app.use("/api/loyalty", loyaltyRoutes);
 
 app.get("/", (req, res) => {
     res.send("lol testing lol");

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pawlendar Loyalty Rewards</title>
+    <link rel="stylesheet" href="loyal-membership.css" />
+  </head>
+  <body>
+    <div class="page">
+      <section class="hero">
+        <h1>Loyalty Rewards</h1>
+        <p>Every completed grooming visit helps you unlock better perks at Pawlendar.</p>
+      </section>
+
+      <section class="card">
+        <div class="summary-grid">
+          <div class="metric">
+            <div class="label">Membership</div>
+            <div class="value" id="level">--</div>
+            <div class="pill" id="discount">--</div>
+          </div>
+          <div class="metric">
+            <div class="label">Completed visits</div>
+            <div class="value" id="appointments">0</div>
+            <div class="muted" id="next-level">Next tier: --</div>
+          </div>
+          <div class="metric">
+            <div class="label">Progress</div>
+            <div class="value" id="progress-text">0%</div>
+            <div class="progress"><div id="progress-bar"></div></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a href="dashboard.html">Back to dashboard</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>How rewards work</h3>
+        <ul>
+          <li>Bronze: 5% discount after your first completed grooming visit.</li>
+          <li>Silver: 10% discount after 3 completed visits.</li>
+          <li>Gold: 15% discount after 6 completed visits.</li>
+        </ul>
+      </section>
+    </div>
+
+    <script src="loyal-membership.js"></script>
+  </body>
+</html>

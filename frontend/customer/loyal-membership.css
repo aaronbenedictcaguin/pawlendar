@@ -1,0 +1,115 @@
+:root {
+  --bg: #f8f5ef;
+  --card: #ffffff;
+  --accent: #8a5a3b;
+  --accent-soft: #f2e1d0;
+  --text: #4d3427;
+  --muted: #7f6a5b;
+  --success: #4c8c5c;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--accent), #b17c53);
+  color: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 16px 32px rgba(138, 90, 59, 0.18);
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.hero p {
+  margin: 0;
+  opacity: 0.95;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 10px 24px rgba(77, 52, 39, 0.08);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.metric {
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.metric .label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric .value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.pill {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #f7efe6;
+  color: var(--accent);
+  border-radius: 999px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.progress {
+  height: 10px;
+  background: #eee2d3;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress > div {
+  height: 100%;
+  background: var(--success);
+  border-radius: inherit;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.actions {
+  margin-top: 18px;
+}
+
+.actions a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background: var(--accent);
+  padding: 10px 14px;
+  border-radius: 999px;
+  margin-right: 10px;
+}

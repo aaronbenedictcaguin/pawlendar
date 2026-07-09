@@ -244,82 +244,19 @@ exports.updateStatus = (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
-
-    const allowedTransitions = {
-        "Scheduled": ["Checked In"],
-        "Checked In": ["In Progress"],
-        "In Progress": ["Ready for Pickup"],
-        "Ready for Pickup": ["Completed"],
-        "Completed": []
-    };
-
-
-    const getCurrentSql = `
-        SELECT status
-        FROM appointments
+    // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
+    const sql = `
+        UPDATE appointments
+        SET status = ?
         WHERE appointment_id = ?
     `;
 
+    db.query(sql, [status, id], (err, result) => {
+            if (err) {return res.status(500).json({error: err.message});}
 
-    db.query(getCurrentSql, [id], (err, results) => {
-
-        if (err) {
-            return res.status(500).json({
-                error: err.message
-            });
+            res.json({message: "Appointment updated successfully", data: result});
         }
-
-
-        if (results.length === 0) {
-            return res.status(404).json({
-                message: "Appointment not found"
-            });
-        }
-
-
-        const currentStatus = results[0].status;
-
-
-        if (!allowedTransitions[currentStatus].includes(status)) {
-
-            return res.status(400).json({
-                message:
-                `Cannot change status from ${currentStatus} to ${status}`
-            });
-
-        }
-
-
-        const updateSql = `
-            UPDATE appointments
-            SET status = ?
-            WHERE appointment_id = ?
-        `;
-
-
-        db.query(
-            updateSql,
-            [status, id],
-            (err, result)=>{
-
-                if(err){
-                    return res.status(500).json({
-                        error:err.message
-                    });
-                }
-
-
-                res.json({
-                    message:"Appointment status updated successfully",
-                    old_status:currentStatus,
-                    new_status:status
-                });
-
-            }
-        );
-
-    });
-
+    );
 };
 
 exports.cancelAppointment = (req, res) => {

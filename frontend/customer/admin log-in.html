@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawlendar | Login </title>
-    <link rel="stylesheet" href="login.css">
+    <title>Pawlendar | Admin Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="./admin-login.css">
 </head>
 <body>
-
     <div class="main-container">
         <div class="left-panel">
             <div class="logo-area">
                 <i class="fa-solid fa-paw"></i>
-                <span class="brand-name">Pawlendar</span>
+                <span class="brand-name">Pawlendar Admin</span>
             </div>
-            
-            <h1 class="welcome-text">Welcome Back!</h1>
-            <p class="sub-text">Log in to keep track of your furry friend's grooming schedule.</p>
-            
+
+            <h1 class="welcome-text">Admin Access</h1>
+            <p class="sub-text">Securely manage appointments, services, and customer schedules from one place.</p>
+
             <div class="image-wrapper">
-                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=600" alt="Cute Dog" class="pet-image">
+                <img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&q=80&w=600" alt="Admin workspace" class="pet-image">
             </div>
         </div>
 
         <div class="right-panel">
             <div class="form-box">
-                <h2 class="form-title">Log In</h2>
-                <p class="form-subtitle">Enter your credentials to access your account.</p>
+                <h2 class="form-title">Admin Sign In</h2>
+                <p class="form-subtitle">Enter your staff credentials to continue.</p>
 
-                <form id="loginForm">
+                <form action="../admin/admin-dashboard.html" method="get">
                     <div class="input-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" placeholder="Enter your email" required>
@@ -48,13 +46,11 @@
                     <button type="submit" class="btn-login">Log In</button>
                 </form>
 
-                <p class="switch-page">Don't have an account? <a href="registration.html">Register</a></p>
-                <a href="admin log-in.html" class="admin-access">Admin Login</a>
+                <p class="switch-page">
+                    <a href="login.html">Back to Customer Login</a>
+                </p>
             </div>
         </div>
     </div>
-
-    <script src="login.js"></script>
-
 </body>
 </html>

@@ -1,0 +1,82 @@
+const db = require("../config/db");
+
+exports.findAvailableStaff = (startDatetime, endDatetime) => {
+    return new Promise((resolve, reject) => {
+
+        const appointmentDate = new Date(startDatetime);
+
+        const dayOfWeek = appointmentDate.getDay();
+
+        const startTime = startDatetime
+            .toString()
+            .substring(11, 19);
+
+        const endTime = endDatetime
+            .toString()
+            .substring(11, 19);
+
+        const sql = `
+            SELECT s.staff_id, s.first_name,
+                s.last_name, s.max_daily_appointments,
+                COUNT(DISTINCT a.appointment_id) AS dailyAppointments
+
+            FROM staff s
+
+            INNER JOIN staff_availability sa
+                ON sa.staff_id = s.staff_id
+
+            LEFT JOIN appointments a
+                ON a.staff_id = s.staff_id
+                AND DATE(a.start_datetime) = DATE(?)
+                AND a.status <> 'Cancelled'
+
+            WHERE s.active_flag = 1
+                AND sa.day_of_week = ?
+                AND sa.start_time <= ?
+                AND sa.end_time >= ?
+                AND NOT EXISTS (
+                    SELECT 1
+                    FROM appointments ap
+                    WHERE
+                        ap.staff_id = s.staff_id
+                        AND ap.status <> 'Cancelled'
+                        AND ( ap.start_datetime < ?
+                            AND ap.end_datetime > ?)
+                )
+
+            GROUP BY s.staff_id
+
+            HAVING dailyAppointments < s.max_daily_appointments
+
+            ORDER BY dailyAppointments ASC, s.staff_id ASC
+
+            LIMIT 1
+        `;
+
+        db.query(
+            sql,
+            [
+                startDatetime,
+                dayOfWeek,
+                startTime,
+                endTime,
+                endDatetime,
+                startDatetime
+            ],
+            (err, results) => {
+
+                if (err) {
+                    return reject(err);
+                }
+
+                if (results.length === 0) {
+                    return resolve(null);
+                }
+
+                resolve(results[0]);
+
+            }
+        );
+
+    });
+};

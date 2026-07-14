@@ -9,15 +9,15 @@ const { validateAppointment } = require("../middleware/appointments.validation")
 
 router.post("/", authMiddleware, validateAppointment, appointmentController.bookAppointment);
 
-router.get("/", authMiddleware, appointmentController.getAppointments);
-
 router.get("/availability", authMiddleware, appointmentController.checkAvailability);
 
 router.get("/admin/appointments", authMiddleware, adminMiddleware, appointmentController.getAllAppointments);
 
+router.get("/", authMiddleware, appointmentController.getAppointments);
+
 router.get("/:id", authMiddleware,appointmentController.getAppointmentById);
 
-router.put("/:id/status", authMiddleware, adminMiddleware, appointmentController.updateStatus);
+router.put("/admin/appointments/:id/status", authMiddleware, adminMiddleware, appointmentController.updateStatus);
 
 router.delete("/:id", authMiddleware, appointmentController.cancelAppointment);
 

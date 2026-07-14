@@ -1,28 +1,40 @@
 const db = require("../config/db");
+const { calculateAppointmentEnd } = require("../utils/appointmentHelper");
+const { findAvailableStaff } = require("../utils/staffAvailability");
 
-exports.bookAppointment = (req, res) => {
-    const user_id = req.user.user_id;
-    const {pet_id, staff_id, start_datetime, notes,  services} = req.body;
-    if (!services || services.length === 0) {
-        return res.status(400).json({
-            message:"At least one service is required"
+exports.bookAppointment = async (req, res) => {
+
+    try {
+
+        const user_id = req.user.user_id;
+
+        const {
+            pet_id,
+            start_datetime,
+            notes,
+            service_ids
+        } = req.body;
+
+        // Check if pet belongs to logged-in user
+        const checkPetSql = `
+            SELECT *
+            FROM pet
+            WHERE pet_id = ?
+            AND user_id = ?
+            AND active_flag = TRUE
+        `;
+
+        const pets = await new Promise((resolve, reject) => {
+
+            db.query(checkPetSql, [pet_id, user_id], (err, results) => {
+
+                if (err) return reject(err);
+
+                resolve(results);
+
+            });
+
         });
-    }
-
-    // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
-    const checkPetSql = `
-        SELECT *
-        FROM pet
-        WHERE pet_id = ?
-        AND user_id = ?
-        AND active_flag = TRUE
-    `;
-
-    db.query(checkPetSql, [pet_id, user_id], (err, pets) => {
-
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
 
         if (pets.length === 0) {
             return res.status(403).json({
@@ -30,120 +42,257 @@ exports.bookAppointment = (req, res) => {
             });
         }
 
-        const checkSql = `
-            SELECT *
-            FROM appointments
-            WHERE staff_id = ? AND start_datetime = ? AND status != 'Cancelled'
-        `;
+        // Appointment must be in the future
+        const appointmentDate = new Date(start_datetime);
 
-        const durationSql = `
-            SELECT 
-                SUM(duration_minutes) AS total_duration,
-                SUM(price) AS total_price
-            FROM service_menu
-            WHERE service_id IN (?)
-        `;
+        const minimumBookingTime = new Date();
+        minimumBookingTime.setMinutes(
+            minimumBookingTime.getMinutes() + 30
+        );
 
-        db.query(durationSql, [services], (err, durationResult) => {
+        if (appointmentDate < minimumBookingTime) {
+            return res.status(400).json({
+                message: "Appointments must be booked at least 30 minutes in advance."
+            });
+        }
 
-            if(err){
+        // Calculate duration and total price
+        const appointmentInfo = await calculateAppointmentEnd(
+            service_ids,
+            start_datetime
+        );
+
+        const endDatetime = appointmentInfo.endDatetime;
+        const total_price = appointmentInfo.totalPrice;
+
+        // Find available staff
+        const staff = await findAvailableStaff(
+            new Date(start_datetime),
+            endDatetime
+        );
+
+        if (!staff) {
+            return res.status(409).json({
+                message: "No staff available."
+            });
+        }
+
+        // Start transaction
+        db.beginTransaction((err) => {
+
+            if (err) {
                 return res.status(500).json({
                     error: err.message
                 });
             }
 
-            const totalDuration = durationResult[0].total_duration;
-            const total_price = durationResult[0].total_price;
+            const insertAppointmentSql = `
+                INSERT INTO appointments
+                (
+                    pet_id,
+                    staff_id,
+                    start_datetime,
+                    end_datetime,
+                    total_price,
+                    notes
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
+            `;
 
-            const end_datetime = new Date(start_datetime);
-            end_datetime.setMinutes(
-                end_datetime.getMinutes() + totalDuration
-            );
+            db.query(
+                insertAppointmentSql,
+                [
+                    pet_id,
+                    staff.staff_id,
+                    start_datetime,
+                    endDatetime,
+                    total_price,
+                    notes
+                ],
+                (err, appointmentResult) => {
 
-            db.query(checkSql, [staff_id, start_datetime], (err, results) => {
-                if (err) {return res.status(500).json({error: err.message});}
+                    if (err) {
 
-                if (results.length > 0) {return res.status(400).json({message: "Selected time slot is unavailable"});}
+                        return db.rollback(() => {
 
-                // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
-                const insertSql = `
-                    INSERT INTO appointments(
-                        pet_id,
-                        staff_id,
-                        start_datetime,
-                        end_datetime,
-                        total_price,
-                        notes
-                    )
-                    VALUES (?, ?, ?, ?, ?, ?)
-                `;
+                            res.status(500).json({
+                                error: err.message
+                            });
 
-                db.query(
-                    insertSql,
-                    [pet_id, staff_id, start_datetime, end_datetime, total_price, notes],
-                    (err, result) => {
+                        });
 
-                        if (err) {
-                            return res.status(500).json({error: err.message});
-                        }
+                    }
 
-                        const appointment_id = result.insertId;
+                    const appointment_id = appointmentResult.insertId;
 
-                        const serviceSql = `
-                            INSERT INTO appointment_services
-                            (
-                                appointment_id,
-                                service_id,
-                                service_price,
-                                duration_minutes
-                            )
-                            SELECT ?, service_id, price, duration_minutes
-                            FROM service_menu
-                            WHERE service_id IN (?)
-                        `;
+                    const getServicesSql = `
+                        SELECT
+                            service_id,
+                            price,
+                            duration_minutes
+                        FROM service_menu
+                        WHERE service_id IN (?)
+                        AND active_flag = 1
+                    `;
 
-                        db.query(
-                            serviceSql,
-                            [appointment_id, services],
-                            (err) => {
+                    db.query(
+                        getServicesSql,
+                        [service_ids],
+                        (serviceErr, services) => {
 
-                                if (err) {
-                                    return res.status(500).json({
-                                        error: err.message
+                            if (serviceErr) {
+
+                                return db.rollback(() => {
+
+                                    res.status(500).json({
+                                        error: serviceErr.message
                                     });
-                                }
 
-                                res.status(201).json({
-                                    message: "Appointment booked successfully",
-                                    appointment_id
                                 });
 
                             }
-                        );
-                    }
-                );
-            });
+
+                            if (services.length === 0) {
+
+                                return db.rollback(() => {
+
+                                    res.status(400).json({
+                                        message: "Invalid services selected."
+                                    });
+
+                                });
+
+                            }
+
+                            const values = services.map(service => [
+
+                                appointment_id,
+                                service.service_id,
+                                service.price,
+                                service.duration_minutes
+
+                            ]);
+
+                            const insertServicesSql = `
+                                INSERT INTO appointment_services
+                                (
+                                    appointment_id,
+                                    service_id,
+                                    service_price,
+                                    duration_minutes
+                                )
+                                VALUES ?
+                            `;
+
+                            db.query(
+                                insertServicesSql,
+                                [values],
+                                (insertErr) => {
+
+                                    if (insertErr) {
+
+                                        return db.rollback(() => {
+
+                                            res.status(500).json({
+                                                error: insertErr.message
+                                            });
+
+                                        });
+
+                                    }
+
+                                    db.commit((commitErr) => {
+
+                                        if (commitErr) {
+
+                                            return db.rollback(() => {
+
+                                                res.status(500).json({
+                                                    error: commitErr.message
+                                                });
+
+                                            });
+
+                                        }
+
+                                        return res.status(201).json({
+
+                                            message: "Appointment booked successfully.",
+
+                                            appointment_id,
+
+                                            assigned_staff: {
+                                                staff_id: staff.staff_id,
+                                                first_name: staff.first_name,
+                                                last_name: staff.last_name
+                                            }
+
+                                        });
+
+                                    });
+
+                                }
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
         });
-    });
+
+    }
+
+    catch (err) {
+
+        return res.status(500).json({
+            error: err.message
+        });
+
+    }
+
 };
 
-exports.checkAvailability = (req, res) => {
-    const {staff_id, start_datetime} = req.query;
+exports.checkAvailability = async (req, res) => {
 
-    // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
-    const sql = `
-        SELECT *
-        FROM appointments
-        WHERE staff_id = ? AND start_datetime = ? AND status != 'Cancelled'
-    `;
+    try {
 
-    db.query(sql, [staff_id, start_datetime],
-        (err, results) => {
-            if (err) {return res.status(500).json({error: err.message});}
+        const {
+            start_datetime,
+            service_ids
+        } = req.query;
 
-            res.json({available: results.length === 0});
+        if (!start_datetime || !service_ids) {
+            return res.status(400).json({
+                message: "start_datetime and service_ids are required."
+            });
         }
-    );
+
+        const appointmentInfo =
+            await calculateAppointmentEnd(
+                JSON.parse(service_ids),
+                start_datetime
+            );
+
+        const staff =
+            await findAvailableStaff(
+                new Date(start_datetime),
+                appointmentInfo.endDatetime
+            );
+
+        res.json({
+            available: !!staff
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            error: err.message
+        });
+
+    }
+
 };
 
 // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
@@ -206,21 +355,35 @@ exports.getAppointmentById = (req, res) => {
 exports.getAllAppointments = (req,res)=>{
 
     const sql = `
-        SELECT 
+        SELECT
             a.appointment_id,
-            a.status,
             a.start_datetime,
             a.end_datetime,
+            a.status,
+            a.total_price,
+            a.payment_status,
+
             p.pet_name,
+
             u.first_name,
-            u.last_name
+            u.last_name,
+
+            s.staff_id,
+            s.first_name AS staff_first_name,
+            s.last_name AS staff_last_name
+
         FROM appointments a
 
         JOIN pet p
-        ON a.pet_id = p.pet_id
+            ON a.pet_id = p.pet_id
 
         JOIN user u
-        ON p.user_id = u.user_id
+            ON p.user_id = u.user_id
+
+        LEFT JOIN staff s
+            ON a.staff_id = s.staff_id
+
+        ORDER BY a.start_datetime ASC
     `;
 
 
@@ -244,19 +407,86 @@ exports.updateStatus = (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
-    // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
-    const sql = `
-        UPDATE appointments
-        SET status = ?
+
+    const sqlGet = `
+        SELECT status
+        FROM appointments
         WHERE appointment_id = ?
     `;
 
-    db.query(sql, [status, id], (err, result) => {
-            if (err) {return res.status(500).json({error: err.message});}
 
-            res.json({message: "Appointment updated successfully", data: result});
+    db.query(sqlGet, [id], (err, results) => {
+
+        if (err) {
+            return res.status(500).json({
+                error: err.message
+            });
         }
-    );
+
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                message: "Appointment not found"
+            });
+        }
+
+
+        const currentStatus = results[0].status;
+
+
+        const allowedTransitions = {
+
+            "Scheduled": "Checked In",
+
+            "Checked In": "In Progress",
+
+            "In Progress": "Ready for Pickup",
+
+            "Ready for Pickup": "Completed"
+
+        };
+
+
+        if (allowedTransitions[currentStatus] !== status) {
+
+            return res.status(400).json({
+
+                message:
+                `Cannot change status from ${currentStatus} to ${status}`
+
+            });
+
+        }
+
+
+        const sqlUpdate = `
+            UPDATE appointments
+            SET status = ?
+            WHERE appointment_id = ?
+        `;
+
+
+        db.query(
+            sqlUpdate,
+            [status, id],
+            (err, result)=>{
+
+                if(err){
+                    return res.status(500).json({
+                        error:err.message
+                    });
+                }
+
+
+                res.json({
+                    message:"Appointment status updated"
+                });
+
+            }
+        );
+
+    });
+
 };
 
 exports.cancelAppointment = (req, res) => {

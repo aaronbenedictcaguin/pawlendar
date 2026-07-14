@@ -1,4 +1,4 @@
-module.exports.validatePet = (req, res, next) => {
+module.exports.validateGroomer = (req, res, next) => {
     const {
         first_name,
         last_name,

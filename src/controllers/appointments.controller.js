@@ -56,13 +56,13 @@ exports.bookAppointment = async (req, res) => {
                 message: "Appointments must be booked at least 30 minutes in advance."
             });
         }
-
+        
         // Calculate duration and total price
         const appointmentInfo = await calculateAppointmentEnd(
             service_ids,
             start_datetime
         );
-
+        
         const endDatetime = appointmentInfo.endDatetime;
         const total_price = appointmentInfo.totalPrice;
 

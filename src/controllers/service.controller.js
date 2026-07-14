@@ -12,16 +12,16 @@ exports.createService = (req, res) => {
     } = req.body;
 
     const sql = `
-        INSERT INTO service_menu
-        (
+        SELECT
+            service_id,
             service_name,
             category,
             description,
             price,
-            duration_minutes,
-            active_flag
-        )
-        VALUES (?, ?, ?, ?, ?, TRUE)
+            duration_minutes
+        FROM service_menu
+        WHERE service_id = ?
+        AND active_flag = TRUE
     `;
 
     db.query(
@@ -56,12 +56,13 @@ exports.createService = (req, res) => {
 exports.getServices = (req, res) => {
 
     const sql = `
-        SELECT 
-        service_name,
-        category,
-        description,
-        price,
-        duration_minutes
+        SELECT
+            service_id,
+            service_name,
+            category,
+            description,
+            price,
+            duration_minutes
         FROM service_menu
         WHERE active_flag = TRUE
         ORDER BY service_name

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../navbar.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <nav class="main-nav">
             <div class="logo"><i class="fa-solid fa-paw"></i> Pawlendar</div>
             <ul>
@@ -23,7 +23,7 @@
             </ul>
             <a href="registration.html" class="nav-btn">Login or Sign-Up</a>
         </nav>
-    </header>
+    </header> -->
 
 <div class="main-container">
 
@@ -54,9 +54,9 @@
             </p>
         </div>
 
-        <div class="image-wrapper">
+        <!-- <div class="image-wrapper">
             <img src="../images/golden.jpg" alt="Cute golden" class="pet-image">
-        </div>
+        </div> -->
 
     </div>
 
@@ -93,106 +93,110 @@
 
                 <form>
 
-                <div class="form-row">
+                    <!-- OWNER -->
+                    <h3>Owner Information</h3>
+
+                    <div class="summary-box">
+
+                        <p>
+                            <strong>Name:</strong>
+                            <span id="ownerName">Loading...</span>
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            <span id="ownerEmail">Loading...</span>
+                        </p>
+
+                        <p>
+                            <strong>Phone:</strong>
+                            <span id="ownerPhone">Loading...</span>
+                        </p>
+
+                    </div>
+
+                    <!-- PET -->
+                    <h3>Pet Information</h3>
+
+                    <div class="summary-box">
+
+                        <p>
+                            <strong>Name:</strong>
+                            <span id="petName">Loading...</span>
+                        </p>
+
+                        <p>
+                            <strong>Species:</strong>
+                            <span id="petSpecies">Loading...</span>
+                        </p>
+
+                        <p>
+                            <strong>Breed:</strong>
+                            <span id="petBreed">Loading...</span>
+                        </p>
+
+                        <p>
+                            <strong>Size:</strong>
+                            <span id="petSize">Loading...</span>
+                        </p>
+
+                    </div>
+        
             
                     <div class="input-group">
-                        <label>Owner Name</label>
-                        <input type="text" placeholder="Enter your full name">
+
+                        <label>Services</label>
+
+                        <div id="serviceList">
+
+                        </div>
+
+                    </div>
+                
+                    <div class="form-row">
+
+                        <div class="input-group">
+                            <label>Appointment Date</label>
+                            <input type="date" id="appointment_date">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Appointment Time</label>
+                            <input type="time" id="appointment_time">
+                        </div>
+
                     </div>
             
                     <div class="input-group">
-                        <label>Phone Number</label>
-                        <input type="tel" placeholder="Enter your phone number">
+                        <label>Special Instructions</label>
+                        <textarea
+                            id="notes"
+                            placeholder="Anything we should know?">
+                        </textarea>
                     </div>
-            
-                </div>
-            
-                <div class="form-row">
-            
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="Enter your email">
+                
+                    <h3>Appointment Summary</h3>
+
+                    <div class="summary-box">
+
+                        <p>
+                            <strong>Estimated Duration:</strong>
+                            <span id="duration">0 mins</span>
+                        </p>
+
+                        <p>
+                            <strong>Total Price:</strong>
+                            ₱<span id="totalPrice">0</span>
+                        </p>
+
                     </div>
-            
-                    <div class="input-group">
-                        <label>Address</label>
-                        <input type="text" placeholder="Enter your address">
-                    </div>
-            
-                </div>
-            
-                <div class="form-row">
-            
-                    <div class="input-group">
-                        <label>Pet Name</label>
-                        <input type="text" placeholder="Enter your pet's name">
-                    </div>
-            
-                    <div class="input-group">
-                        <label>Pet Type</label>
-            
-                        <select id="petType" onchange="showOtherPet()">
-                            <option>Select Pet Type</option>
-                            <option>Dog</option>
-                            <option>Cat</option>
-                            <option>Rabbit</option>
-                            <option>Bird</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-            
-                </div>
-            
-                <div class="input-group" id="otherPetGroup" style="display:none;">
-                    <label>Please specify</label>
-                    <input type="text" placeholder="Enter pet type">
-                </div>
-            
-                <div class="form-row">
-            
-                    <div class="input-group">
-                        <label>Service</label>
-            
-                        <select>
-                            <option>Select Service</option>
-                            <option>Bath & Brush Essential</option>
-                            <option>Haircut</option>
-                            <option>Full Grooming</option>
-                            <option>Nail Trim</option>
-                        </select>
-                    </div>
-            
-                    <div class="input-group">
-                        <label>Breed</label>
-                        <input type="text" placeholder="Golden Retriever">
-                    </div>
-            
-                </div>
-            
-                <div class="form-row">
-            
-                    <div class="input-group">
-                        <label>Appointment Date</label>
-                        <input type="date">
-                    </div>
-            
-                    <div class="input-group">
-                        <label>Appointment Time</label>
-                        <input type="time">
-                    </div>
-            
-                </div>
-            
-                <div class="input-group">
-                    <label>Special Instructions</label>
-                    <textarea placeholder="Anything we should know?"></textarea>
-                </div>
-            
-                <button class="btn-login">
-                    Book Appointment
-                </button>
-            
-            </form>
+
+                    <button class="btn-login">
+                        Book Appointment
+                    </button>
+                
+                </form>
+            </div>
         </div>
 
     </div>
@@ -213,6 +217,8 @@
     }
     </script>
     <script src="staff-calendar.js"></script>
+    <script src="staff-calendar.js"></script>
+    <script src="booking.js"></script>
 
 
 </body>

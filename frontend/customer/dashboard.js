@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ---------------- OWNER ----------------
     async function loadOwner() {
         try {
-            const res = await fetch("http://localhost:3000/api/owners/me", {
+            const res = await fetch("http://localhost:3000/api/users/me", {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -77,12 +77,87 @@ document.addEventListener("DOMContentLoaded", () => {
                 <small>${pet.breed}</small>
             `;
 
+            div.style.cursor = "pointer";
+
+            div.addEventListener("click", () => {
+                window.location.href = `booking.html?pet_id=${pet.pet_id}`;
+            });
+
             petGrid.appendChild(div);
         });
     }
 
+    async function loadAppointments() {
+
+        const res = await fetch("http://localhost:3000/api/appointments", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (handleAuthError(res)) return;
+
+        if (!res.ok) {
+            console.error("Failed to load appointments");
+            return;
+        }
+
+        const appointments = await res.json();
+
+        const container = document.getElementById("appointmentContainer");
+
+        container.innerHTML = "";
+
+        const upcoming = appointments.filter(appointment => {
+
+            return (
+                new Date(appointment.start_datetime) >= new Date() &&
+                appointment.status !== "Completed" &&
+                appointment.status !== "Cancelled" &&
+                appointment.status !== "No Show"
+            );
+
+        });
+
+        if (upcoming.length === 0) {
+
+            container.innerHTML = `
+                <div class="appointment-card">
+                    <p>No upcoming appointments.</p>
+                </div>
+            `;
+
+            return;
+        }
+
+        upcoming.forEach(appointment => {
+
+            const card = document.createElement("div");
+
+            card.className = "appointment-card";
+
+            const date = new Date(appointment.start_datetime);
+
+            card.innerHTML = `
+                <strong>
+                    ${date.toLocaleDateString()} ${date.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    })}
+                </strong>
+
+                <p>Status: ${appointment.status}</p>
+            `;
+
+            container.appendChild(card);
+
+        });
+
+    }
+
     loadOwner();
     loadPets();
+    loadAppointments();
 
     const form = document.querySelector(".pet-panel form");
 

@@ -35,18 +35,6 @@ form.addEventListener("submit", async (e) => {
                 phone_number:
                     document.getElementById("phone_number").value,
 
-                street_address:
-                    document.getElementById("street_address").value,
-
-                barangay:
-                    document.getElementById("barangay").value,
-
-                city:
-                    document.getElementById("city").value,
-
-                province:
-                    document.getElementById("province").value,
-
                 password
             })
         }

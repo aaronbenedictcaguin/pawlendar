@@ -10,12 +10,22 @@ body{
     background:#FFF9E6;
     min-height:100vh;
     display:flex;
-    justify-content:center;
+    flex-direction: column;
+    justify-content:flex-start;
     align-items:center;
 }
 
+header {
+    width: 100%;
+}
+
+header nav .logo,
+header .main-nav .logo {
+    transform: translateY(11px);
+}
 
 .register-container{
+    margin: 24px auto 0;
 
     width:1100px;
     background:white;

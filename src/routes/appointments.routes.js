@@ -19,6 +19,8 @@ router.get("/:id", authMiddleware,appointmentController.getAppointmentById);
 
 router.put("/:id/status", authMiddleware, adminMiddleware, appointmentController.updateStatus);
 
+router.put("/:id/reassign", authMiddleware, adminMiddleware, appointmentController.reassignAppointment);
+
 router.delete("/:id", authMiddleware, appointmentController.cancelAppointment);
 
 module.exports = router;

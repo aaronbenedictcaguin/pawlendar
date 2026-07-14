@@ -1,6 +1,50 @@
 const db = require("../config/db");
 
-exports.bookAppointment = (req, res) => {
+const query = (sql, params = []) => db.promise().query(sql, params).then(([rows]) => rows);
+
+async function getAvailableGroomer(startDatetime, endDatetime, requestedStaffId, excludedAppointmentId = null) {
+    const params = [endDatetime, startDatetime, excludedAppointmentId, excludedAppointmentId];
+    let requestedFilter = "";
+
+    if (requestedStaffId) {
+        requestedFilter = "AND u.user_id = ?";
+        params.push(requestedStaffId);
+    }
+
+    params.push(startDatetime);
+
+    const rows = await query(`
+        SELECT
+            u.user_id AS staff_id,
+            u.first_name,
+            u.last_name,
+            COUNT(a.appointment_id) AS scheduled_count
+        FROM user u
+        LEFT JOIN appointments a
+          ON a.staff_id = u.user_id
+         AND a.status != 'Cancelled'
+         AND a.start_datetime < ?
+         AND a.end_datetime > ?
+         AND (? IS NULL OR a.appointment_id != ?)
+        WHERE u.role IN ('Staff', 'Groomer')
+          AND u.active_flag = TRUE
+          ${requestedFilter}
+        GROUP BY u.user_id, u.first_name, u.last_name
+        HAVING scheduled_count = 0
+        ORDER BY (
+            SELECT COUNT(*)
+            FROM appointments workload
+            WHERE workload.staff_id = u.user_id
+              AND workload.status != 'Cancelled'
+              AND DATE(workload.start_datetime) = DATE(?)
+        ) ASC, u.user_id ASC
+        LIMIT 1
+    `, params);
+
+    return rows[0] || null;
+}
+
+exports.bookAppointment = async (req, res) => {
     const user_id = req.user.user_id;
     const {pet_id, staff_id, start_datetime, notes,  services} = req.body;
     if (!services || services.length === 0) {
@@ -18,52 +62,45 @@ exports.bookAppointment = (req, res) => {
         AND active_flag = TRUE
     `;
 
-    db.query(checkPetSql, [pet_id, user_id], (err, pets) => {
-
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-
+    try {
+        const pets = await query(checkPetSql, [pet_id, user_id]);
         if (pets.length === 0) {
             return res.status(403).json({
                 message: "You do not own this pet."
             });
         }
 
-        const checkSql = `
-            SELECT *
-            FROM appointments
-            WHERE staff_id = ? AND start_datetime = ? AND status != 'Cancelled'
-        `;
-
         const durationSql = `
             SELECT 
                 SUM(duration_minutes) AS total_duration,
-                SUM(price) AS total_price
+                SUM(price) AS total_price,
+                COUNT(*) AS service_count
             FROM service_menu
             WHERE service_id IN (?)
+              AND active_flag = TRUE
         `;
 
-        db.query(durationSql, [services], (err, durationResult) => {
-
-            if(err){
-                return res.status(500).json({
-                    error: err.message
-                });
-            }
-
+        const durationResult = await query(durationSql, [services]);
             const totalDuration = durationResult[0].total_duration;
             const total_price = durationResult[0].total_price;
+
+            if (!totalDuration || Number(durationResult[0].service_count) !== services.length) {
+                return res.status(400).json({message: "Every selected service must exist and be active"});
+            }
 
             const end_datetime = new Date(start_datetime);
             end_datetime.setMinutes(
                 end_datetime.getMinutes() + totalDuration
             );
 
-            db.query(checkSql, [staff_id, start_datetime], (err, results) => {
-                if (err) {return res.status(500).json({error: err.message});}
-
-                if (results.length > 0) {return res.status(400).json({message: "Selected time slot is unavailable"});}
+            const groomer = await getAvailableGroomer(start_datetime, end_datetime, staff_id);
+            if (!groomer) {
+                return res.status(409).json({
+                    message: staff_id
+                        ? "Selected groomer is inactive or unavailable for this time slot"
+                        : "No active groomer is available for this time slot"
+                });
+            }
 
                 // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
                 const insertSql = `
@@ -78,16 +115,9 @@ exports.bookAppointment = (req, res) => {
                     VALUES (?, ?, ?, ?, ?, ?)
                 `;
 
-                db.query(
-                    insertSql,
-                    [pet_id, staff_id, start_datetime, end_datetime, total_price, notes],
-                    (err, result) => {
-
-                        if (err) {
-                            return res.status(500).json({error: err.message});
-                        }
-
-                        const appointment_id = result.insertId;
+                const result = await query(insertSql,
+                    [pet_id, groomer.staff_id, start_datetime, end_datetime, total_price, notes]);
+                const appointment_id = result.insertId;
 
                         const serviceSql = `
                             INSERT INTO appointment_services
@@ -100,50 +130,76 @@ exports.bookAppointment = (req, res) => {
                             SELECT ?, service_id, price, duration_minutes
                             FROM service_menu
                             WHERE service_id IN (?)
+                              AND active_flag = TRUE
                         `;
 
-                        db.query(
-                            serviceSql,
-                            [appointment_id, services],
-                            (err) => {
-
-                                if (err) {
-                                    return res.status(500).json({
-                                        error: err.message
-                                    });
-                                }
-
-                                res.status(201).json({
-                                    message: "Appointment booked successfully",
-                                    appointment_id
-                                });
-
-                            }
-                        );
-                    }
-                );
-            });
-        });
-    });
+                await query(serviceSql, [appointment_id, services]);
+                res.status(201).json({
+                    message: "Appointment booked successfully",
+                    appointment_id,
+                    staff_id: groomer.staff_id,
+                    assignment: staff_id ? "manual" : "automatic"
+                });
+    } catch (err) {
+        return res.status(500).json({error: err.message});
+    }
 };
 
-exports.checkAvailability = (req, res) => {
-    const {staff_id, start_datetime} = req.query;
+exports.checkAvailability = async (req, res) => {
+    const {staff_id, start_datetime, end_datetime} = req.query;
+    if (!start_datetime || !end_datetime) {
+        return res.status(400).json({message: "start_datetime and end_datetime are required"});
+    }
 
-    // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database
-    const sql = `
-        SELECT *
-        FROM appointments
-        WHERE staff_id = ? AND start_datetime = ? AND status != 'Cancelled'
-    `;
+    try {
+        const groomer = await getAvailableGroomer(start_datetime, end_datetime, staff_id);
+        res.json({available: Boolean(groomer), groomer});
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+};
 
-    db.query(sql, [staff_id, start_datetime],
-        (err, results) => {
-            if (err) {return res.status(500).json({error: err.message});}
+exports.reassignAppointment = async (req, res) => {
+    const {id} = req.params;
+    const {staff_id} = req.body;
 
-            res.json({available: results.length === 0});
+    try {
+        const appointments = await query(`
+            SELECT appointment_id, start_datetime, end_datetime
+            FROM appointments
+            WHERE appointment_id = ? AND status NOT IN ('Completed', 'Cancelled')
+        `, [id]);
+
+        if (!appointments.length) {
+            return res.status(404).json({message: "Reassignable appointment not found"});
         }
-    );
+
+        const appointment = appointments[0];
+        const groomer = await getAvailableGroomer(
+            appointment.start_datetime,
+            appointment.end_datetime,
+            staff_id,
+            appointment.appointment_id
+        );
+
+        if (!groomer) {
+            return res.status(409).json({
+                message: staff_id
+                    ? "Selected groomer is inactive or unavailable for this appointment"
+                    : "No active groomer is available for this appointment"
+            });
+        }
+
+        await query("UPDATE appointments SET staff_id = ? WHERE appointment_id = ?", [groomer.staff_id, id]);
+        res.json({
+            message: "Appointment reassigned successfully",
+            appointment_id: Number(id),
+            staff_id: groomer.staff_id,
+            assignment: staff_id ? "manual" : "automatic"
+        });
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
 };
 
 // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database

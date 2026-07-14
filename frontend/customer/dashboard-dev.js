@@ -90,10 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.className = "pet-card";
 
                 card.innerHTML = `
-                    <img src="${pet.photo_url || "images/default-profile.jpg"}">
-                    <h4>${pet.pet_name}</h4>
-                    <p>${pet.species}</p>
-                    <small>${pet.breed || ""}</small>
+                        <img src="${pet.photo_url || "../images/default-profile.svg"}">
                 `;
 
                 petList.appendChild(card);

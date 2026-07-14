@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawlendar | Staff Dashboard</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="staff-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fa-solid fa-paw"></i> Pawlendar
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="staff-info.html">Staff</a></li>
+                <li><a href="appointment.html">Appointments</a></li>
+            </ul>
+            <a href="registration.html" class="nav-btn">Login or Sign-Up</a>
+        </nav>
+    </header>
+
+    <main class="page-wrap staff-dashboard-page">
+        <section class="dashboard-hero">
+            <div class="dashboard-hero-content">
+                <h1>Staff Appointment Dashboard</h1>
+                <p>Track appointments by day, week, and month. Confirm client bookings and see when full capacity is reached.</p>
+            </div>
+        </section>
+
+        <section class="dashboard-controls">
+            <div class="view-select">
+                <label for="dashboardView">Overview</label>
+                <select id="dashboardView">
+                    <option value="month">Month</option>
+                    <option value="week">Week</option>
+                    <option value="day">Day</option>
+                </select>
+            </div>
+            <div class="date-select">
+                <label for="dashboardDate">Date</label>
+                <input id="dashboardDate" type="date">
+            </div>
+            <button class="main-btn" id="refreshDashboard">Refresh</button>
+        </section>
+
+        <section class="dashboard-summary">
+            <div class="summary-card small-card">
+                <span>Appointments Today</span>
+                <strong id="todayCount">0</strong>
+            </div>
+            <div class="summary-card small-card">
+                <span>Weekly Appointments</span>
+                <strong id="weekCount">0</strong>
+            </div>
+            <div class="summary-card small-card">
+                <span>Monthly Appointments</span>
+                <strong id="monthCount">0</strong>
+            </div>
+        </section>
+
+        <section class="appointments-overview">
+            <div class="overview-header">
+                <h2>Upcoming Appointments</h2>
+                <button class="main-btn" id="addAppointmentBtn">Add Appointment</button>
+            </div>
+            <div id="overviewList" class="overview-list"></div>
+        </section>
+
+        <section class="capacity-notice">
+            <h2>Capacity Alerts</h2>
+            <div class="capacity-grid">
+                <div class="capacity-card full-card">
+                    <strong>Full</strong>
+                    <p>Dates with 10 confirmed bookings will appear in grey on customer and staff calendars.</p>
+                </div>
+                <div class="capacity-card open-card">
+                    <strong>Open</strong>
+                    <p>Open slots show available dates for new customer bookings.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const appointments = [
+            { id: 'A101', client: 'Mia Santos', service: 'Full Grooming', date: '2026-06-08', time: '09:00 AM', pet: 'Bella', status: 'Pending' },
+            { id: 'A102', client: 'Kyle Reyes', service: 'Bath & Brush Essential', date: '2026-06-08', time: '11:00 AM', pet: 'Milo', status: 'Confirmed' },
+            { id: 'A103', client: 'Anna Cruz', service: 'Haircut', date: '2026-06-09', time: '02:00 PM', pet: 'Chico', status: 'Pending' },
+            { id: 'A104', client: 'Jess Castillo', service: 'Nail Trim', date: '2026-06-10', time: '10:00 AM', pet: 'Coco', status: 'Confirmed' },
+            { id: 'A105', client: 'Daniel Ortiz', service: 'Full Grooming', date: '2026-06-10', time: '03:00 PM', pet: 'Luna', status: 'Confirmed' }
+        ];
+
+        const todayCount = document.getElementById('todayCount');
+        const weekCount = document.getElementById('weekCount');
+        const monthCount = document.getElementById('monthCount');
+        const overviewList = document.getElementById('overviewList');
+        const dashboardView = document.getElementById('dashboardView');
+        const dashboardDate = document.getElementById('dashboardDate');
+
+        const loadOverview = () => {
+            const selectedDate = dashboardDate.value || new Date().toISOString().slice(0, 10);
+            const filtered = appointments.filter(a => a.date === selectedDate);
+            overviewList.innerHTML = filtered.length === 0 ? '<p class="empty-text">No appointments for this date.</p>' : filtered.map(a => `
+                <div class="overview-card ${a.status === 'Confirmed' ? 'confirmed' : ''}">
+                    <div class="overview-left">
+                        <strong>${a.client}</strong>
+                        <span>${a.pet} • ${a.service}</span>
+                    </div>
+                    <div class="overview-right">
+                        <span>${a.date} • ${a.time}</span>
+                        <span>Status: ${a.status}</span>
+                        <a href="booking-summary.html?date=${encodeURIComponent(a.date)}&name=${encodeURIComponent(a.client)}&service=${encodeURIComponent(a.service)}&pet=${encodeURIComponent(a.pet)}&email=${encodeURIComponent(a.client.replace(' ', '.').toLowerCase() + '@mail.com')}&time=${encodeURIComponent(a.time)}&notes=${encodeURIComponent('Confirmed via dashboard')}" class="small-btn">View</a>
+                    </div>
+                </div>
+            `).join('');
+
+            todayCount.textContent = appointments.filter(a => a.date === selectedDate).length;
+            weekCount.textContent = appointments.length;
+            monthCount.textContent = appointments.length;
+        };
+
+        document.getElementById('refreshDashboard').addEventListener('click', loadOverview);
+        document.getElementById('addAppointmentBtn').addEventListener('click', () => {
+            window.location.href = 'booking-summary.html';
+        });
+        dashboardDate.value = new Date().toISOString().split('T')[0];
+        loadOverview();
+    </script>
+</body>
+</html>

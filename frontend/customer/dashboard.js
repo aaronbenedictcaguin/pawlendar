@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "pet-card";
 
             div.innerHTML = `
-                <img src="${pet.photo_url || 'images/default-profile.jpg'}">
+                <img src="${pet.photo_url || '../images/default-profile.svg'}">
                 <h4>${pet.pet_name}</h4>
                 <p>${pet.species}</p>
                 <small>${pet.breed}</small>

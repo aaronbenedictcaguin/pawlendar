@@ -1,6 +1,6 @@
 const db = require("../config/db");
-const { calculateAppointmentEnd } = require("../utils/appointmentHelper");
-const { findAvailableStaff } = require("../utils/staffAvailability");
+const { calculateAppointmentEnd } = require("../utils/appointmenthelper");
+const { findAvailableStaff } = require("../utils/staffavailability");
 
 exports.bookAppointment = async (req, res) => {
 
@@ -12,7 +12,8 @@ exports.bookAppointment = async (req, res) => {
             pet_id,
             start_datetime,
             notes,
-            service_ids
+            service_ids,
+            staff_id
         } = req.body;
 
         // Check if pet belongs to logged-in user
@@ -68,12 +69,15 @@ exports.bookAppointment = async (req, res) => {
         // Find available staff
         const staff = await findAvailableStaff(
             new Date(start_datetime),
-            endDatetime
+            endDatetime,
+            staff_id
         );
 
         if (!staff) {
             return res.status(409).json({
-                message: "No staff available."
+                message: staff_id
+                    ? "Selected groomer is inactive or unavailable."
+                    : "No active groomer is available."
             });
         }
 
@@ -260,7 +264,8 @@ exports.checkAvailability = async (req, res) => {
 
         const {
             start_datetime,
-            service_ids
+            service_ids,
+            staff_id
         } = req.query;
 
         if (!start_datetime || !service_ids) {
@@ -278,11 +283,13 @@ exports.checkAvailability = async (req, res) => {
         const staff =
             await findAvailableStaff(
                 new Date(start_datetime),
-                appointmentInfo.endDatetime
+                appointmentInfo.endDatetime,
+                staff_id
             );
 
         res.json({
-            available: !!staff
+            available: !!staff,
+            staff: staff || null
         });
 
     } catch (err) {
@@ -293,6 +300,63 @@ exports.checkAvailability = async (req, res) => {
 
     }
 
+};
+
+exports.reassignAppointment = async (req, res) => {
+    const { id } = req.params;
+    const { staff_id } = req.body;
+
+    try {
+        const appointments = await new Promise((resolve, reject) => {
+            db.query(
+                `SELECT appointment_id, start_datetime, end_datetime
+                 FROM appointments
+                 WHERE appointment_id = ?
+                 AND status NOT IN ('Completed', 'Cancelled')`,
+                [id],
+                (err, results) => err ? reject(err) : resolve(results)
+            );
+        });
+
+        if (appointments.length === 0) {
+            return res.status(404).json({
+                message: "Reassignable appointment not found."
+            });
+        }
+
+        const appointment = appointments[0];
+        const staff = await findAvailableStaff(
+            new Date(appointment.start_datetime),
+            new Date(appointment.end_datetime),
+            staff_id,
+            appointment.appointment_id
+        );
+
+        if (!staff) {
+            return res.status(409).json({
+                message: staff_id
+                    ? "Selected groomer is inactive or unavailable."
+                    : "No active groomer is available."
+            });
+        }
+
+        await new Promise((resolve, reject) => {
+            db.query(
+                "UPDATE appointments SET staff_id = ? WHERE appointment_id = ?",
+                [staff.staff_id, id],
+                err => err ? reject(err) : resolve()
+            );
+        });
+
+        return res.json({
+            message: "Appointment reassigned successfully.",
+            appointment_id: Number(id),
+            assigned_staff: staff,
+            assignment: staff_id ? "manual" : "automatic"
+        });
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 };
 
 // changed APPOINTMENTS to appointments so that it's not confusing, changed the name sd sa database

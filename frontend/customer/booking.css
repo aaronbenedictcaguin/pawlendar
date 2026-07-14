@@ -13,16 +13,20 @@ body{
     background-color:#FBF4E9;
     min-height:100vh;
     display:flex;
-    justify-content:center;
+    flex-direction:column;
+    justify-content:flex-start;
     align-items:center;
-    padding:20px;
 }
 
+header {
+    width: 100%;
+}
 
 .main-container{
     width:100%;
     max-width:1350px;
     min-height:900px;
+    margin: 24px auto 0;
     border-radius:30px;
     display:flex;
     overflow:visible;

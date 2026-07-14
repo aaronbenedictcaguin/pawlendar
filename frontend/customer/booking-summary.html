@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawlendar | Booking Summary</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="booking-summary.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../navbar.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fa-solid fa-paw"></i> Pawlendar
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="staff-info.html">Staff</a></li>
+                <li><a href="appointment.html">Appointments</a></li>
+            </ul>
+            <a href="registration.html" class="nav-btn">Login or Sign-Up</a>
+        </nav>
+    </header>
+
+    <main class="page-wrap booking-summary-page">
+        <section class="summary-hero">
+            <div class="summary-hero-content">
+                <h1>Booking Summary</h1>
+                <p>Review your appointment details before confirming. The total amount will be calculated based on the service selected.</p>
+            </div>
+        </section>
+
+        <section class="summary-card-section">
+            <div class="summary-card">
+                <div class="summary-header">
+                    <div>
+                        <h2>Appointment Details</h2>
+                        <p id="summaryDate">Date: </p>
+                        <p id="summaryTime">Time: </p>
+                    </div>
+                    <div class="summary-status">Ready to Confirm</div>
+                </div>
+
+                <div class="summary-body">
+                    <div class="summary-item"><span>Customer</span><strong id="summaryName"></strong></div>
+                    <div class="summary-item"><span>Email</span><strong id="summaryEmail"></strong></div>
+                    <div class="summary-item"><span>Pet Name</span><strong id="summaryPet"></strong></div>
+                    <div class="summary-item"><span>Service</span><strong id="summaryService"></strong></div>
+                    <div class="summary-item"><span>Notes</span><strong id="summaryNotes"></strong></div>
+                </div>
+
+                <div class="summary-total">
+                    <div>
+                        <h3>Total</h3>
+                        <p>Service price in pesos</p>
+                    </div>
+                    <div class="total-price" id="summaryPrice">₱0</div>
+                </div>
+
+                <button id="confirmBookingBtn" class="main-btn">Confirm Appointment</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const priceMap = {
+            'Bath & Brush Essential': 450,
+            'Haircut': 650,
+            'Full Grooming': 950,
+            'Nail Trim': 250
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const summaryName = document.getElementById('summaryName');
+        const summaryEmail = document.getElementById('summaryEmail');
+        const summaryPet = document.getElementById('summaryPet');
+        const summaryService = document.getElementById('summaryService');
+        const summaryNotes = document.getElementById('summaryNotes');
+        const summaryDate = document.getElementById('summaryDate');
+        const summaryTime = document.getElementById('summaryTime');
+        const summaryPrice = document.getElementById('summaryPrice');
+
+        const booking = {
+            date: params.get('date') || 'Not set',
+            name: params.get('name') || 'N/A',
+            email: params.get('email') || 'N/A',
+            pet: params.get('pet') || 'N/A',
+            service: params.get('service') || 'N/A',
+            time: params.get('time') || 'N/A',
+            notes: params.get('notes') || 'None'
+        };
+
+        summaryName.textContent = booking.name;
+        summaryEmail.textContent = booking.email;
+        summaryPet.textContent = booking.pet;
+        summaryService.textContent = booking.service;
+        summaryNotes.textContent = booking.notes;
+        summaryDate.textContent = `Date: ${new Date(booking.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year:'numeric' })}`;
+        summaryTime.textContent = `Time: ${booking.time}`;
+        summaryPrice.textContent = `₱${priceMap[booking.service] || 0}`;
+
+        document.getElementById('confirmBookingBtn').addEventListener('click', () => {
+            alert('Appointment confirmed! Thank you for booking with Pawlendar.');
+            window.location.href = 'appointment-list.html';
+        });
+    </script>
+</body>
+</html>

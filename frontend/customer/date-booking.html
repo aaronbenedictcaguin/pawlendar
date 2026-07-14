@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawlendar | Select Appointment Time</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="date-booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../navbar.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fa-solid fa-paw"></i> Pawlendar
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="staff-info.html">Staff</a></li>
+                <li><a href="appointment.html">Appointments</a></li>
+            </ul>
+            <a href="registration.html" class="nav-btn">Login or Sign-Up</a>
+        </nav>
+    </header>
+
+    <main class="page-wrap booking-page">
+        <section class="booking-hero">
+            <div class="booking-hero-content">
+                <h1>Choose your appointment time</h1>
+                <p>Pick a time slot for the date you selected. Fill in your details and proceed to confirm your booking.</p>
+            </div>
+        </section>
+
+        <section class="booking-form-section">
+            <div class="booking-card">
+                <article class="booking-details">
+                    <h2>Selected Date</h2>
+                    <p id="selectedDate" class="highlight-text">Loading...</p>
+                    <div id="fullNotice" class="full-notice hidden">
+                        This date has reached the maximum appointment limit of 10. Please choose another available date.
+                    </div>
+
+                    <div class="available-hours">
+                        <h3>Available hours</h3>
+                        <p>Select one of the available booking times below.</p>
+                        <select id="timeSlot">
+                            <option value="08:00">08:00 AM</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="13:00">01:00 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                        </select>
+                    </div>
+                </article>
+
+                <article class="booking-form">
+                    <h2>Confirm Booking Information</h2>
+                    <form id="bookingForm">
+                        <div class="input-group">
+                            <label for="customerName">Customer Name</label>
+                            <input id="customerName" name="customerName" type="text" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="serviceType">Service</label>
+                            <select id="serviceType" name="serviceType" required>
+                                <option value="">Select Service</option>
+                                <option value="Bath & Brush Essential">Bath & Brush Essential</option>
+                                <option value="Haircut">Haircut</option>
+                                <option value="Full Grooming">Full Grooming</option>
+                                <option value="Nail Trim">Nail Trim</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="petName">Pet Name</label>
+                            <input id="petName" name="petName" type="text" placeholder="Enter your pet's name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="emailAddress">Email</label>
+                            <input id="emailAddress" name="emailAddress" type="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="serviceTime">Appointment Time</label>
+                            <input id="serviceTime" name="serviceTime" type="time" value="08:00" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="serviceNotes">Special requests</label>
+                            <textarea id="serviceNotes" name="serviceNotes" placeholder="Add any details for your groomer"></textarea>
+                        </div>
+
+                        <button class="main-btn" id="confirmBooking" type="submit">Continue to Summary</button>
+                    </form>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const selectedDateEl = document.getElementById('selectedDate');
+        const fullNotice = document.getElementById('fullNotice');
+        const bookingForm = document.getElementById('bookingForm');
+        const serviceTime = document.getElementById('serviceTime');
+        const timeSlot = document.getElementById('timeSlot');
+        const fullDates = ['2026-06-10', '2026-06-14', '2026-06-25'];
+
+        const dateParam = params.get('date');
+        const bookingDate = dateParam || new Date().toISOString().split('T')[0];
+
+        selectedDateEl.textContent = new Date(bookingDate).toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+        serviceTime.value = timeSlot.value;
+
+        const isFull = fullDates.includes(bookingDate);
+        if (isFull) {
+            fullNotice.classList.remove('hidden');
+            bookingForm.querySelectorAll('input, select, textarea, button').forEach(el => {
+                if (el.id !== 'confirmBooking') el.disabled = true;
+            });
+            document.getElementById('confirmBooking').disabled = true;
+        }
+
+        bookingForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const data = new FormData(bookingForm);
+            const query = new URLSearchParams({
+                date: bookingDate,
+                name: data.get('customerName'),
+                service: data.get('serviceType'),
+                pet: data.get('petName'),
+                email: data.get('emailAddress'),
+                time: data.get('serviceTime'),
+                notes: data.get('serviceNotes') || ''
+            });
+            window.location.href = `booking-summary.html?${query.toString()}`;
+        });
+
+        timeSlot.addEventListener('change', () => {
+            serviceTime.value = timeSlot.value;
+        });
+    </script>
+</body>
+</html>

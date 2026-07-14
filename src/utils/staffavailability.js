@@ -1,6 +1,6 @@
 const db = require("../config/db");
 
-exports.findAvailableStaff = (startDatetime, endDatetime) => {
+exports.findAvailableStaff = (startDatetime, endDatetime, requestedStaffId = null, excludedAppointmentId = null) => {
     return new Promise((resolve, reject) => {
 
         const appointmentDate = new Date(startDatetime);
@@ -40,6 +40,7 @@ exports.findAvailableStaff = (startDatetime, endDatetime) => {
                 AND a.status <> 'Cancelled'
 
             WHERE s.active_flag = 1
+                AND (? IS NULL OR s.staff_id = ?)
                 AND sa.day_of_week = ?
                 AND sa.start_time <= ?
                 AND sa.end_time >= ?
@@ -49,6 +50,7 @@ exports.findAvailableStaff = (startDatetime, endDatetime) => {
                     WHERE
                         ap.staff_id = s.staff_id
                         AND ap.status <> 'Cancelled'
+                        AND (? IS NULL OR ap.appointment_id <> ?)
                         AND ( ap.start_datetime < ?
                             AND ap.end_datetime > ?)
                 )
@@ -66,9 +68,13 @@ exports.findAvailableStaff = (startDatetime, endDatetime) => {
             sql,
             [
                 startDatetime,
+                requestedStaffId,
+                requestedStaffId,
                 dayOfWeek,
                 startTime,
                 endTime,
+                excludedAppointmentId,
+                excludedAppointmentId,
                 endDatetime,
                 startDatetime
             ],

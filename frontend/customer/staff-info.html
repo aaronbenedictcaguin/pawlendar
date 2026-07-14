@@ -4,13 +4,14 @@
 <head>
     <title>Staff and Appointments | Pawlendar</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../navbar.css">
 </head>
 
 <body>
 
     <header>
-        <nav>
-
+        <nav class="main-nav">
             <div class="logo">
                 <i class="fa-solid fa-paw"></i> Pawlendar
             </div>
@@ -23,9 +24,9 @@
                 <li><a href="appointment.html">Appointments</a></li>
             </ul>
 
-            <button class="nav-btn">
+            <a href="registration.html" class="nav-btn">
                 Login or Sign-Up
-            </button>
+            </a>
 
         </nav>
     </header>
@@ -274,6 +275,35 @@
     </div>
 
 </section>
+
+<script>
+    const fullDates = ['2026-06-10', '2026-06-14', '2026-06-25'];
+    const calendarDays = document.querySelectorAll('.calendar-day');
+    calendarDays.forEach(day => {
+        if (day.classList.contains('inactive')) return;
+        const numberEl = day.querySelector('.day-number');
+        if (!numberEl) return;
+        const dayValue = numberEl.textContent.trim();
+        const dayNumber = Number(dayValue);
+        if (!dayNumber) return;
+        const dateValue = `2026-06-${String(dayNumber).padStart(2, '0')}`;
+        if (fullDates.includes(dateValue)) {
+            day.classList.add('full-day');
+            const badge = document.createElement('div');
+            badge.className = 'day-status';
+            badge.textContent = 'Full';
+            day.appendChild(badge);
+        }
+        day.classList.add('clickable');
+        day.addEventListener('click', () => {
+            if (fullDates.includes(dateValue)) {
+                window.alert('This date is full. Please choose another available date.');
+                return;
+            }
+            window.location.href = `date-booking.html?date=${encodeURIComponent(dateValue)}`;
+        });
+    });
+</script>
 
 <section class="capacity-section">
 

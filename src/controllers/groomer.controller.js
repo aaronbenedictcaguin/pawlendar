@@ -87,7 +87,7 @@ exports.getGroomers = (req, res) => {
 
 };
 
-exports.getGroomerByID = (req, res) => {
+exports.getGroomerById = (req, res) => {
 
     const { id } = req.params;
 
@@ -105,10 +105,10 @@ exports.getGroomerByID = (req, res) => {
             created_at,
             updated_at
         FROM staff
-        WHERE active_flag = TRUE;
+        WHERE staff_id = ? AND active_flag = TRUE;
     `;
 
-    db.query(sql, (err, results) => {
+    db.query(sql, [id], (err, results) => {
 
         if (err) {
             return res.status(500).json({
@@ -164,7 +164,8 @@ exports.updateGroomer = (req, res) => {
             specialization,
             hire_date,
             max_daily_appointments,
-            active_flag
+            active_flag,
+            id
         ],
         (err, result) => {
             if (err) {

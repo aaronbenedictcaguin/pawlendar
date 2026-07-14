@@ -1,0 +1,139 @@
+/* Shared Pawlendar header. Keep this stylesheet last in each page's <head>. */
+header {
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(74, 35, 40, 0.05);
+}
+
+header .main-nav {
+    width: min(100% - 40px, 1430px);
+    min-height: 92px;
+    margin: 0 auto;
+    padding: 14px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+header .main-nav .logo {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 10px;
+    color: #f5aa4e;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+header .main-nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+header .main-nav li {
+    margin: 0;
+    padding: 0;
+}
+
+header .main-nav a {
+    display: inline-block;
+    padding: 9px 5px;
+    border: 0;
+    color: #4a2328;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+header .main-nav ul a:hover,
+header .main-nav ul a.active {
+    color: #f5aa4e;
+}
+
+header .main-nav ul a.active {
+    border-bottom: 2px solid #f5aa4e;
+}
+
+header .main-nav .nav-btn {
+    min-width: 230px;
+    min-height: 54px;
+    padding: 14px 30px;
+    border: 0;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    background: #f5aa4e;
+    color: #4a2328;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+header .main-nav .nav-btn:hover {
+    border: 0;
+    background: #e99a3c;
+    color: #4a2328;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 1000px) {
+    header .main-nav {
+        width: min(100% - 30px, 900px);
+        gap: 18px;
+    }
+
+    header .main-nav ul {
+        gap: 16px;
+    }
+
+    header .main-nav .nav-btn {
+        min-width: auto;
+        padding-inline: 22px;
+    }
+}
+
+@media (max-width: 760px) {
+    header .main-nav {
+        width: 100%;
+        padding: 18px 20px;
+        flex-wrap: wrap;
+    }
+
+    header .main-nav ul {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        overflow-x: auto;
+    }
+
+    header .main-nav .logo {
+        font-size: 25px;
+    }
+
+    header .main-nav .nav-btn {
+        min-height: 44px;
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+}

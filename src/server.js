@@ -16,6 +16,7 @@ const serviceRoutes = require("./routes/service.routes");
 const appointmentRoutes = require("./routes/appointments.routes");
 const dashboardRoutes = require("./routes/dashboard.routes");
 const loyaltyRoutes = require("./routes/loyalty.routes");
+const groomerRoutes = require("./routes/groomer.routes");
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
@@ -24,6 +25,7 @@ app.use("/api/services", serviceRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/loyalty", loyaltyRoutes);
+app.use("/api/groomers", groomerRoutes);
 
 app.get("/", (req, res) => {
     res.send("lol testing lol");

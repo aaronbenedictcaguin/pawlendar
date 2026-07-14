@@ -3,9 +3,7 @@ const db = require("../config/db");
 exports.findAvailableStaff = (startDatetime, endDatetime) => {
     return new Promise((resolve, reject) => {
 
-        const appointmentDate = new Date(
-            startDatetime.replace(" ", "T")
-        );
+        const appointmentDate = new Date(startDatetime);
 
         const days = [
             "Sunday",
@@ -19,16 +17,12 @@ exports.findAvailableStaff = (startDatetime, endDatetime) => {
 
         const dayOfWeek = days[appointmentDate.getDay()];
 
-        const startTime = startDatetime.substring(11, 19);
-        const endTime = 
-            endDatetime
-            .toLocaleTimeString("en-GB", {
-                hour12: false
-            });
-        
-        console.log("Day:", dayOfWeek);
-        console.log("Start:", startTime);
-        console.log("End:", endTime);
+        const startTime = startDatetime.toLocaleTimeString("en-GB", {
+            hour12: false
+        });
+        const endTime = endDatetime.toLocaleTimeString("en-GB", {
+            hour12: false
+        });
 
         const sql = `
             SELECT s.staff_id, s.first_name,

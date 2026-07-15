@@ -1,0 +1,89 @@
+/* Shared alternating paw-print backgrounds for Pawlendar pages. */
+:root {
+    --paw-print-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23E0943A' fill-opacity='.17' transform='rotate(-18 70 70)'%3E%3Cellipse cx='70' cy='82' rx='22' ry='18'/%3E%3Ccircle cx='43' cy='52' r='9'/%3E%3Ccircle cx='60' cy='40' r='10'/%3E%3Ccircle cx='82' cy='40' r='10'/%3E%3Ccircle cx='99' cy='52' r='9'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+body > section:nth-of-type(odd),
+.page-wrap > section:nth-of-type(odd),
+.page > section:nth-of-type(odd),
+body > main.booking-container,
+body > main.dashboard-page,
+body > main.dashboard-layout > .content-panel,
+body > .main-container > .left-panel,
+body > .register-container > .register-left {
+    background-color: #FDF2D5 !important;
+    background-image: var(--paw-print-pattern) !important;
+    background-size: 140px 140px !important;
+}
+
+body > section:nth-of-type(4n + 3),
+.page-wrap > section:nth-of-type(4n + 3),
+.page > section:nth-of-type(4n + 3) {
+    background-position: 70px 35px;
+}
+
+/* Let the appointment pattern fill the entire area below the navigation. */
+body.appointment-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FDF2D5 !important;
+    background-image: var(--paw-print-pattern) !important;
+    background-size: 140px 140px !important;
+}
+
+body.appointment-page > main.booking-container {
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Fill the appointment-time page instead of patterning only its hero box. */
+body.booking-time-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FDF2D5 !important;
+    background-image: var(--paw-print-pattern) !important;
+    background-size: 140px 140px !important;
+}
+
+body.booking-time-page > main.booking-page {
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+body.booking-time-page > main.booking-page > section {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Carry the pattern behind the complete booking summary page. */
+body.booking-summary-background {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FDF2D5 !important;
+    background-image: var(--paw-print-pattern) !important;
+    background-size: 140px 140px !important;
+}
+
+body.booking-summary-background > main.booking-summary-page {
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+body.booking-summary-background > main.booking-summary-page > section {
+    background-color: transparent !important;
+    background-image: none !important;
+}

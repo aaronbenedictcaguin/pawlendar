@@ -1,115 +1,392 @@
 :root {
-  --bg: #f8f5ef;
-  --card: #ffffff;
-  --accent: #8a5a3b;
-  --accent-soft: #f2e1d0;
-  --text: #4d3427;
-  --muted: #7f6a5b;
-  --success: #4c8c5c;
+    --loyalty-orange: #F5AC53;
+    --loyalty-orange-dark: #E0943A;
+    --loyalty-brown: #4A2328;
+    --loyalty-text: #5C3338;
+    --loyalty-cream: #FFF9E6;
+    --loyalty-yellow: #FDF2D5;
+    --loyalty-mint: #C1EBE9;
+    --loyalty-white: #FFFFFF;
 }
 
-body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+.loyalty-page {
+    width: 100%;
 }
 
-.page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 32px 20px 48px;
+.loyalty-page section {
+    padding: 90px max(40px, calc((100% - 1200px) / 2));
 }
 
-.hero {
-  background: linear-gradient(135deg, var(--accent), #b17c53);
-  color: white;
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 0 16px 32px rgba(138, 90, 59, 0.18);
+.loyalty-hero {
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 70px;
 }
 
-.hero h1 {
-  margin: 0 0 8px;
-  font-size: 30px;
+.loyalty-hero-content {
+    max-width: 720px;
 }
 
-.hero p {
-  margin: 0;
-  opacity: 0.95;
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--loyalty-orange-dark);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-.card {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 10px 24px rgba(77, 52, 39, 0.08);
+.loyalty-hero h1 {
+    max-width: 760px;
+    margin: 18px 0 22px;
+    color: var(--loyalty-brown);
+    font-size: clamp(42px, 5vw, 64px);
+    line-height: 1.08;
+}
+
+.loyalty-hero p,
+.section-heading p,
+.rewards-cta p {
+    color: var(--loyalty-text);
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.hero-medallion {
+    width: 230px;
+    height: 230px;
+    flex: 0 0 230px;
+    display: grid;
+    place-items: center;
+    border: 14px solid rgba(193, 235, 233, 0.7);
+    border-radius: 50%;
+    background: var(--loyalty-white);
+    color: var(--loyalty-orange);
+    box-shadow: 0 20px 45px rgba(74, 35, 40, 0.12);
+    font-size: 100px;
+}
+
+.rewards-summary,
+.rewards-cta {
+    background: var(--loyalty-cream);
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 42px;
+}
+
+.section-heading h2,
+.rewards-cta h2 {
+    margin: 8px 0 0;
+    color: var(--loyalty-brown);
+    font-size: clamp(32px, 4vw, 42px);
+}
+
+.member-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: #E4F4E8;
+    color: #337347;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
 .summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
 }
 
 .metric {
-  background: var(--accent-soft);
-  border-radius: 12px;
-  padding: 16px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 30px;
+    border: 1px solid rgba(74, 35, 40, 0.07);
+    border-radius: 24px;
+    background: var(--loyalty-white);
+    box-shadow: 0 12px 30px rgba(74, 35, 40, 0.06);
 }
 
-.metric .label {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.featured-metric {
+    border-top: 5px solid var(--loyalty-orange);
 }
 
-.metric .value {
-  font-size: 24px;
-  font-weight: 700;
+.progress-metric {
+    grid-column: 1 / -1;
 }
 
-.pill {
-  display: inline-block;
-  padding: 8px 12px;
-  background: #f7efe6;
-  color: var(--accent);
-  border-radius: 999px;
-  font-weight: 700;
-  margin-top: 8px;
+.metric-icon {
+    width: 62px;
+    height: 62px;
+    flex: 0 0 62px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: var(--loyalty-yellow);
+    color: var(--loyalty-orange-dark);
+    font-size: 25px;
 }
 
-.progress {
-  height: 10px;
-  background: #eee2d3;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-top: 12px;
+.metric-body {
+    width: 100%;
 }
 
-.progress > div {
-  height: 100%;
-  background: var(--success);
-  border-radius: inherit;
+.label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--loyalty-text);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.value {
+    display: inline-block;
+    color: var(--loyalty-brown);
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.discount-pill,
+.tier-requirement {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--loyalty-yellow);
+    color: var(--loyalty-orange-dark);
+    font-size: 14px;
+    font-weight: 800;
 }
 
 .muted {
-  color: var(--muted);
+    display: block;
+    margin-top: 7px;
+    color: #80676A;
+    font-size: 14px;
 }
 
-.actions {
-  margin-top: 18px;
+.progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.actions a {
-  display: inline-block;
-  text-decoration: none;
-  color: white;
-  background: var(--accent);
-  padding: 10px 14px;
-  border-radius: 999px;
-  margin-right: 10px;
+.progress-row .muted {
+    margin: 0;
+}
+
+.progress {
+    height: 13px;
+    margin-top: 18px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #F1E5D3;
+}
+
+.progress > div {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--loyalty-orange), var(--loyalty-orange-dark));
+    transition: width 0.4s ease;
+}
+
+.centered-heading {
+    justify-content: center;
+    text-align: center;
+}
+
+.centered-heading p {
+    margin: 12px auto 0;
+}
+
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.tier-card {
+    position: relative;
+    padding: 38px 30px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    background: var(--loyalty-white);
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(74, 35, 40, 0.07);
+}
+
+.tier-card.active-tier {
+    border-color: var(--loyalty-orange);
+    transform: translateY(-8px);
+}
+
+.current-tier-badge {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--loyalty-orange);
+    color: var(--loyalty-brown);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.tier-card.active-tier .current-tier-badge {
+    display: inline-block;
+}
+
+.tier-icon {
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    color: white;
+    font-size: 28px;
+}
+
+.tier-icon.bronze { background: #B9784B; }
+.tier-icon.silver { background: #9DA5AC; }
+.tier-icon.gold { background: #E3AC27; }
+
+.tier-card h3 {
+    margin-bottom: 8px;
+    color: var(--loyalty-brown);
+    font-size: 25px;
+}
+
+.tier-card > strong {
+    color: var(--loyalty-orange-dark);
+    font-size: 22px;
+}
+
+.tier-card p {
+    min-height: 52px;
+    margin: 15px 0 22px;
+    color: var(--loyalty-text);
+    line-height: 1.6;
+}
+
+.tier-requirement {
+    margin: 0;
+    color: var(--loyalty-brown);
+}
+
+.rewards-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.rewards-cta p {
+    max-width: 680px;
+    margin-top: 14px;
+}
+
+.cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    white-space: nowrap;
+}
+
+.logo {
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .loyalty-page section {
+        padding: 65px 30px;
+    }
+
+    .loyalty-hero {
+        min-height: auto;
+    }
+
+    .hero-medallion {
+        width: 170px;
+        height: 170px;
+        flex-basis: 170px;
+        font-size: 72px;
+    }
+
+    .tiers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tier-card.active-tier {
+        transform: none;
+    }
+
+    .rewards-cta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 650px) {
+    .loyalty-hero {
+        align-items: flex-start;
+        flex-direction: column-reverse;
+        gap: 35px;
+    }
+
+    .hero-medallion {
+        width: 120px;
+        height: 120px;
+        flex-basis: 120px;
+        border-width: 9px;
+        font-size: 52px;
+    }
+
+    .section-heading,
+    .summary-grid,
+    .metric,
+    .progress-row,
+    .cta-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .summary-grid {
+        display: flex;
+    }
+
+    .metric,
+    .progress-metric {
+        width: 100%;
+        grid-column: auto;
+    }
+
+    .discount-pill {
+        margin: 9px 0 0;
+    }
+
+    .cta-actions,
+    .cta-actions a {
+        width: 100%;
+    }
 }

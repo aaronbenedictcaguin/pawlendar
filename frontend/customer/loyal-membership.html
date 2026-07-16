@@ -1,52 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pawlendar Loyalty Rewards</title>
-    <link rel="stylesheet" href="loyal-membership.css" />
-  </head>
-  <body>
-    <div class="page">
-      <section class="hero">
-        <h1>Loyalty Rewards</h1>
-        <p>Every completed grooming visit helps you unlock better perks at Pawlendar.</p>
-      </section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawlendar | Loyalty Rewards</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="loyal-membership.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../navbar.css">
+    <link rel="stylesheet" href="../paw-pattern.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-paw"></i> Pawlendar
+            </a>
 
-      <section class="card">
-        <div class="summary-grid">
-          <div class="metric">
-            <div class="label">Membership</div>
-            <div class="value" id="level">--</div>
-            <div class="pill" id="discount">--</div>
-          </div>
-          <div class="metric">
-            <div class="label">Completed visits</div>
-            <div class="value" id="appointments">0</div>
-            <div class="muted" id="next-level">Next tier: --</div>
-          </div>
-          <div class="metric">
-            <div class="label">Progress</div>
-            <div class="value" id="progress-text">0%</div>
-            <div class="progress"><div id="progress-bar"></div></div>
-          </div>
-        </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="staff-info.html">Staff</a></li>
+                <li><a href="appointment.html">Appointments</a></li>
+            </ul>
 
-        <div class="actions">
-          <a href="dashboard.html">Back to dashboard</a>
-        </div>
-      </section>
+            <a href="dashboard.html" class="nav-btn">My Dashboard</a>
+        </nav>
+    </header>
 
-      <section class="card">
-        <h3>How rewards work</h3>
-        <ul>
-          <li>Bronze: 5% discount after your first completed grooming visit.</li>
-          <li>Silver: 10% discount after 3 completed visits.</li>
-          <li>Gold: 15% discount after 6 completed visits.</li>
-        </ul>
-      </section>
-    </div>
+    <main class="page-wrap loyalty-page">
+        <section class="loyalty-hero">
+            <div class="loyalty-hero-content">
+                <span class="eyebrow"><i class="fa-solid fa-gift"></i> Pawlendar Rewards</span>
+                <h1>Every visit deserves a little reward</h1>
+                <p>Complete grooming appointments, move through membership tiers, and enjoy better savings for your pet's next spa day.</p>
+            </div>
+            <div class="hero-medallion" aria-hidden="true">
+                <i class="fa-solid fa-award"></i>
+            </div>
+        </section>
+
+        <section class="rewards-summary" aria-labelledby="summary-title">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">Your membership</span>
+                    <h2 id="summary-title">Rewards overview</h2>
+                </div>
+                <span class="member-status"><i class="fa-solid fa-circle-check"></i> Active member</span>
+            </div>
+
+            <div class="summary-grid">
+                <article class="metric featured-metric">
+                    <span class="metric-icon"><i class="fa-solid fa-crown"></i></span>
+                    <div>
+                        <span class="label">Current tier</span>
+                        <strong class="value" id="level">Silver</strong>
+                        <span class="discount-pill" id="discount">10% off</span>
+                    </div>
+                </article>
+
+                <article class="metric">
+                    <span class="metric-icon"><i class="fa-solid fa-scissors"></i></span>
+                    <div>
+                        <span class="label">Completed visits</span>
+                        <strong class="value" id="appointments">4</strong>
+                        <span class="muted">Successful grooming sessions</span>
+                    </div>
+                </article>
+
+                <article class="metric progress-metric">
+                    <span class="metric-icon"><i class="fa-solid fa-chart-line"></i></span>
+                    <div class="metric-body">
+                        <span class="label">Tier progress</span>
+                        <div class="progress-row">
+                            <strong class="value" id="progress-text">67%</strong>
+                            <span class="muted" id="next-level">Next tier: Gold</span>
+                        </div>
+                        <div class="progress" aria-label="Membership progress">
+                            <div id="progress-bar" style="width: 67%"></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="tiers-section" aria-labelledby="tiers-title">
+            <div class="section-heading centered-heading">
+                <div>
+                    <span class="eyebrow">Membership levels</span>
+                    <h2 id="tiers-title">More visits, more rewards</h2>
+                    <p>Your tier updates automatically after completed grooming appointments.</p>
+                </div>
+            </div>
+
+            <div class="tiers-grid">
+                <article class="tier-card" data-tier="Bronze">
+                    <span class="current-tier-badge">Current tier</span>
+                    <span class="tier-icon bronze"><i class="fa-solid fa-paw"></i></span>
+                    <h3>Bronze</h3>
+                    <strong>5% off</strong>
+                    <p>Starts after your first completed grooming visit.</p>
+                    <span class="tier-requirement">1 completed visit</span>
+                </article>
+
+                <article class="tier-card" data-tier="Silver">
+                    <span class="current-tier-badge">Current tier</span>
+                    <span class="tier-icon silver"><i class="fa-solid fa-paw"></i></span>
+                    <h3>Silver</h3>
+                    <strong>10% off</strong>
+                    <p>Extra savings for returning Pawlendar customers.</p>
+                    <span class="tier-requirement">3 completed visits</span>
+                </article>
+
+                <article class="tier-card" data-tier="Gold">
+                    <span class="current-tier-badge">Current tier</span>
+                    <span class="tier-icon gold"><i class="fa-solid fa-paw"></i></span>
+                    <h3>Gold</h3>
+                    <strong>15% off</strong>
+                    <p>Our best reward for the most loyal pet parents.</p>
+                    <span class="tier-requirement">6 completed visits</span>
+                </article>
+            </div>
+        </section>
+
+        <section class="rewards-cta">
+            <div>
+                <span class="eyebrow">Keep earning</span>
+                <h2>Ready for your pet's next spa day?</h2>
+                <p>Book another grooming session and move one visit closer to your next reward.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="dashboard.html" class="outline-btn">Back to Dashboard</a>
+                <a href="appointment.html" class="main-btn">Book Appointment</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h3><i class="fa-solid fa-paw"></i> Pawlendar Grooming Scheduler</h3>
+        <p>Making every paw happy.</p>
+        <p>@2026 Pawlendar. All rights reserved.</p>
+    </footer>
 
     <script src="loyal-membership.js"></script>
-  </body>
+</body>
 </html>

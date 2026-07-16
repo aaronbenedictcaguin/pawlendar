@@ -79,13 +79,68 @@
             <p>Completed Today</p>
         </div>
 
+        <div class="stat-card">
+            <h3 id="cancelledAppointments">0</h3>
+            <p>Cancelled Today</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="todayRevenue">₱0</h3>
+            <p>Today's Revenue</p>
+        </div>
+
     </div>
 
     <p class="updated">
         Last Updated:
         <span id="lastUpdated"></span>
     </p>
+
+    <section class="dashboard-lower">
+
+        <div class="dashboard-panel">
+
+            <h2>Upcoming Appointments</h2>
+
+            <table class="mini-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Time</th>
+                        <th>Pet</th>
+                        <th>Owner</th>
+                        <th>Groomer</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="upcomingTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="dashboard-panel">
+
+            <h2>Recent Activity</h2>
+
+            <div id="activityList">
+
+            </div>
+
+        </div>
+
+    </section>
 </section>
+
+
+
 
 <script src="admin-dashboard.js"></script>
 

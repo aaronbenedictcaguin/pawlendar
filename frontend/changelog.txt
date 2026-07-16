@@ -1,5 +1,0 @@
-changelog
-
-25/06/2026
-- (aaron) added the staff-info page
-- updated styles.css to have stuff for staff-info.html

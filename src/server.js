@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "frontend/customer")));
+app.use(express.static(path.join(__dirname, "../frontend/")));
 
 //routes
 const userRoutes = require("./routes/user.routes");
@@ -29,10 +29,6 @@ app.use("/api/appointments", appointmentRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/loyalty", loyaltyRoutes);
 app.use("/api/groomers", groomerRoutes);
-
-app.get("/", (req, res) => {
-    res.send("lol testing lol");
-});
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

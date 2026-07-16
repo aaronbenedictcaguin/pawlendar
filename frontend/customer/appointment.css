@@ -7,164 +7,236 @@
     --card-bg: #FFFFFF;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    background:#FFF9E6; 
-    color:#4A2328;
+body {
+    background: #FFF9E6;
+    color: #4A2328;
 }
-
-
 
 .booking-container {
     max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 24px;
+    margin: 35px auto;
+    padding: 0 20px;
 }
 
 .booking-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+}
+
+.badge {
+    display: inline-block;
+    background-color: rgba(245, 166, 70, 0.15);
+    color: var(--accent-hover);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    letter-spacing: 0.3px;
+}
+
+.booking-header h1,
+.step-card h3 {
+    font-family: 'Fraunces', serif;
 }
 
 .booking-header h1 {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 24px;
+    margin-bottom: 15px;
     letter-spacing: -0.5px;
 }
 
 .booking-header p {
-    font-size: 18px;
+    font-size: 15px;
     color: var(--text-main);
     font-weight: 400;
-    opacity: 0.85;
+    opacity: 0.75;
     line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
 }
 
 .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
 }
 
 .step-card {
     background: var(--card-bg);
-    border: 3px solid transparent;
+    border: 2px solid #F0EAD8;
     border-radius: 24px;
-    padding: 35px 28px;
-    box-shadow: 0 10px 30px rgba(74, 46, 43, 0.02);
+    padding: 25px 20px;
+    box-shadow: 0 8px 24px rgba(74, 46, 43, 0.05);
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .step-card:hover {
-    transform: translateY(-5px);
-}
-
-.step-card:nth-child(odd) {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(74, 46, 43, 0.1);
     border-color: var(--mint-border);
-}
-
-.step-card:nth-child(even) {
-    border-color: rgba(245, 166, 70, 0.15);
 }
 
 .step-card.highlight-card {
     background-color: #FFFBF2;
-    border: 3px solid var(--accent-orange);
+    border: 2px solid var(--accent-orange);
+    box-shadow: 0 12px 30px rgba(245, 166, 70, 0.2);
+}
+
+.step-card.highlight-card:hover {
+    border-color: var(--accent-hover);
 }
 
 .step-number {
-    background-color: var(--accent-orange);
+    background: linear-gradient(135deg, #F5A646, #F5C185);
     color: white;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 17px;
+    margin-bottom: 17px;
+    box-shadow: 0 6px 14px rgba(245, 166, 70, 0.35);
+}
+
+.step-tag {
+    font-size: 12px;
     font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 24px;
+    color: var(--accent-hover);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
 }
 
 .step-card h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .step-card p {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     color: var(--text-main);
-    line-height: 1.6;
-    opacity: 0.8;
+    line-height: 1.5;
+    opacity: 0.75;
 }
 
 .summary-box {
-    margin-top: auto; 
+    margin-top: 24px;
     text-align: center;
-    padding-top: 24px;
 }
 
 .main-btn {
-    display: inline-block;
-    background-color:#F5AC53;
-    color: #000000;              
-    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--accent-orange);
+    color: #FFFFFF;
+    font-size: 13px;
     font-weight: 600;
-    text-decoration: none;       
-    
-    border: 2px solid #e0a84e;    
-    padding: 10px 28px;          
-    border-radius: 50px;          
-    
+    text-decoration: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 8px 18px rgba(245, 166, 70, 0.35);
     transition: all 0.2s ease;
 }
 
-
 .main-btn:hover {
-    background-color: #efbb5b;   
-    color: #FFFFFF;               
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(245, 166, 70, 0.45);
 }
 
+@media (max-width: 1100px) {
 
-@media (max-width: 992px) {
     .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
         height: auto;
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
+        padding: 18px 24px;
     }
-    
-    .nav-right-container {
-        width: 100%;
+
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-auth {
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 16px;
+        height: auto;
+        padding: 20px 24px;
+    }
+
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .nav-auth {
         justify-content: center;
         flex-wrap: wrap;
-        height: auto;
     }
 
-    .nav-links {
-        height: auto;
+    .hero-about {
+        text-align: center;
     }
 
-    .nav-links a {
-        height: auto;
-        padding: 10px 0;
+    .hero-about h1 {
+        font-size: clamp(2rem, 7vw, 2.5rem);
+    }
+
+    .history {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .progress-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .booking-header h1 {
+        font-size: 32px;
     }
 }

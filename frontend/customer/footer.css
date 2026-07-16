@@ -1,0 +1,26 @@
+footer {
+    background: #9c5b48;
+    color: rgba(250, 244, 231, 0.55);
+    padding: 40px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    font-size: 13px;
+}
+
+footer .brand {
+    margin: 0;
+}
+
+footer .brand span {
+    font-size: 17px;
+}
+
+@media (max-width: 900px) {
+    footer {
+        padding: 40px 24px;
+    }
+}

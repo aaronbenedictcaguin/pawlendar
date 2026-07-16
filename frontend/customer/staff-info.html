@@ -1,452 +1,470 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff and Appointments | Pawlendar</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="staff-info.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <header>
-        <nav class="main-nav">
-            <div class="logo">
-                <i class="fa-solid fa-paw"></i> Pawlendar
-            </div>
+    <header class="navbar">
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html" class="active">Staff</a></li>
-                <li><a href="appointment.html">Appointments</a></li>
-            </ul>
-
-            <a href="registration.html" class="nav-btn">
-                Login or Sign-Up
-            </a>
-
+        <nav class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="staff-info.html" class="active">Staff</a>
+            <a href="appointment.html">Appointments</a>
         </nav>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-ghost-small">Login</a>
+            <a href="registration.html" class="btn-gold">Sign Up</a>
+        </div>
     </header>
 
-<section class="appointments-hero">
-    <div class="appointments-hero-content">
-        <h1>Meet Our Agents of Style!</h1>
-        <p>Take a look at our team, our usual capacities, and their availabilities!</p>
-    </div>
-</section>
+    <main class="main">
 
-<section class="calendar-section">
-
-    <h2>June 2026 Schedule</h2>
-
-    <div class="calendar-container">
-
-        <div class="calendar-header">Sun</div>
-        <div class="calendar-header">Mon</div>
-        <div class="calendar-header">Tue</div>
-        <div class="calendar-header">Wed</div>
-        <div class="calendar-header">Thu</div>
-        <div class="calendar-header">Fri</div>
-        <div class="calendar-header">Sat</div>
-
-        <div class="calendar-day inactive"></div>
-        <div class="calendar-day">
-            <div class="day-number">1</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
+        <section class="section hero-about paws-bg">
+            <div class="hero-about-inner">
+                <p class="label">Our Staff</p>
+                <h1><em>Meet our agents</em><br>of style!</h1>
+                <p class="hero-about-copy">Take a look at our team, our usual capacities, and their availabilities!.</p>
             </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">2</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
+        </section>
+
+        <section class="calendar-section paws-bg">
+
+            <h2>June 2026 Schedule</h2>
+
+            <div class="calendar-container">
+
+                <div class="calendar-header">Sun</div>
+                <div class="calendar-header">Mon</div>
+                <div class="calendar-header">Tue</div>
+                <div class="calendar-header">Wed</div>
+                <div class="calendar-header">Thu</div>
+                <div class="calendar-header">Fri</div>
+                <div class="calendar-header">Sat</div>
+
+                <div class="calendar-day inactive"></div>
+                <div class="calendar-day">
+                    <div class="day-number">1</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">2</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">3</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">4</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">5</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia | Osbourne
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">6</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia | Osbourne
+                    </div>
+                </div>
+
+                <div class="calendar-day">
+                    <div class="day-number">7</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim* | Reyes* | Garcia | Osbourne
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">8</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">9</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">10</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">11</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">12</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Osbourne*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">13</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia | Osbourne
+                    </div>
+                </div>
+
+                <div class="calendar-day">
+                    <div class="day-number">14</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim* | Reyes* | Garcia | Osbourne
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">15</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">16</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">17</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">18</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">19</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia | Osbourne
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">20</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia | Osbourne
+                    </div>
+                </div>
+
+                <div class="calendar-day">
+                    <div class="day-number">21</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim* | Reyes* | Garcia | Osbourne
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">22</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">23</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">24</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">25</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">26</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia | Osbourne
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">27</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia | Osbourne
+                    </div>
+                </div>
+
+                <div class="calendar-day">
+                    <div class="day-number">28</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim* | Reyes* | Garcia | Osbourne
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">29</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">30</div>
+                    <div class="day-divider"></div>
+                    <div class="day-staff">
+                        Lim | Reyes | Garcia*
+                    </div>
+                </div>
+                <div class="calendar-day inactive"></div>
+                <div class="calendar-day inactive"></div>
+                <div class="calendar-day inactive"></div>
+                <div class="calendar-day inactive"></div>
+
             </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">3</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
+
+        </section>
+
+        <section class="capacity-section paws-bg">
+
+            <h2>Weekly Grooming Capacity</h2>
+
+            <div class="capacity-card">
+
+                <div class="capacity-row">
+                    <span>Monday</span>
+                    <div class="bar">
+                        <div class="fill" style="width:50%"></div>
+                    </div>
+                    <span>8 Pets</span>
+                </div>
+
+                <div class="capacity-row">
+                    <span>Tuesday</span>
+                    <div class="bar">
+                        <div class="fill" style="width:50%"></div>
+                    </div>
+                    <span>8 Pets</span>
+                </div>
+
+                <div class="capacity-row">
+                    <span>Wednesday</span>
+                    <div class="bar">
+                        <div class="fill" style="width:50%"></div>
+                    </div>
+                    <span>8 Pets</span>
+                </div>
+
+                <div class="capacity-row">
+                    <span>Thursday</span>
+                    <div class="bar">
+                        <div class="fill" style="width:50%"></div>
+                    </div>
+                    <span>8 Pets</span>
+                </div>
+
+                <div class="capacity-row">
+                    <span>Friday</span>
+                    <div class="bar">
+                        <div class="fill" style="width:75%"></div>
+                    </div>
+                    <span>12 Pets</span>
+                </div>
+
+                <div class="capacity-row">
+                    <span>Saturday</span>
+                    <div class="bar">
+                        <div class="fill" style="width:90%"></div>
+                    </div>
+                    <span>16 Pets</span>
+                </div>
+
+                <div class="capacity-row">
+                    <span>Sunday</span>
+                    <div class="bar">
+                        <div class="fill" style="width:50%"></div>
+                    </div>
+                    <span>6 Pets; Limited Schedule No Walk-Ins</span>
+                </div>
+
             </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">4</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
+
+        </section>
+
+        <section class="staff-section paws-bg">
+
+            <h2>Meet Our Groomers</h2>
+
+            <div class="staff-grid">
+
+                <div class="staff-card">
+                    <div class="staff-avatar"></div>
+
+                    <h3>Sarah Lim</h3>
+
+                    <p>Senior Groomer</p>
+
+                    <ul>
+                        <li>Capacity: 4 pets/day</li>
+                        <li>Experience: 5 years</li>
+                        <li>Specialty: Long-haired breeds</li>
+                        <li>Availability: Mon-Sat, Sun (scheduled) </li>
+                    </ul>
+
+                    <a href="#" class="main-btn">Book Appointment</a>
+                </div>
+
+                <div class="staff-card">
+                    <div class="staff-avatar"></div>
+
+                    <h3>Mark Reyes</h3>
+
+                    <p>Pet Stylist</p>
+
+                    <ul>
+                        <li>Capacity: 4 pets/day</li>
+                        <li>Experience: 4 years</li>
+                        <li>Specialty: Breed styling</li>
+                        <li>Availability: Mon-Sat, Sun (scheduled) </li>
+                    </ul>
+
+                    <a href="#" class="main-btn">Book Appointment</a>
+                </div>
+
+                <div class="staff-card">
+                    <div class="staff-avatar"></div>
+
+                    <h3>Miles Garcia</h3>
+
+                    <p>Pet Stylist</p>
+
+                    <ul>
+                        <li>Capacity: 5 pets/day</li>
+                        <li>Experience: 2 years</li>
+                        <li>Specialty: Deep cleaning </li>
+                        <li>Availability: Mon-Thu (scheduled), Fri-Sun </li>
+                    </ul>
+
+                    <a href="#" class="main-btn">Book Appointment</a>
+                </div>
+
+                <div class="staff-card">
+                    <div class="staff-avatar"></div>
+
+                    <h3>Jennie Osbourne</h3>
+
+                    <p>Pet Stylist</p>
+
+                    <ul>
+                        <li>Capacity: 4 pets/day</li>
+                        <li>Experience: 6 years</li>
+                        <li>Specialty: Special Needs Caretaker</li>
+                        <li> Availability: Fri-Sun </li>
+                    </ul>
+
+                    <a href="#" class="main-btn">Book Appointment</a>
+                </div>
+
             </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">5</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia | Osbourne
+
+        </section>
+
+        <section class="section paws-bg">
+            <div class="staff-ad">
+                <div class="staff-ad-content">
+                    <p class="label">Join the Pawlendar Family</p>
+                    <h2>Your pet deserves a spa day.</h2>
+                    <p>
+                        Book with our trusted professional groomers and enjoy stress-free
+                        appointments, personalized care, and premium grooming services your
+                        furry friend will love.
+                    </p>
+
+                    <div class="staff-ad-buttons">
+                        <a href="appointments.html" class="btn-gold">Book an Appointment</a>
+                        <a href="services.html" class="btn-ghost-small">View Services</a>
+                    </div>
+                </div>
+
+                <div class="staff-ad-icon">
+                    <svg width="82" height="82" viewBox="0 0 30 30" fill="none">
+                        <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                        <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                        <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                        <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+                    </svg>
+                </div>
             </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">6</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia | Osbourne
-            </div>
-        </div>
+        </section>
 
-        <div class="calendar-day">
-            <div class="day-number">7</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim* | Reyes* | Garcia | Osbourne
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">8</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">9</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">10</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">11</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">12</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Osbourne*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">13</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia | Osbourne
-            </div>
-        </div>
+    </main>
 
-        <div class="calendar-day">
-            <div class="day-number">14</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim* | Reyes* | Garcia | Osbourne
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">15</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">16</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">17</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">18</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">19</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia | Osbourne
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">20</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia | Osbourne
-            </div>
-        </div>
+    <div id="footer"></div>
 
-        <div class="calendar-day">
-            <div class="day-number">21</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim* | Reyes* | Garcia | Osbourne
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">22</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">23</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">24</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">25</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">26</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia | Osbourne
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">27</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia | Osbourne
-            </div>
-        </div>
+    <script src="staff-info.js"></script>
+    <script src="services-2.js"></script>
+</body>
 
-        <div class="calendar-day">
-            <div class="day-number">28</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim* | Reyes* | Garcia | Osbourne
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">29</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day">
-            <div class="day-number">30</div>
-            <div class="day-divider"></div>
-            <div class="day-staff">
-                Lim | Reyes | Garcia*
-            </div>
-        </div>
-        <div class="calendar-day inactive"></div>
-        <div class="calendar-day inactive"></div>
-        <div class="calendar-day inactive"></div>
-        <div class="calendar-day inactive"></div>
-
-    </div>
-
-</section>
-
-<script>
-    const fullDates = ['2026-06-10', '2026-06-14', '2026-06-25'];
-    const calendarDays = document.querySelectorAll('.calendar-day');
-    calendarDays.forEach(day => {
-        if (day.classList.contains('inactive')) return;
-        const numberEl = day.querySelector('.day-number');
-        if (!numberEl) return;
-        const dayValue = numberEl.textContent.trim();
-        const dayNumber = Number(dayValue);
-        if (!dayNumber) return;
-        const dateValue = `2026-06-${String(dayNumber).padStart(2, '0')}`;
-        if (fullDates.includes(dateValue)) {
-            day.classList.add('full-day');
-            const badge = document.createElement('div');
-            badge.className = 'day-status';
-            badge.textContent = 'Full';
-            day.appendChild(badge);
-        }
-        day.classList.add('clickable');
-        day.addEventListener('click', () => {
-            if (fullDates.includes(dateValue)) {
-                window.alert('This date is full. Please choose another available date.');
-                return;
-            }
-            window.location.href = `date-booking.html?date=${encodeURIComponent(dateValue)}`;
-        });
-    });
-</script>
-
-<section class="capacity-section">
-
-    <h2>Weekly Grooming Capacity</h2>
-
-    <div class="capacity-card">
-
-        <div class="capacity-row">
-            <span>Monday</span>
-            <div class="bar">
-                <div class="fill" style="width:50%"></div>
-            </div>
-            <span>8 Pets</span>
-        </div>
-
-        <div class="capacity-row">
-            <span>Tuesday</span>
-            <div class="bar">
-                <div class="fill" style="width:50%"></div>
-            </div>
-            <span>8 Pets</span>
-        </div>
-
-        <div class="capacity-row">
-            <span>Wednesday</span>
-            <div class="bar">
-                <div class="fill" style="width:50%"></div>
-            </div>
-            <span>8 Pets</span>
-        </div>
-
-        <div class="capacity-row">
-            <span>Thursday</span>
-            <div class="bar">
-                <div class="fill" style="width:50%"></div>
-            </div>
-            <span>8 Pets</span>
-        </div>
-
-        <div class="capacity-row">
-            <span>Friday</span>
-            <div class="bar">
-                <div class="fill" style="width:75%"></div>
-            </div>
-            <span>12 Pets</span>
-        </div>
-
-        <div class="capacity-row">
-            <span>Saturday</span>
-            <div class="bar">
-                <div class="fill" style="width:90%"></div>
-            </div>
-            <span>16 Pets</span>
-        </div>
-
-        <div class="capacity-row">
-            <span>Sunday</span>
-            <div class="bar">
-                <div class="fill" style="width:50%"></div>
-            </div>
-            <span>6 Pets; Limited Schedule No Walk-Ins</span>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="staff-section">
-
-    <h2>Meet Our Groomers</h2>
-
-    <div class="staff-grid">
-
-        <div class="staff-card">
-            <div class="staff-avatar">🐕</div>
-
-            <h3>Sarah Lim</h3>
-
-            <p>Senior Groomer</p>
-
-            <ul>
-                <li>Capacity: 4 pets/day</li>
-                <li>Experience: 5 years</li>
-                <li>Specialty: Long-haired breeds</li>
-                <li> Availability: Mon-Sat, Sun (scheduled) </li>
-            </ul>
-
-            <a href="#" class="main-btn">Book Appointment</a>
-        </div>
-
-        <div class="staff-card">
-            <div class="staff-avatar">🐩</div>
-
-            <h3>Mark Reyes</h3>
-
-            <p>Pet Stylist</p>
-
-            <ul>
-                <li>Capacity: 4 pets/day</li>
-                <li>Experience: 4 years</li>
-                <li>Specialty: Breed styling</li>
-                <li> Availability: Mon-Sat, Sun (scheduled) </li>
-            </ul>
-
-            <a href="#" class="main-btn">Book Appointment</a>
-        </div>
-
-        <div class="staff-card">
-            <div class="staff-avatar">🐕‍🦺</div>
-
-            <h3>Miles Garcia</h3>
-
-            <p>Pet Stylist</p>
-
-            <ul>
-                <li>Capacity: 5 pets/day</li>
-                <li>Experience: 2 years</li>
-                <li>Specialty: Deep cleaning </li>
-                <li> Availability: Mon-Thu (scheduled), Fri-Sun </li>
-            </ul>
-
-            <a href="#" class="main-btn">Book Appointment</a>
-        </div>
-
-        <div class="staff-card">
-            <div class="staff-avatar">🦮</div>
-
-            <h3>Jennie Osbourne</h3>
-
-            <p>Pet Stylist</p>
-
-            <ul>
-                <li>Capacity: 4 pets/day</li>
-                <li>Experience: 6 years</li>
-                <li>Specialty: Special Needs Caretaker</li>
-                <li> Availability: Fri-Sun </li>
-            </ul>
-
-            <a href="#" class="main-btn">Book Appointment</a>
-        </div>
-
-    </div>
-
-</section>
-
+</html>

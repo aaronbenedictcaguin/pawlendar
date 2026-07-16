@@ -1,93 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Pawlendar | About Us </title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../navbar.css">
-
-    <link rel="stylesheet" href="../paw-pattern.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawlendar | About Us</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="about.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <header>
-        <nav class="main-nav">
-            <div class="logo">
-                <i class="fa-solid fa-paw"></i> Pawlendar
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html">Appointments</a></li>
-            </ul>
-            <a href="registration.html" class="nav-btn">
-                Login or Sign-Up
-            </a>
+    <header class="navbar">
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
+
+        <nav class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="service.html">Services</a>
+            <a href="staff-info.html">Staff</a>
+            <a href="appointment.html">Appointments</a>
         </nav>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-ghost-small">Login</a>
+            <a href="registration.html" class="btn-gold">Sign Up</a>
+        </div>
     </header>
 
-    <section class="about-hero">
-        <div class="about-hero-content">
-            <h1>Our Mission Is Simple:<br>Let your furbabies take a paw-se</h1>
-            <p>At Pawlendar, we combine love for animals with modern technology to deliver a seamless, stress-free grooming coordination system for pet parents and groomers alike.</p>
-        </div>
-    </section>
+    <main class="main">
 
-    <section class="story-section">
-        <div class="story-container">
-            <div class="story-text">
-                <h2>How Pawlendar Started</h2>
-                <p>Founded in 2026, Pawlendar began with a simple observation: scheduling pet grooming shouldn't be harder than finding a premium treat. Traditional calling, long wait lines, and uncoordinated pet medical/sensitivity updates often turned a simple bath into a complex chore.</p>
-                <p>We built Pawlendar to treat your furry friends like family. Our platform brings clarity, ease, and elite care directly to your fingertips, transforming standard grooming routines into relaxing spa experiences.</p>
+        <section class="section hero-about paws-bg">
+            <div class="hero-about-inner">
+                <p class="label">About Pawlendar</p>
+                <h1>Our mission is simple:<br><em>let your furbabies take a paw-se.</em></h1>
+                <p class="hero-about-copy">At Pawlendar, we combine love for animals with modern technology to deliver a
+                    seamless, stress-free grooming coordination system for pet parents and groomers alike.</p>
             </div>
-            <div class="story-stats">
-                <div class="stat-box">
-                    <h3>10k+</h3>
-                    <p>Happy Paws Groomed</p>
+        </section>
+
+        <section class="section section-alt">
+            <div class="history">
+                <div class="history-copy">
+                    <h2>How Pawlendar started</h2>
+                    <p>Founded in 2026, Pawlendar began with a simple observation: scheduling pet grooming shouldn't be
+                        harder than finding a premium treat. Traditional calling, long wait lines, and uncoordinated pet
+                        medical and sensitivity updates often turned a simple bath into a complex chore.</p>
+                    <p>We built Pawlendar to treat your furry friends like family. Our platform brings clarity, ease,
+                        and elite care directly to your fingertips, transforming standard grooming routines into
+                        relaxing spa experiences.</p>
                 </div>
-                <div class="stat-box">
-                    <h3>99%</h3>
-                    <p>Satisfaction Rate</p>
+
+                <div class="stats-progress">
+
+                    <div class="progress-item">
+                        <div class="progress-top">
+                            <span>Happy Pets Groomed</span>
+                            <strong>10k+</strong>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill fill-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-top">
+                            <span>Customer Satisfaction</span>
+                            <strong>99%</strong>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill fill-2"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-top">
+                            <span>Verified Groomers</span>
+                            <strong>50+</strong>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill fill-3"></div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="stat-box">
-                    <h3>50+</h3>
-                    <p>Verified Groomers</p>
+            </div>
+        </section>
+
+        <section class="section paws-bg">
+            <div class="section-head center">
+                <p class="label">What we stand for</p>
+                <h2>Our Core Values</h2>
+            </div>
+
+            <div class="ticket-row">
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 20c-4-2.4-8-5.4-8-9.6C4 7.4 6.2 5 9 5c1.4 0 2.6.7 3 1.8C12.4 5.7 13.6 5 15 5c2.8 0 5 2.4 5 5.4 0 4.2-4 7.2-8 9.6Z" />
+                            <path d="M9 10.4v2.6M12 9.5v3.5M15 10.4v2.6" />
+                        </svg>
+                    </div>
+                    <h3>Safety First</h3>
+                    <p>Every decision we make starts with your pet's physical safety and emotional comfort.</p>
+                </div>
+
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3.5c.5 3 1.6 4.4 4.5 5-2.9.6-4 2-4.5 5-.5-3-1.6-4.4-4.5-5 2.9-.6 4-2 4.5-5Z" />
+                            <path
+                                d="M19 14c.3 1.6.9 2.3 2.5 2.6-1.6.3-2.2 1-2.5 2.6-.3-1.6-.9-2.3-2.5-2.6 1.6-.3 2.2-1 2.5-2.6Z" />
+                        </svg>
+                    </div>
+                    <h3>Absolute Integrity</h3>
+                    <p>Transparent matching, verified professional groomers, and no hidden scheduling fees.</p>
+                </div>
+
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="8.5" r="2.6" />
+                            <circle cx="16" cy="8.5" r="2.6" />
+                            <path
+                                d="M3.5 19c.5-3 2.2-4.6 4.5-4.6s4 1.6 4.5 4.6M11.5 19c.5-3 2.2-4.6 4.5-4.6s4 1.6 4.5 4.6" />
+                        </svg>
+                    </div>
+                    <h3>Community Focus</h3>
+                    <p>Supporting local pet groomers and creating happier urban neighborhoods for animals.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="values-section">
-        <h2>Our Core Values</h2>
-        <div class="values-grid">
-            <div class="value-card">
-                <span>❤️</span>
-                <h3>Safety First</h3>
-                <p>Every decision we make starts with your pet's physical safety and emotional comfort.</p>
-            </div>
-            <div class="value-card">
-                <span>✨</span>
-                <h3>Absolute Integrity</h3>
-                <p>Transparent matching, verified professional groomers, and no hidden scheduling fees.</p>
-            </div>
-            <div class="value-card">
-                <span>🤝</span>
-                <h3>Community Focus</h3>
-                <p>Supporting local pet groomers and creating happier urban neighborhoods for animals.</p>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <footer>
-        <h3>🐾 Pawlendar Grooming Scheduler</h3>
-        <p>Making every paw happy.</p>
-        <p>@2026 Pawlendar. All rights reserved.</p>
-    </footer>
+    <div id="footer"></div>
 
+    <script src="service-2.js"></script>
 </body>
 
 </html>

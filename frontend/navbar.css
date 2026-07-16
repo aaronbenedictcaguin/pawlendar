@@ -1,139 +1,215 @@
-/* Shared Pawlendar header. Keep this stylesheet last in each page's <head>. */
-header {
-    width: 100%;
-    position: relative;
-    z-index: 100;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(74, 35, 40, 0.05);
+:root {
+    --pine: #8F4E3A;
+    --pine-light: #ca694c;
+    --cream: #FAF4E7;
+    --cream-alt: #F1E8D3;
+    --gold: #fcc969;
+    --clay: #B85C3E;
+    --sage: #D6A089;
+    --ink: #000000;
+    --paper: #FFFFFF;
 }
 
-header .main-nav {
-    width: min(100% - 40px, 1430px);
-    min-height: 92px;
-    margin: 0 auto;
-    padding: 14px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-}
-
-header .main-nav .logo {
-    display: inline-flex;
-    flex: 0 0 auto;
-    align-items: center;
-    gap: 10px;
-    color: #f5aa4e;
-    font-family: "Segoe UI", sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1;
-    white-space: nowrap;
-}
-
-header .main-nav ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 42px;
-    margin: 0 0 0 auto;
-    padding: 0;
-    list-style: none;
-}
-
-header .main-nav li {
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-header .main-nav a {
-    display: inline-block;
-    padding: 9px 5px;
-    border: 0;
-    color: #4a2328;
-    font-family: "Segoe UI", sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.2;
+body {
+    font-family: 'Work Sans', sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Fraunces', serif;
+    color: var(--pine);
+}
+
+.label {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+a {
     text-decoration: none;
-    white-space: nowrap;
+    color: inherit;
 }
 
-header .main-nav ul a:hover,
-header .main-nav ul a.active {
-    color: #f5aa4e;
-}
-
-header .main-nav ul a.active {
-    border-bottom: 2px solid #f5aa4e;
-}
-
-header .main-nav .nav-btn {
-    min-width: 230px;
-    min-height: 54px;
-    padding: 14px 30px;
-    border: 0;
-    border-radius: 999px;
-    display: inline-flex;
+.navbar {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    background: #f5aa4e;
-    color: #4a2328;
-    font-family: "Segoe UI", sans-serif;
-    font-size: 16px;
+    justify-content: space-between;
+    height: 72px;
+    padding: 0 48px;
+    background: var(--paper);
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.brand-dark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-dark svg {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.brand-dark span {
+    color: var(--clay);
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-header .main-nav .nav-btn:hover {
-    border: 0;
-    background: #e99a3c;
-    color: #4a2328;
-    transform: translateY(-1px);
+.brand-footer span {
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 600;
 }
 
-@media (max-width: 1000px) {
-    header .main-nav {
-        width: min(100% - 30px, 900px);
-        gap: 18px;
-    }
-
-    header .main-nav ul {
-        gap: 16px;
-    }
-
-    header .main-nav .nav-btn {
-        min-width: auto;
-        padding-inline: 22px;
-    }
+.nav-list {
+    display: flex;
+    gap: 22px;
 }
 
-@media (max-width: 760px) {
-    header .main-nav {
-        width: 100%;
-        padding: 18px 20px;
-        flex-wrap: wrap;
+.nav-list a {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3E3A32;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+}
+
+.nav-list a:hover {
+    color: var(--clay);
+}
+
+.nav-list a.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-ghost-small {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--clay);
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--clay);
+    transition: background .15s ease, color .15s ease;
+}
+
+.btn-ghost-small:hover {
+    background: var(--clay);
+    color: var(--cream);
+}
+
+.btn-gold {
+    background: var(--gold);
+    color: var(--pine);
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: background .15s ease;
+}
+
+.btn-gold:hover {
+    background: #C8933A;
+}
+
+.nav-auth .btn-gold {
+    font-size: 13px;
+    padding: 11px 18px;
+}
+
+.paws-bg {
+    background-color: #FAF4E7;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='%23EFD4A5' fill-opacity='0.45'%3E%3Cellipse cx='90' cy='95' rx='18' ry='15'/%3E%3Ccircle cx='72' cy='68' r='8'/%3E%3Ccircle cx='90' cy='58' r='8'/%3E%3Ccircle cx='108' cy='68' r='8'/%3E%3Ccircle cx='58' cy='82' r='8'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 190px 190px;
+}
+
+@media (max-width:1100px){
+
+    .navbar{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:18px;
+        height:auto;
+        padding:18px 24px;
     }
 
-    header .main-nav ul {
-        order: 3;
-        width: 100%;
-        justify-content: flex-start;
-        gap: 10px;
-        overflow-x: auto;
+    .nav-list{
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
-    header .main-nav .logo {
-        font-size: 25px;
+    .nav-auth{
+        justify-content:center;
     }
 
-    header .main-nav .nav-btn {
-        min-height: 44px;
-        padding: 12px 18px;
-        font-size: 14px;
+}
+
+@media (max-width:900px){
+
+    .navbar{
+        flex-direction:column;
+        gap:16px;
+        height:auto;
+        padding:20px 24px;
     }
+
+    .nav-list{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:18px;
+    }
+
+    .nav-auth{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+}
+
+
+footer {
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.footer-tag {
+    font-size: 13px;
 }

@@ -2,12 +2,12 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+    font-family: 'Work Sans', sans-serif;
 }
 
 
 body{
-    background:#FFF9E6;
+    background:#FAF4E7;
     min-height:100vh;
     display:flex;
     flex-direction: column;
@@ -42,7 +42,7 @@ header .main-nav .logo {
 .register-left{
 
     width:45%;
-    background:#FDF2D5;
+    background:#ca694c;
     padding:60px;
 
     display:flex;
@@ -51,6 +51,12 @@ header .main-nav .logo {
 
 }
 
+.paws-bg {
+    background-color: #F1E8D3;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='%23EFD4A5' fill-opacity='0.45'%3E%3Cellipse cx='90' cy='95' rx='18' ry='15'/%3E%3Ccircle cx='72' cy='68' r='8'/%3E%3Ccircle cx='90' cy='58' r='8'/%3E%3Ccircle cx='108' cy='68' r='8'/%3E%3Ccircle cx='58' cy='82' r='8'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 190px 190px;
+}
 
 .logo{
 

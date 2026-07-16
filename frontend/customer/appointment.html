@@ -1,77 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawlendar | Appointment </title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="appointment.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
 </head>
-<body class="appointment-page">
 
-    <header>
-        <nav class="main-nav">
-            <div class="logo"> 
-                 <i class="fa-solid fa-paw"></i> Pawlendar
-            </div>
+<body class="paws-bg">
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html" class="active">Appointments</a></li>
-            </ul>
+    <header class="navbar">
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
 
-            <a href="registration.html" class="nav-btn">
-                Login or Sign-Up
-            </a>
-
+        <nav class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="staff-info.html">Staff</a>
+            <a href="appointment.html" class="active">Appointments</a>
         </nav>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-ghost-small">Login</a>
+            <a href="registration.html" class="btn-gold">Sign Up</a>
+        </div>
     </header>
 
     <main class="booking-container">
         <div class="booking-header">
+            <span class="label">Easy 4-Step Process</span>
             <h1>Book Your Pet's Grooming Session</h1>
-            <p>Pawlendar makes pet grooming simple. Where every furbabies deserves their own spa day!</p>
+            <p>Pawlendar makes pet grooming simple. Where every furbaby deserves their own spa day!</p>
         </div>
 
         <div class="steps-grid">
-            
+
             <div class="step-card">
-                <div class="step-number">1</div>
+                <div class="step-number"><i class="fa-solid fa-paw"></i></div>
+                <span class="step-tag">Step 1</span>
                 <h3>Choose Pet & Service</h3>
                 <p>Select your pet type and pick from our custom grooming packages.</p>
             </div>
 
             <div class="step-card">
-                <div class="step-number">2</div>
+                <div class="step-number"><i class="fa-solid fa-calendar-days"></i></div>
+                <span class="step-tag">Step 2</span>
                 <h3>Select Schedule</h3>
                 <p>Pick a convenient morning or afternoon time slot that fits your routine.</p>
             </div>
 
             <div class="step-card">
-                <div class="step-number">3</div>
+                <div class="step-number"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <span class="step-tag">Step 3</span>
                 <h3>Check Groomers</h3>
                 <p>Choose your preferred stylist or select anyone available to speed things up.</p>
             </div>
 
             <div class="step-card highlight-card">
-                <div class="step-number">4</div>
+                <div class="step-number"><i class="fa-solid fa-check"></i></div>
+                <span class="step-tag">Step 4</span>
                 <h3>Confirm Appointment</h3>
                 <p>Review your booking selection details on our final summary page panel.</p>
                 <div class="summary-box">
-                <a href="login.html" class="main-btn">Book Appointment</a>
+                    <a href="booking.html" class="main-btn">Book Appointment <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                  
             </div>
 
         </div>
     </main>
 
+    <script src="service-2.js"></script>
 </body>
+
 </html>

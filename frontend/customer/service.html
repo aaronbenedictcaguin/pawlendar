@@ -1,80 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Pawlendar | Services</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../navbar.css">
-
-    <link rel="stylesheet" href="../paw-pattern.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="service.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <header>
-        <nav class="main-nav">
-            <div class="logo">
-                <i class="fa-solid fa-paw"></i> Pawlendar
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html" class="active">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html">Appointments</a></li>
-            </ul>
-            <a href="registration.html" class="nav-btn">
-                Login or Sign-Up
-            </a>
+    <header class="navbar">
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
+
+        <nav class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html" class="active">Services</a>
+            <a href="staff-info.html">Staff</a>
+            <a href="appointment.html">Appointments</a>
         </nav>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-ghost-small">Login</a>
+            <a href="registration.html" class="btn-gold">Sign Up</a>
+        </div>
     </header>
 
-    <section class="services-hero">
-        <div class="services-hero-content">
-            <h1>Premium Spa Treats For Your Best Friend</h1>
-            <p>From essential maintenance baths to complete premium styling packages, we have your pet covered.</p>
-        </div>
-    </section>
+    <main class="main">
 
-    <section class="services-menu">
+        <section class="section hero-about paws-bg">
+            <div class="hero-about-inner">
+                <p class="label">Our Services</p>
+                <h1><em>Premium spa treats</em><br>for your best friend</h1>
+                <p class="hero-about-copy">From essential maintenance baths to complete premium styling packages, we
+                    have your pet covered.</p>
+            </div>
+        </section>
 
-        <h2>Our Appawling Grooming Menu</h2>
+        <section class="section section-alt">
+            <div class="section-head center">
+                <p class="label">Choose your package</p>
+                <h2>Our Appawling Grooming Menu</h2>
+            </div>
 
-        <div class="services-grid" id="servicesGrid">
+            <div class="ticket-row">
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11Z" />
+                        </svg>
+                    </div>
+                    <h3>Bath &amp; Brush Essential</h3>
+                    <p>A gentle bath, blow-dry, thorough brushing, ear cleaning, and finishing spritz.</p>
+                    <div class="ticket-perf"></div>
+                    <div class="ticket-foot">
+                        <span class="ticket-price"><small>Starts at</small>₱450.00</span>
+                        <span class="ticket-time">60 MIN</span>
+                    </div>
+                </div>
 
-        </div>
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="6" cy="6" r="2.4" />
+                            <circle cx="6" cy="18" r="2.4" />
+                            <line x1="8.3" y1="7.5" x2="20" y2="17" />
+                            <line x1="8.3" y1="16.5" x2="20" y2="7" />
+                        </svg>
+                    </div>
+                    <h3>Signature Haircut</h3>
+                    <p>A breed-appropriate or custom haircut finished by one of our professional groomers.</p>
+                    <div class="ticket-perf"></div>
+                    <div class="ticket-foot">
+                        <span class="ticket-price"><small>Starts at</small>₱650.00</span>
+                        <span class="ticket-time">90 MIN</span>
+                    </div>
+                </div>
 
-    </section>
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3c-4 2-7 6-7 10a7 7 0 0 0 14 0c0-4-3-8-7-10Z" />
+                            <path d="M12 5v14" />
+                        </svg>
+                    </div>
+                    <h3>Skin &amp; Coat Care</h3>
+                    <p>Targeted coat care using gentle products for dry, sensitive, or irritated skin.</p>
+                    <div class="ticket-perf"></div>
+                    <div class="ticket-foot">
+                        <span class="ticket-price"><small>Starts at</small>₱550.00</span>
+                        <span class="ticket-time">75 MIN</span>
+                    </div>
+                </div>
 
-    <section class="addons-section">
-        <h2>A Pawsome Extra Care Special</h2>
-        <div class="addons-table-container">
-            <table class="addons-table">
-                <thead>
-                    <tr>
-                        <th>Treatment</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody id="addonsTableBody">
+                <div class="ticket ticket-featured">
+                    <span class="ticket-flag">Most Booked</span>
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 4l1.2 4.8L18 10l-4.8 1.2L12 16l-1.2-4.8L6 10l4.8-1.2L12 4Z" />
+                        </svg>
+                    </div>
+                    <h3>Full Grooming Spa</h3>
+                    <p>The complete experience: bath, haircut, nail care, ear cleaning, brushing, and spa finish.</p>
+                    <div class="ticket-perf"></div>
+                    <div class="ticket-foot">
+                        <span class="ticket-price"><small>Starts at</small>₱950.00</span>
+                        <span class="ticket-time">120 MIN</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                </tbody>
-            </table>
-        </div>
-        <div class="services-cta">
-            <a href="index.html#booking" class="main-btn">Ready? Book A Session Now</a>
-        </div>
-    </section>
+        <section class="section section-alt paws-bg">
+            <div class="section-head center">
+                <p class="label">A pawsome extra care special</p>
+                <h2>Add A Little Something</h2>
+            </div>
 
-    <footer>
-        <h3>🐾 Pawlendar Grooming Scheduler</h3>
-        <p>Making every paw happy.</p>
-        <p>@2026 Pawlendar. All rights reserved.</p>
-    </footer>
+            <div class="stats-progress addon-panel">
+                <div class="addon-row">
+                    <div>
+                        <p class="addon-name">Nail Trim</p>
+                        <p class="addon-desc">Careful nail trimming and smoothing for comfortable paws.</p>
+                    </div>
+                    <span class="addon-price">₱150.00</span>
+                </div>
 
-<script src="service.js"></script>
+                <div class="addon-row">
+                    <div>
+                        <p class="addon-name">Teeth Brushing</p>
+                        <p class="addon-desc">A gentle brushing treatment to help freshen your pet's breath.</p>
+                    </div>
+                    <span class="addon-price">₱120.00</span>
+                </div>
+
+                <div class="addon-row">
+                    <div>
+                        <p class="addon-name">Paw Balm Treatment</p>
+                        <p class="addon-desc">Moisturizing balm for dry paw pads and a softer, protected finish.</p>
+                    </div>
+                    <span class="addon-price">₱100.00</span>
+                </div>
+            </div>
+
+            <a href="appointments.html" class="btn-gold addon-cta">Ready? Book A Session Now</a>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="service-2.js"></script>
 </body>
 
 </html>

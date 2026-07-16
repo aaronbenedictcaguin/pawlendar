@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Work Sans', sans-serif;
 }
 
 body {
@@ -46,7 +46,6 @@ header {
     gap: 8px;
     color:#EFA851;
 }
-
 
 
 .brand-name {

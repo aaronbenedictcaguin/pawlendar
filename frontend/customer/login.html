@@ -4,30 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawlendar | Login </title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="login.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
+    <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
-    <header>
-        <nav class="main-nav">
-            <div class="logo"><i class="fa-solid fa-paw"></i> Pawlendar</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html">Appointments</a></li>
-            </ul>
-            <a href="registration.html" class="nav-btn">Login or Sign-Up</a>
+    <header class="navbar">
+
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
+
+        <nav class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="staff-info.html">Staff</a>
+            <a href="appointment.html">Appointments</a>
         </nav>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-ghost-small">Login</a>
+            <a href="registration.html" class="btn-gold">Sign Up</a>
+        </div>
+
     </header>
 
     <div class="main-container">
-        <div class="left-panel">
+        <div class="left-panel paws-bg">
             <div class="logo-area">
                 <i class="fa-solid fa-paw"></i>
                 <span class="brand-name">Pawlendar</span>
@@ -70,7 +82,7 @@
         </div>
     </div>
 
+    <script src="service-2.js"></script>
     <script src="login.js"></script>
-
 </body>
 </html>

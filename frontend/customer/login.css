@@ -266,3 +266,22 @@ button {
 button:hover {
     background-color: #E0953F;
 }
+
+.back-link{
+    padding:24px 32px 0;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 1000;
+}
+
+.back-link a{
+    color:var(--clay);
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+}
+
+.back-link a:hover{
+    text-decoration:underline;
+}

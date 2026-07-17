@@ -1,531 +1,193 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Pawlendar | Pet Grooming Scheduler</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawlendar</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-    <header>
-        <nav class="main-nav">
-            <div class="logo"> 
-                <i class="fa-solid fa-paw"></i> Pawlendar
-            </div>
+    <header class="navbar">
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
 
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="/customer/about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html">Appointments</a></li>
-            </ul>
-
-            <a href="registration.html" class="nav-btn">
-                Login or Sign-Up
-            </a>
-
+        <nav class="nav-list">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="staff-info.html">Staff</a>
+            <a href="appointment.html">Appointments</a>
         </nav>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-ghost-small">Login</a>
+            <a href="registration.html" class="btn-gold">Sign Up</a>
+        </div>
     </header>
 
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <h1>
-                A Happier Pet Starts
-                With Better Care 🐶
-            </h1>
-
-            <p>
-                Pawlendar makes pet grooming simple.
-                Where every furbabies deserves their own spa day!
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="login.html" class="main-btn">
-                    Book Appointment
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="hero-card">
-
-            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb"
-                 alt="happy dog">
-
-        </div>
-
-    </section>
-
-   
-    <section class="highlights">
-
-        <h2>
-            Why Choose Pawlendar?
-        </h2>
-
-        <div class="highlight-container">
-
-            <div class="highlight">
-
-                <span>📅</span>
-
-                <h3>Easy Scheduling</h3>
-
-                <p>
-                    Book grooming appointments
-                    quickly and conveniently.
-                </p>
-
-            </div>
-
-            <div class="highlight">
-
-                <span>🐾</span>
-
-                <h3>Pet Records</h3>
-
-                <p>
-                    Keep your pet's information
-                    organized and accessible.
-                </p>
-
-            </div>
-
-            <div class="highlight">
-
-                <span>✂️</span>
-
-                <h3>Quality Grooming</h3>
-
-                <p>
-                    Connect pets with professional
-                    grooming services.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
- 
-    <section class="about" id="about">
-
-        <div class="about-image">
-
-            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7"
-                 alt="pet grooming">
-
-        </div>
-
-        <div class="about-text">
-
-            <h2>
-                About Pawlendar
-            </h2>
-
-            <p>
-                Pawlendar is a pet grooming scheduler
-                designed to help pet owners manage their
-                pets' grooming needs.
-
-                From pet profiles to appointments,
-                Pawlendar keeps everything organized
-                and easy to access for our furbabies and parents!
-            </p>
-
-            <a href="about.html" class="main-btn">
-                Explore More
-            </a>
-
-        </div>
-
-    </section>
-
-    <section class="booking" id="booking">
-
-        <div class="booking-text">
-
-            <h2>
-                Book Your Pet's Grooming Session
-            </h2>
-
-            <p>
-                Scheduling your pet's appointment is simple:
-            </p>
-
-            <div class="steps">
-
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <p>Choose your pet and service</p>
+    <div class="main">
+        <section class="section hero" id="home">
+            <div>
+                <span class="label">Pet grooming, simplified</span>
+                <h1>A happier pet<br>starts with <em>better care</em></h1>
+                <p>Pawlendar keeps grooming schedules, pet records, and groomer availability in one calm, organized
+                    place. Every furbaby deserves their own spa day.</p>
+                <div class="btn-row">
+                    <a class="btn-primary" href="login.html">Book Appointment</a>
                 </div>
+            </div>
 
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <p>Select available schedule</p>
+            <div class="dog-pic">
+                <img src=".../images/golden.jpg" alt="">
+            </div>
+
+        </section>
+
+        <section class="section section-alt">
+            <div class="section-head">
+                <span class="label">Why Pawlendar</span>
+                <h2>Everything a grooming day needs</h2>
+            </div>
+            <div class="ticket-row">
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#B85C3E" stroke-width="1.8">
+                            <rect x="3.5" y="5" width="17" height="15" rx="2" />
+                            <path d="M8 3v4M16 3v4M3.5 10h17" />
+                        </svg>
+                    </div>
+                    <h3>Easy scheduling</h3>
+                    <div class="ticket-perf">
+                        <p>Book grooming appointments quickly and conveniently, with real-time groomer availability.</p>
+                    </div>
                 </div>
-
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <p>Check availability of groomers</p>
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#8FA876" stroke-width="1.8">
+                            <path d="M4 20c0-5 4-8 8-8s8 3 8 8" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <h3>Pet records</h3>
+                    <div class="ticket-perf">
+                        <p>Keep every pet's information, history, and special notes organized in one profile.</p>
+                    </div>
                 </div>
-
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <p>Confirm appointment</p>
+                <div class="ticket">
+                    <div class="ticket-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="1.8">
+                            <path d="M6 6l12 12M18 6L6 18" />
+                            <circle cx="6" cy="6" r="2" />
+                            <circle cx="6" cy="18" r="2" />
+                        </svg>
+                    </div>
+                    <h3>Quality grooming</h3>
+                    <div class="ticket-perf">
+                        <p>Connect pets with professional groomers who match their needs and temperament.</p>
+                    </div>
                 </div>
-
             </div>
+        </section>
 
-            <a href="appointment.html" class="main-btn">
-                Schedule Now
-            </a>
-
-        </div>
-
-        <div class="about-image">
-            <img src="../images/koby.jpg" alt="Koby, a happy Pawlendar pet">
-        </div>
-
-    </section>
-
-    <section class="system">
-
-        <h2>
-            Manage Everything Easily
-        </h2>
-
-        <div class="cards">
-
-            <div class="card">
-
-                <h3>👤 Users</h3>
-
-                <p>
-                    Create accounts and manage
-                    customer information.
-                </p>
-
+        <section class="section about" id="about">
+            <div class="about-frame">
+                <img src="../images/koby.jpg">
             </div>
-
-            <div class="card">
-
-                <h3>🐶 Pets</h3>
-
-                <p>
-                    Store pet profiles, details,
-                    and special notes.
-                </p>
-
+            <div>
+                <span class="label">About Pawlendar</span>
+                <h2>Built to keep grooming day stress-free</h2>
+                <p>Pawlendar is a pet grooming scheduler designed to help pet owners manage their pets' grooming needs.
+                    From pet profiles to appointments, Pawlendar keeps everything organized and easy to access for our
+                    furbabies and parents.</p>
+                <a class="btn-primary" href="about.html">Explore More</a>
             </div>
+        </section>
 
-            <div class="card">
-
-                <h3>📋 Appointments</h3>
-
-                <p>
-                    Track grooming schedules
-                    and upcoming bookings.
-                </p>
-
+        <section class="section section-alt" id="appointments">
+            <div class="section-head">
+                <span class="label">Booking</span>
+                <h2>Book your pet's grooming session</h2>
             </div>
+            <div class="steps-wrap">
+                <div class="step">
+                    <div class="paw-num">1</div>
+                    <div>
+                        <h4>Choose your pet and service</h4>
+                        <p>Pick which furbaby and which grooming package.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="paw-num">2</div>
+                    <div>
+                        <h4>Select available schedule</h4>
+                        <p>Browse open slots that fit your week.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="paw-num">3</div>
+                    <div>
+                        <h4>Check availability of groomers</h4>
+                        <p>See which groomers are free at that time.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="paw-num">4</div>
+                    <div>
+                        <h4>Confirm appointment</h4>
+                        <p>Lock in the booking and get a reminder.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="btn-primary" href="login.html">Schedule Now</a>
+        </section>
 
-        </div>
+        <section class="section manage" id="services">
+            <div class="section-head">
+                <span class="label">Under the hood</span>
+                <h2>Manage everything easily</h2>
+            </div>
+            <div class="manage-row">
+                <div class="manage-card users-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="1.8">
+                        <circle cx="12" cy="8" r="3.2" />
+                        <path d="M5 20c0-4 3.2-6.5 7-6.5S19 16 19 20" />
+                    </svg>
+                    <h3>Users</h3>
+                    <p>Create accounts and manage customer information.</p>
+                </div>
+                <div class="manage-card pets-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="1.8">
+                        <path d="M4 20c0-5 4-8 8-8s8 3 8 8" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <h3>Pets</h3>
+                    <p>Store pet profiles, details, and special notes.</p>
+                </div>
+                <div class="manage-card appointments-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="1.8">
+                        <rect x="3.5" y="5" width="17" height="15" rx="2" />
+                        <path d="M8 3v4M16 3v4M3.5 10h17" />
+                    </svg>
+                    <h3>Appointments</h3>
+                    <p>Track grooming schedules and upcoming bookings.</p>
+                </div>
+            </div>
+        </section>
 
-    </section>
+        <div id="footer"></div>
 
-    <footer>
+    </div>
 
-        <h3>
-            🐾 Pawlendar Grooming Scheduler
-        </h3>
-
-        <p>
-            Making every paw happy.
-        </p>
-
-        <p>
-            @2026 Pawlendar. All rights reserved.
-        </p>
-
-    </footer>
-
+    <script src="service-2.js"></script>
 </body>
-
-</html>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Pawlendar | Pet Grooming Scheduler</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="/customer/paw-pattern.css">
-</head>
-
-<body>
-
-    <header>
-        <nav class="main-nav">
-            <div class="logo"> 
-                <i class="fa-solid fa-paw"></i> Pawlendar
-            </div>
-
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="/customer/about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html">Appointments</a></li>
-            </ul>
-
-            <a href="registration.html" class="nav-btn">
-                Login or Sign-Up
-            </a>
-
-        </nav>
-    </header>
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <h1>
-                A Happier Pet Starts
-                With Better Care 🐶
-            </h1>
-
-            <p>
-                Pawlendar makes pet grooming simple.
-                Where every furbabies deserves their own spa day!
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="login.html" class="main-btn">
-                    Book Appointment
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="hero-card">
-
-            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb"
-                 alt="happy dog">
-
-        </div>
-
-    </section>
-
-   
-    <section class="highlights">
-
-        <h2>
-            Why Choose Pawlendar?
-        </h2>
-
-        <div class="highlight-container">
-
-            <div class="highlight">
-
-                <span>📅</span>
-
-                <h3>Easy Scheduling</h3>
-
-                <p>
-                    Book grooming appointments
-                    quickly and conveniently.
-                </p>
-
-            </div>
-
-            <div class="highlight">
-
-                <span>🐾</span>
-
-                <h3>Pet Records</h3>
-
-                <p>
-                    Keep your pet's information
-                    organized and accessible.
-                </p>
-
-            </div>
-
-            <div class="highlight">
-
-                <span>✂️</span>
-
-                <h3>Quality Grooming</h3>
-
-                <p>
-                    Connect pets with professional
-                    grooming services.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
- 
-    <section class="about" id="about">
-
-        <div class="about-image">
-
-            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7"
-                 alt="pet grooming">
-
-        </div>
-
-        <div class="about-text">
-
-            <h2>
-                About Pawlendar
-            </h2>
-
-            <p>
-                Pawlendar is a pet grooming scheduler
-                designed to help pet owners manage their
-                pets' grooming needs.
-
-                From pet profiles to appointments,
-                Pawlendar keeps everything organized
-                and easy to access for our furbabies and parents!
-            </p>
-
-            <a href="about.html" class="main-btn">
-                Explore More
-            </a>
-
-        </div>
-
-    </section>
-
-    <section class="booking" id="booking">
-
-        <div class="booking-text">
-
-            <h2>
-                Book Your Pet's Grooming Session
-            </h2>
-
-            <p>
-                Scheduling your pet's appointment is simple:
-            </p>
-
-            <div class="steps">
-
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <p>Choose your pet and service</p>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <p>Select available schedule</p>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <p>Check availability of groomers</p>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <p>Confirm appointment</p>
-                </div>
-
-            </div>
-
-            <a href="appointment.html" class="main-btn">
-                Schedule Now
-            </a>
-
-        </div>
-
-        <div class="about-image">
-            <img src="../images/koby.jpg" alt="Koby, a happy Pawlendar pet">
-        </div>
-
-    </section>
-
-    <section class="system">
-
-        <h2>
-            Manage Everything Easily
-        </h2>
-
-        <div class="cards">
-
-            <div class="card">
-
-                <h3>👤 Users</h3>
-
-                <p>
-                    Create accounts and manage
-                    customer information.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>🐶 Pets</h3>
-
-                <p>
-                    Store pet profiles, details,
-                    and special notes.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>📋 Appointments</h3>
-
-                <p>
-                    Track grooming schedules
-                    and upcoming bookings.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <footer>
-
-        <h3>
-            🐾 Pawlendar Grooming Scheduler
-        </h3>
-
-        <p>
-            Making every paw happy.
-        </p>
-
-        <p>
-            @2026 Pawlendar. All rights reserved.
-        </p>
-
-    </footer>
-
-</body>
-
 </html>

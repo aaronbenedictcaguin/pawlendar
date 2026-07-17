@@ -14,17 +14,17 @@ app.use(express.json());
 // Customer frontend
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+// Root website
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/customer/index.html"));
+});
+
 // Admin frontend
 app.use("/admin", express.static(path.join(__dirname, "../frontend/admin")));
 
 // Admin landing page
 app.get("/admin", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/admin/admin-login.html"));
-});
-
-// Root website
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/customer/index.html"));
 });
 
 //routes

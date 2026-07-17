@@ -631,3 +631,64 @@ exports.adminCancelAppointment = (req, res) => {
     });
 
 };
+
+exports.getCalendarAppointments = (req, res) => {
+
+    const sql = `
+        SELECT
+            a.appointment_id AS id,
+            a.start_datetime AS start,
+            a.end_datetime AS end,
+            a.status,
+
+            p.pet_name,
+
+            CONCAT(u.first_name,' ',u.last_name) AS owner,
+
+            CONCAT(s.first_name,' ',s.last_name) AS groomer
+
+        FROM appointments a
+
+        JOIN pet p
+            ON a.pet_id = p.pet_id
+
+        JOIN user u
+            ON p.user_id = u.user_id
+
+        LEFT JOIN staff s
+            ON a.staff_id = s.staff_id
+
+        ORDER BY a.start_datetime ASC
+    `;
+
+    db.query(sql, (err, results) => {
+
+        if (err) {
+            return res.status(500).json({
+                error: err.message
+            });
+        }
+
+        const events = results.map(event => ({
+
+            id: event.id,
+
+            title: `${event.pet_name} • ${event.groomer}`,
+
+            start: event.start,
+
+            end: event.end,
+
+            status: event.status,
+
+            owner: event.owner,
+
+            groomer: event.groomer
+
+        }));
+
+        res.json(events);
+
+    });
+
+};

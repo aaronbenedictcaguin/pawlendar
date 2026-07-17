@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
 
-            const res = await fetch("http://localhost:3000/api/users/me", {
+            const res = await fetch("/api/users/me", {
 
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             size: document.getElementById("size").value || null
         };
 
-        const res = await fetch("http://localhost:3000/api/pets", {
+        const res = await fetch("/api/pets", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

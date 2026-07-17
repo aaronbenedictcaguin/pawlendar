@@ -4,15 +4,16 @@ const db = require("../config/db");
 exports.getUsers = (req, res) => {
     const sql = `
         SELECT 
-        user_id,
-        first_name,
-        last_name,
-        email,
-        phone_number,
-        role,
-        membership,
-        loyalty_points
+            user_id,
+            first_name,
+            last_name,
+            email,
+            phone_number,
+            role,
+            membership,
+            loyalty_points
         FROM user
+        WHERE active_flag = TRUE
     `;
 
     db.query(sql, (err, results) => {

@@ -9,7 +9,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         const response = await fetch(
-            "http://localhost:3000/api/auth/login",
+            "/api/auth/login",
             {
                 method: "POST",
                 headers: {
@@ -37,7 +37,7 @@ form.addEventListener("submit", async (e) => {
         alert("Login successful");
 
         window.location.href =
-            "/customer/dashboard-dev.html";
+            "../customer/dashboard-dev.html";
 
     } catch (error) {
         console.error(error);

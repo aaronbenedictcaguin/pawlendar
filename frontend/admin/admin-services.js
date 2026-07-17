@@ -9,7 +9,7 @@ async function loadServices(){
 
 
     const response = await fetch(
-        "http://localhost:3000/api/services",
+        "/api/services",
         {
             headers:{
                 "Authorization":

@@ -28,7 +28,7 @@ form.addEventListener("submit", async (e) => {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/api/services",
+            "/api/services",
             {
                 method: "POST",
 

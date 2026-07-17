@@ -152,7 +152,7 @@ async function loadServices() {
     renderServices(fallbackServices);
 
     try {
-        const response = await fetch("http://localhost:3000/api/services");
+        const response = await fetch("/api/services");
         if (!response.ok) {
             throw new Error(`Services API returned ${response.status}`);
         }

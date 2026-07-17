@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const res = await fetch("http://localhost:3000/api/loyalty/me", {
+    const res = await fetch("/api/loyalty/me", {
       headers: { Authorization: `Bearer ${token}` }
     });
 

@@ -7,7 +7,7 @@ loadAppointments();
 async function loadAppointments(){
 
     const response = await fetch(
-        "http://localhost:3000/api/admin/appointments",
+        "/api/admin/appointments",
         {
             headers:{
                 "Authorization":"Bearer " + token
@@ -250,7 +250,7 @@ async function changeStatus(id,currentStatus){
 
     const response = await fetch(
 
-        `http://localhost:3000/api/admin/appointments/${id}/status`,
+        `/api/admin/appointments/${id}/status`,
 
         {
 
@@ -301,7 +301,7 @@ async function cancelAppointment(id){
 
     const response = await fetch(
 
-        `http://localhost:3000/api/admin/appointments/${id}`,
+        `/api/admin/appointments/${id}`,
 
         {
             method: "DELETE",

@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
             size: document.getElementById("size").value || null
         };
 
-        const res = await fetch("http://localhost:3000/api/pets", {
+        const res = await fetch("/api/pets", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

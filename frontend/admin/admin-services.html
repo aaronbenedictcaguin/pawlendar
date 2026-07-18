@@ -15,94 +15,95 @@
 
 <body>
 
+<div id="app" style="display:none;"></div>
 
-<header>
+    <header>
 
-    <nav class="main-nav">
+        <nav class="main-nav">
 
-        <div class="logo">
-            🐾 Pawlendar
-        </div>
-
-
-        <ul>
-            <li><a href="admin-dashboard.html">Dashboard</a></li>
-            <li><a href="admin-appointment.html">Appointments</a></li>
-            <li><a class="active" href="admin-services.html">Services</a></li>
-            <li><a href="admin-staff.html">Staff</a></li>
-        </ul>
+            <div class="logo">
+                🐾 Pawlendar
+            </div>
 
 
-        <button class="nav-btn">
-            Logout
-        </button>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="admin-appointment.html">Appointments</a></li>
+                <li><a class="active" href="admin-services.html">Services</a></li>
+                <li><a href="admin-staff.html">Staff</a></li>
+            </ul>
 
 
-    </nav>
-
-</header>
-
-
-<section class="services-hero">
-
-    <div class="services-content">
-
-        <h1>Service Management</h1>
-
-        <p>
-            Add, edit, and manage all grooming services offered by Pawlendar.
-        </p>
-
-        <a href="service-form.html" class="add-service-btn">
-            <i class="fa-solid fa-plus"></i>
-            Add New Service
-        </a>
-
-    </div>
-
-</section>
+            <button class="nav-btn">
+                Logout
+            </button>
 
 
-<section class="services-wrapper">
+        </nav>
 
-    <div class="services-card">
+    </header>
 
-        <div class="services-title">
 
-            <h2>Available Services</h2>
+    <section class="services-hero">
 
-            <span id="serviceCount">0 Services</span>
+        <div class="services-content">
+
+            <h1>Service Management</h1>
+
+            <p>
+                Add, edit, and manage all grooming services offered by Pawlendar.
+            </p>
+
+            <a href="service-form.html" class="add-service-btn">
+                <i class="fa-solid fa-plus"></i>
+                Add New Service
+            </a>
 
         </div>
 
-        <table class="services-table">
+    </section>
 
-            <thead>
 
-                <tr>
+    <section class="services-wrapper">
 
-                    <th>ID</th>
-                    <th>Service</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Duration</th>
-                    <th>Actions</th>
+        <div class="services-card">
 
-                </tr>
+            <div class="services-title">
 
-            </thead>
+                <h2>Available Services</h2>
 
-            <tbody id="serviceTable">
+                <span id="serviceCount">0 Services</span>
 
-            </tbody>
+            </div>
 
-        </table>
+            <table class="services-table">
 
-    </div>
+                <thead>
 
-</section>
+                    <tr>
 
+                        <th>ID</th>
+                        <th>Service</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="serviceTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+</div>
 
 <script src="admin-services.js"></script>
 

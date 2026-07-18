@@ -1,5 +1,4 @@
 const token = localStorage.getItem("token");
-
 if (!token) {
     window.location.href = "/admin";
 }
@@ -23,13 +22,14 @@ async function loadAppointments(){
 
     if(!response.ok){
 
+        window.location.replace("/admin");
         alert(data.message || "Failed to load appointments");
 
         return;
 
     }
 
-
+    document.getElementById("app").style.display = "block";
     displayAppointments(data);
 
 }

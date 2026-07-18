@@ -4,6 +4,10 @@ async function loadDashboard(){
 
     const token = localStorage.getItem("token");
 
+    if (!token) {
+        window.location.href = "/admin";
+    }
+
     const response = await fetch(
         "/api/admin/stats",
         {
@@ -14,13 +18,15 @@ async function loadDashboard(){
     );
 
     if(!response.ok){
-        
-        window.location.href = "/admin";
+
+        window.location.replace("/admin");
         alert("Failed to load dashboard");
 
         return;
 
     }
+
+    document.getElementById("app").style.display = "block";
 
     const data = await response.json();
 

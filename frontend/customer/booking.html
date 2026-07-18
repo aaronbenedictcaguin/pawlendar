@@ -3,224 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawlendar | Booking </title>
+    <title>Pawlendar | Booking</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../navbar.css">
     <link rel="stylesheet" href="booking.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
 </head>
 <body>
-    <!-- <header>
-        <nav class="main-nav">
-            <div class="logo"><i class="fa-solid fa-paw"></i> Pawlendar</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html" class="active">Appointments</a></li>
-            </ul>
-            <a href="registration.html" class="nav-btn">Login or Sign-Up</a>
+
+    <header class="navbar">
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
+
+        <nav class="nav-list">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../service.html">Services</a>
+            <a href="../staff-info.html">Staff</a>
+            <a href="../appointment.html" class="active">Appointments</a>
         </nav>
-    </header> -->
 
-<div class="main-container">
-
-    <div class="left-panel">
-
-        <div>
-            <div class="logo-area">
-                <i class="fa-solid fa-paw"></i> Pawlendar
-
-            </div>
-
-            <h1 class="welcome-text">
-                Book Your Pet's Grooming Appointment
-            </h1>
-
-            <p class="sub-text">
-                Schedule your furry friend's grooming session in just a few
-                clicks. Choose your preferred service, date, and time.
-            </p>
-
-            <p class = "sub-text">
-                If you have any special instructions requests, or concenrs, please let us know at: 
-                <a href="mailto: pawlendar@gmail.com"><b>pawlendar@gmail.com</b></a>
-            </p>
-
-            <p>
-
-            </p>
+        <div class="nav-auth">
+            <a href="../login.html" class="btn-ghost-small">Login</a>
+            <a href="../registration.html" class="btn-gold">Sign Up</a>
         </div>
+    </header>
 
-        <!-- <div class="image-wrapper">
-            <img src="../images/golden.jpg" alt="Cute golden" class="pet-image">
-        </div> -->
+    <main class="main-container">
 
-    </div>
+        <div class="left-panel paws-bg">
 
-    <div class="right-panel">
-        <div class="booking-content">
-            <aside class="availability-panel">
-                <h3>Staff Availability</h3>
-                <div class="availability-controls">
-                    <select id="calendar-view">
-                        <option value="month">Month</option>
-                        <option value="week">Week</option>
-                        <option value="day">Day</option>
-                    </select>
-                    <input type="date" id="calendar-date">
-                    <select id="calendar-groomer">
-                        <option value="">All groomers</option>
-                    </select>
+            <div class="left-top">
+                <div class="logo-area">
+                    <i class="fa-solid fa-paw"></i> Pawlendar
                 </div>
-                <div class="availability-nav">
-                    <button type="button" id="calendar-prev">Prev</button>
-                    <button type="button" id="calendar-next">Next</button>
-                </div>
-                <div id="calendar-loading" class="calendar-loading">Loading...</div>
-                <div id="calendar-message" class="calendar-message"></div>
-                <div id="calendar-container" class="calendar-container"></div>
-            </aside>
 
-            <div class="form-box">
+                <h1 class="welcome-text">
+                    Book Your Pet's Grooming Appointment
+                </h1>
 
-                <h2 class="form-title">Booking Form</h2>
-                <p class="form-subtitle">
-                    Fill in the details below.
+                <p class="sub-text">
+                    Schedule your furry friend's grooming session in just a few
+                    clicks. Choose your preferred service, date, and time.
                 </p>
 
-                <form>
-
-                    <!-- OWNER -->
-                    <h3>Owner Information</h3>
-
-                    <div class="summary-box">
-
-                        <p>
-                            <strong>Name:</strong>
-                            <span id="ownerName">Loading...</span>
-                        </p>
-
-                        <p>
-                            <strong>Email:</strong>
-                            <span id="ownerEmail">Loading...</span>
-                        </p>
-
-                        <p>
-                            <strong>Phone:</strong>
-                            <span id="ownerPhone">Loading...</span>
-                        </p>
-
-                    </div>
-
-                    <!-- PET -->
-                    <h3>Pet Information</h3>
-
-                    <div class="summary-box">
-
-                        <p>
-                            <strong>Name:</strong>
-                            <span id="petName">Loading...</span>
-                        </p>
-
-                        <p>
-                            <strong>Species:</strong>
-                            <span id="petSpecies">Loading...</span>
-                        </p>
-
-                        <p>
-                            <strong>Breed:</strong>
-                            <span id="petBreed">Loading...</span>
-                        </p>
-
-                        <p>
-                            <strong>Size:</strong>
-                            <span id="petSize">Loading...</span>
-                        </p>
-
-                    </div>
-        
-            
-                    <div class="input-group">
-
-                        <label>Services</label>
-
-                        <div id="serviceList">
-
+                <ul class="steps-list">
+                    <li>
+                        <span class="step-num">1</span>
+                        <div>
+                            <h4>Tell us about your pet</h4>
+                            <p>Confirm your details and pick a service.</p>
                         </div>
-
-                    </div>
-                
-                    <div class="form-row">
-
-                        <div class="input-group">
-                            <label>Appointment Date</label>
-                            <input type="date" id="appointment_date">
+                    </li>
+                    <li>
+                        <span class="step-num">2</span>
+                        <div>
+                            <h4>Check groomer availability</h4>
+                            <p>Browse open slots and choose a date and time.</p>
                         </div>
-
-                        <div class="input-group">
-                            <label>Appointment Time</label>
-                            <input type="time" id="appointment_time">
+                    </li>
+                    <li>
+                        <span class="step-num">3</span>
+                        <div>
+                            <h4>Confirm your booking</h4>
+                            <p>We'll take it from there and get everything ready.</p>
                         </div>
-
-                    </div>
-            
-                    <div class="input-group">
-                        <label>Special Instructions</label>
-                        <textarea
-                            id="notes"
-                            placeholder="Anything we should know?">
-                        </textarea>
-                    </div>
-                
-                    <h3>Appointment Summary</h3>
-
-                    <div class="summary-box">
-
-                        <p>
-                            <strong>Estimated Duration:</strong>
-                            <span id="duration">0 mins</span>
-                        </p>
-
-                        <p>
-                            <strong>Total Price:</strong>
-                            ₱<span id="totalPrice">0</span>
-                        </p>
-
-                    </div>
-
-                    <button class="btn-login">
-                        Book Appointment
-                    </button>
-                
-                </form>
+                    </li>
+                </ul>
             </div>
+
+            <div class="contact-card">
+                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                <div>
+                    <span class="contact-label">Special requests or questions?</span>
+                    <a href="mailto:pawlendar@gmail.com">pawlendar@gmail.com</a>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+        <div class="right-panel">
+            <div class="booking-content">
+                <aside class="availability-panel">
+                    <h3><i class="fa-solid fa-calendar-days"></i> Staff Availability</h3>
 
+                    <div class="availability-controls">
+                        <div class="control-row">
+                            <select id="calendar-view">
+                                <option value="month">Month</option>
+                                <option value="week">Week</option>
+                                <option value="day">Day</option>
+                            </select>
+                            <select id="calendar-groomer">
+                                <option value="">All groomers</option>
+                            </select>
+                        </div>
+                        <input type="date" id="calendar-date">
+                    </div>
 
-</div>
-    <script>
-    function showOtherPet() {
-        const petType = document.getElementById("petType").value;
-        const otherPetGroup = document.getElementById("otherPetGroup");
+                    <div class="availability-nav">
+                        <button type="button" id="calendar-prev"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                        <button type="button" id="calendar-next">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
 
-        if (petType === "Other") {
-            otherPetGroup.style.display = "block";
-        } else {
-            otherPetGroup.style.display = "none";
-            document.getElementById("otherPet").value = "";
-        }
-    }
-    </script>
-    <script src="staff-calendar.js"></script>
+                    <div id="calendar-loading" class="calendar-loading">Loading...</div>
+                    <div id="calendar-message" class="calendar-message"></div>
+                    <div id="calendar-container" class="calendar-container"></div>
+                </aside>
+
+                <div class="form-box">
+
+                    <h2 class="form-title">Booking Form</h2>
+                    <p class="form-subtitle">
+                        Fill in the details below.
+                    </p>
+
+                    <form>
+
+                        <h3><i class="fa-solid fa-user"></i> Owner Information</h3>
+
+                        <div class="summary-box">
+                            <p>
+                                <strong>Name:</strong>
+                                <span id="ownerName">Loading...</span>
+                            </p>
+                            <p>
+                                <strong>Email:</strong>
+                                <span id="ownerEmail">Loading...</span>
+                            </p>
+                            <p>
+                                <strong>Phone:</strong>
+                                <span id="ownerPhone">Loading...</span>
+                            </p>
+                        </div>
+
+                        <h3><i class="fa-solid fa-paw"></i> Pet Information</h3>
+
+                        <div class="summary-box">
+                            <p>
+                                <strong>Name:</strong>
+                                <span id="petName">Loading...</span>
+                            </p>
+                            <p>
+                                <strong>Species:</strong>
+                                <span id="petSpecies">Loading...</span>
+                            </p>
+                            <p>
+                                <strong>Breed:</strong>
+                                <span id="petBreed">Loading...</span>
+                            </p>
+                            <p>
+                                <strong>Size:</strong>
+                                <span id="petSize">Loading...</span>
+                            </p>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Services</label>
+                            <div id="serviceList"></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Appointment Date</label>
+                                <input type="date" id="appointment_date">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Appointment Time</label>
+                                <input type="time" id="appointment_time">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Special Instructions</label>
+                            <textarea
+                                id="notes"
+                                placeholder="Anything we should know?"></textarea>
+                        </div>
+
+                        <h3><i class="fa-solid fa-receipt"></i> Appointment Summary</h3>
+
+                        <div class="summary-box">
+                            <p>
+                                <strong>Estimated Duration:</strong>
+                                <span id="duration">0 mins</span>
+                            </p>
+                            <p>
+                                <strong>Total Price:</strong>
+                                ₱<span id="totalPrice">0</span>
+                            </p>
+                        </div>
+
+                        <button class="btn-login">
+                            Book Appointment
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
     <script src="staff-calendar.js"></script>
     <script src="booking.js"></script>
-
 
 </body>
 </html>

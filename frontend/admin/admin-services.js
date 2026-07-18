@@ -1,5 +1,7 @@
 const token = localStorage.getItem("token");
-
+if (!token) {
+    window.location.href = "/admin";
+}
 
 loadServices();
 
@@ -27,13 +29,13 @@ async function loadServices(){
 
     if(!response.ok){
 
+        window.location.replace("/admin");
         alert(data.message || "Failed loading services");
-        window.location.href = "/admin";
 
         return;
 
     }
-
+    document.getElementById("app").style.display = "block";
 
     displayServices(data);
 

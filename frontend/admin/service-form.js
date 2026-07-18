@@ -24,6 +24,9 @@ form.addEventListener("submit", async (e) => {
     };
 
     const token = localStorage.getItem("token"); 
+    if (!token) {
+        window.location.href = "/admin";
+    }
 
     try {
 
@@ -53,7 +56,6 @@ form.addEventListener("submit", async (e) => {
         else{
 
             alert(data.message || data.error);
-            window.location.href = "/admin";
 
         }
     } catch (error) {

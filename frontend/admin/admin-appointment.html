@@ -12,65 +12,67 @@
 </head>
 <body>
 
-    <header>
-        <nav class="main-nav">
-            <div class="logo"><i class="fa-solid fa-paw"></i> Pawlendar</div>
+    <div id="app" style="display:none;">
 
-            <ul>
-                <li><a href="admin-dashboard.html">Dashboard</a></li>
-                <li><a class="active" href="admin-appointment.html">Appointments</a></li>
-                <li><a href="admin-services.html">Services</a></li>
-                <li><a href="admin-staff.html">Staff</a></li>
-            </ul>
+        <header>
+            <nav class="main-nav">
+                <div class="logo"><i class="fa-solid fa-paw"></i> Pawlendar</div>
 
-            <button class="nav-btn">Logout</button>
-        </nav>
-    </header>
+                <ul>
+                    <li><a href="admin-dashboard.html">Dashboard</a></li>
+                    <li><a class="active" href="admin-appointment.html">Appointments</a></li>
+                    <li><a href="admin-services.html">Services</a></li>
+                    <li><a href="admin-staff.html">Staff</a></li>
+                </ul>
 
-    <section class="appointments-hero">
-        <div class="appointments-hero-content">
-            <h1>Appointment Status</h1>
+                <button class="nav-btn">Logout</button>
+            </nav>
+        </header>
 
-            <p>
-                Manage grooming appointments and update their progress
-                from check-in until completion.
-            </p>
-        </div>
-    </section>
+        <section class="appointments-hero">
+            <div class="appointments-hero-content">
+                <h1>Appointment Status</h1>
 
-    <section class="appointments-dashboard">
+                <p>
+                    Manage grooming appointments and update their progress
+                    from check-in until completion.
+                </p>
+            </div>
+        </section>
 
-        <h2>Today's Grooming Queue</h2>
+        <section class="appointments-dashboard">
 
-        <div class="table-container">
+            <h2>Today's Grooming Queue</h2>
 
-            <table class="appointment-table">
+            <div class="table-container">
 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Pet</th>
-                        <th>Owner</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Groomer</th>
-                        <th>Status</th>
-                        <th>Payment</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+                <table class="appointment-table">
 
-                <tbody id="appointmentTableBody">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Pet</th>
+                            <th>Owner</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Groomer</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
 
-                </tbody>
+                    <tbody id="appointmentTableBody">
 
-            </table>
+                    </tbody>
 
-        </div>
+                </table>
 
-    </section>
+            </div>
 
+        </section>
+    </div>
     <script src="admin-appointment.js"></script>
 
 </body>

@@ -241,6 +241,121 @@
 
 }
 
+#appointmentTableBody td{
+    transition:
+        background-color .6s ease,
+        box-shadow .6s ease;
+}
+
+.highlight-row td{
+
+    background:#FFF4D2;
+
+    box-shadow:
+        inset 0 -2px 0 #F5AC53,
+        inset 0 2px 0 #F5AC53;
+
+}
+
+.highlight-row td:first-child{
+
+    border-left:2px solid #F5AC53;
+
+    font-weight:700;
+
+}
+
+.highlight-row td:last-child{
+
+    border-right:2px solid #F5AC53;
+
+}
+
+.payment-select{
+    padding:8px 12px;
+    border:2px solid #d8cfc8;
+    border-radius:8px;
+    font-size:14px;
+    font-family:"Poppins",sans-serif;
+    font-weight:600;
+    background:#fff;
+    color:#4A2328;
+    cursor:pointer;
+    transition:all .2s ease;
+    min-width:110px;
+}
+
+.payment-select:hover:not(:disabled){
+    border-color:#B77A4D;
+}
+
+.payment-select:focus{
+    outline:none;
+    border-color:#8B5E3C;
+    box-shadow:0 0 0 3px rgba(183,122,77,.2);
+}
+
+.payment-select:disabled{
+    background:#f4f4f4;
+    color:#888;
+    cursor:not-allowed;
+    opacity:.75;
+}
+
+.payment-select.pending{
+    background:#fff8e6;
+    border-color:#f0c36d;
+    color:#b26a00;
+}
+
+.payment-select.paid{
+    background:#e9f9ef;
+    border-color:#57b26a;
+    color:#1b7a38;
+}
+
+
+.appointment-filters{
+    display:flex;
+    gap:16px;
+    margin:25px 0;
+    flex-wrap:wrap;
+}
+
+.appointment-filters input,
+.appointment-filters select{
+
+    padding:12px 16px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+    font-family:inherit;
+    outline:none;
+    transition:.25s;
+
+}
+
+.appointment-filters input{
+
+    flex:1;
+    min-width:260px;
+
+}
+
+.appointment-filters select{
+
+    min-width:180px;
+    cursor:pointer;
+
+}
+
+.appointment-filters input:focus,
+.appointment-filters select:focus{
+
+    border-color:#9F5F80;
+    box-shadow:0 0 0 3px rgba(159,95,128,.15);
+
+}
 /* Mobile */
 
 @media(max-width:900px){

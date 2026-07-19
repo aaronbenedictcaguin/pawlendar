@@ -1,47 +1,150 @@
 const db = require("../config/db");
 
-exports.calculateAppointmentEnd = (serviceIds, startDatetime) => {
+exports.calculateAppointmentEnd = (serviceIds, packageIds, startDatetime) => {
+
     return new Promise((resolve, reject) => {
 
-        if (!Array.isArray(serviceIds) || serviceIds.length === 0) {
-            return reject(new Error("At least one service must be selected."));
+        serviceIds = Array.isArray(serviceIds) ? serviceIds : [];
+        packageIds = Array.isArray(packageIds) ? packageIds : [];
+
+        if (serviceIds.length === 0 && packageIds.length === 0) {
+            return reject(new Error("At least one service or package must be selected."));
         }
 
-        const sql = `
-            SELECT SUM(duration_minutes) AS totalDuration, SUM(price) AS totalPrice
-            FROM service_menu
-            WHERE service_id IN (?)
-            AND active_flag = 1
-        `;
+        const selectedItems = [];
 
-        db.query(sql, [serviceIds], (err, results) => {
+        // ------------------------
+        // 1. Individual Services
+        // ------------------------
 
-            if (err) return reject(err);
+        const getServices = new Promise((resolveServices, rejectServices) => {
 
-            const totalDuration = results[0].totalDuration;
-            const totalPrice = results[0].totalPrice;
-
-            if (!totalDuration || totalPrice === null) {
-                return reject(new Error("Invalid service selection."));
+            if (serviceIds.length === 0) {
+                return resolveServices([]);
             }
 
-            const start = new Date(startDatetime);
+            const sql = `
+                SELECT
+                    service_id,
+                    price,
+                    duration_minutes
+                FROM service_menu
+                WHERE service_id IN (?)
+                AND active_flag = 1
+            `;
 
-            if (isNaN(start.getTime())) {
-                return reject(new Error("Invalid appointment date."));
-            }
+            db.query(sql, [serviceIds], (err, results) => {
 
-            const endDatetime = new Date(
-                start.getTime() + totalDuration * 60000
-            );
+                if (err) return rejectServices(err);
 
-            resolve({
-                totalDuration,
-                totalPrice,
-                endDatetime
+                resolveServices(results);
+
             });
 
         });
 
+        // ------------------------
+        // 2. Packages
+        // ------------------------
+
+        const getPackages = new Promise((resolvePackages, rejectPackages) => {
+
+            if (packageIds.length === 0) {
+                return resolvePackages([]);
+            }
+
+            const sql = `
+                SELECT
+                    package_id,
+                    package_price,
+                    package_duration_minutes
+                FROM service_package
+                WHERE package_id IN (?)
+                AND active_flag = 1
+            `;
+
+            db.query(sql, [packageIds], (err, results) => {
+
+                if (err) return rejectPackages(err);
+
+                resolvePackages(results);
+
+            });
+
+        });
+
+        Promise.all([getServices, getPackages])
+
+            .then(([services, packages]) => {
+
+                let totalDuration = 0;
+                let totalPrice = 0;
+
+                // Save selected services
+                services.forEach(service => {
+
+                    totalDuration += service.duration_minutes;
+                    totalPrice += Number(service.price);
+
+                    selectedItems.push({
+
+                        service_id: service.service_id,
+                        package_id: null,
+                        is_package_service: 0,
+                        service_price: Number(service.price),
+                        duration_minutes: service.duration_minutes
+
+                    });
+
+                });
+
+                // Save selected packages
+                packages.forEach(pkg => {
+
+                    totalDuration += pkg.package_duration_minutes;
+                    totalPrice += Number(pkg.package_price);
+
+                    selectedItems.push({
+
+                        service_id: null,
+                        package_id: pkg.package_id,
+                        is_package_service: 1,
+                        service_price: Number(pkg.package_price),
+                        duration_minutes: pkg.package_duration_minutes
+
+                    });
+
+                });
+
+                if (selectedItems.length === 0) {
+                    return reject(new Error("Invalid service/package selection."));
+                }
+
+                const start = new Date(startDatetime);
+
+                if (isNaN(start.getTime())) {
+                    return reject(new Error("Invalid appointment date."));
+                }
+
+                const endDatetime = new Date(
+                    start.getTime() + totalDuration * 60000
+                );
+
+                resolve({
+
+                    totalDuration,
+                    totalPrice,
+                    endDatetime,
+
+                    // THIS IS WHAT WE'LL INSERT LATER
+                    selectedItems
+
+                });
+
+            })
+
+            .catch(reject);
+
     });
+
 };

@@ -15,7 +15,19 @@ const { validateGroomer } = require("../middleware/groomer.validation");
 router.get("/stats", authMiddleware, adminMiddleware, dashboardController.getDashboardStats);
 // admin routes for appointments
 router.get("/appointments", authMiddleware, adminMiddleware, appointmentController.getAllAppointments);
+router.get(
+    "/appointments/calendar",
+    authMiddleware,
+    adminMiddleware,
+    appointmentController.getCalendarAppointments
+);
 router.put("/appointments/:id/status", authMiddleware, adminMiddleware, appointmentController.updateStatus);
+router.put(
+    "/appointments/:id/payment",
+    authMiddleware,
+    adminMiddleware,
+    appointmentController.updatePaymentStatus
+);
 router.put("/appointments/:id/reassign", authMiddleware, adminMiddleware, appointmentController.reassignAppointment);
 router.delete("/appointments/:id", authMiddleware, adminMiddleware, appointmentController.adminCancelAppointment);
 // admin routes for users

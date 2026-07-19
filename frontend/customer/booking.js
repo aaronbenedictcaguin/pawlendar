@@ -25,6 +25,18 @@ fetch("/api/auth/profile", {
 const params = new URLSearchParams(window.location.search);
 const petId = params.get("pet_id");
 
+function showOtherPet() {
+    const petType = document.getElementById("petType").value;
+    const otherPetGroup = document.getElementById("otherPetGroup");
+
+    if (petType === "Other") {
+        otherPetGroup.style.display = "block";
+    } else {
+        otherPetGroup.style.display = "none";
+        document.getElementById("otherPet").value = "";
+    }
+}
+
 async function loadOwner() {
 
     const res = await fetch("/api/users/me", {

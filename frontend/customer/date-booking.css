@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -14,28 +13,28 @@ body {
 
 
 .page-wrap {
-    max-width: 1200px;
-    margin: 40px auto 80px;
-    padding: 0 24px;
+    max-width: 1100px;
+    margin: 30px auto 50px;
+    padding: 0 17px;
 }
 
 .booking-hero {
-    padding: 48px 0 24px;
+    padding: 30px 0 17px;
     text-align: center;
 }
 
 .booking-hero-content h1 {
-    font-size: 42px;
+    font-size: 32px;
     color: #4A2328;
-    margin-bottom: 18px;
+    margin-bottom: 13px;
 }
 
 .booking-hero-content p {
-    font-size: 16px;
+    font-size: 13px;
     color: #5C3338;
     opacity: 0.95;
     line-height: 1.7;
-    max-width: 760px;
+    max-width: 650px;
     margin: 0 auto;
 }
 
@@ -45,29 +44,29 @@ body {
 
 .booking-card {
     display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 28px;
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
 }
 
 .booking-card article {
     background: white;
-    border-radius: 28px;
+    border-radius: 20px;
     box-shadow: 0 18px 40px rgba(74, 35, 40, 0.08);
-    padding: 32px;
+    padding: 25px;
 }
 
 .booking-details h2,
 .booking-form h2 {
-    font-size: 26px;
+    font-size: 25px;
     color: #4A2328;
-    margin-bottom: 18px;
+    margin-bottom: 13px;
 }
 
 .highlight-text {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 17px;
     color: #4A2328;
-    margin-bottom: 24px;
+    margin-bottom: 17px;
 }
 
 .available-hours h3 {
@@ -84,12 +83,12 @@ body {
 input,
 textarea {
     width: 100%;
-    padding: 14px 16px;
+    padding: 10px 15px;
     border: 1.5px solid #F0E4D7;
-    border-radius: 16px;
+    border-radius: 13px;
     background: #FAFAFA;
     color: #4A2328;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
 }
 
 .available-hours select:focus,
@@ -101,18 +100,17 @@ textarea:focus {
 }
 
 .input-group {
-    margin-bottom: 18px;
+    margin-bottom: 13px;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
+    margin-bottom: 7px;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #4A2328;
 }
 
-/* Match the Service field used by the main booking form. */
 #serviceType {
     width: 100%;
     padding: 13px 16px;
@@ -120,7 +118,7 @@ textarea:focus {
     border-radius: 12px;
     background: #FAFAFA;
     color: #4A2E2B;
-    font-family: 'Poppins', sans-serif;
+    font-family: inherit;
     font-size: 0.9rem;
     cursor: pointer;
     transition: border-color 0.3s ease, background-color 0.3s ease;
@@ -133,17 +131,18 @@ textarea:focus {
 }
 
 textarea {
-    min-height: 140px;
+    min-height: 100px;
     resize: vertical;
 }
 
 .full-notice {
     margin-top: 16px;
-    padding: 18px 20px;
+    padding: 13px 17px;
     border-radius: 18px;
     background: #FDECEC;
     color: #A23838;
     border: 1px solid #F5C2C2;
+    font-size: 0.85rem;
     font-weight: 600;
 }
 
@@ -155,11 +154,12 @@ textarea {
     display: inline-flex;
     justify-content: center;
     width: 100%;
-    padding: 16px 0;
-    border-radius: 16px;
+    padding: 13px 0;
+    border-radius: 13px;
     border: none;
     background: #F5AC53;
     color: #4A2328;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s ease;

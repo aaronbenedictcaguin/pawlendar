@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET =
-  process.env.JWT_SECRET || 'your_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if(!JWT_SECRET){
+    throw new Error("JWT_SECRET is missing");
+}
 
 function generateToken(user) {
   return jwt.sign(

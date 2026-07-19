@@ -1,17 +1,54 @@
 const token = localStorage.getItem("token");
 if (!token) {
-    window.location.href = "/admin";
+    window.location.href = "http://localhost:3000/admin";
 }
 
+let showArchivedServices = false;
+let showArchivedPackages = false;
+
 loadServices();
+loadPackages();
 
+document
+.getElementById("serviceArchiveToggle")
+.addEventListener("change", (e) => {
 
+    showArchivedServices = e.target.checked;
+
+    document.getElementById("serviceToggleText").textContent =
+        showArchivedServices
+        ? "Showing All Services"
+        : "Showing Active Services";
+
+    loadServices();
+
+});
+
+document
+.getElementById("packageArchiveToggle")
+.addEventListener("change", (e) => {
+
+    showArchivedPackages = e.target.checked;
+
+    document.getElementById("packageToggleText").textContent =
+        showArchivedPackages
+        ? "Showing All Packages"
+        : "Showing Active Packages";
+
+    loadPackages();
+
+});
 
 async function loadServices(){
 
+    const url = showArchivedServices
+
+        ? "http://localhost:3000/api/services/admin/all"
+
+        : "http://localhost:3000/api/services";
 
     const response = await fetch(
-        "/api/services",
+        url,
         {
             headers:{
                 "Authorization":
@@ -47,83 +84,118 @@ async function loadServices(){
 
 function displayServices(services){
 
-
     const table =
-    document.getElementById("serviceTable");
-     const serviceCount = document.getElementById("serviceCount");
+        document.getElementById("serviceTable");
 
-    // Update the counter
+    const serviceCount =
+        document.getElementById("serviceCount");
+
     serviceCount.textContent =
         `${services.length} Service${services.length !== 1 ? "s" : ""}`;
 
-    let html="";
+    let html = "";
 
+    services.forEach(service => {
 
-    services.forEach(service=>{
+        let actions = "";
 
+        // Showing only ACTIVE services
+        if (!showArchivedServices) {
+
+            actions = `
+
+                <button
+                    class="edit-btn"
+                    onclick="editService(${service.service_id})">
+
+                    Edit
+
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteService(${service.service_id})">
+
+                    Delete
+
+                </button>
+
+            `;
+
+        }
+
+        // Showing ALL services (active + archived)
+        else {
+
+            if (Number(service.active_flag) === 1) {
+
+                actions = `
+
+                    <button
+                        class="edit-btn"
+                        onclick="editService(${service.service_id})">
+
+                        Edit
+
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteService(${service.service_id})">
+
+                        Delete
+
+                    </button>
+
+                `;
+
+            } else {
+
+                actions = `
+
+                    <button
+                        class="restore-btn"
+                        onclick="restoreService(${service.service_id})">
+
+                        Restore
+
+                    </button>
+
+                `;
+
+            }
+
+        }
 
         html += `
 
         <tr>
 
+            <td>${service.service_id}</td>
 
-            <td>
-                ${service.service_id}
-            </td>
+            <td>${service.service_name}</td>
 
+            <td>${service.category}</td>
 
-            <td>
-                ${service.service_name}
-            </td>
+            <td>${service.description}</td>
 
+            <td>₱${service.price}</td>
 
-            <td>
-                ${service.category}
-            </td>
-
-
-            <td>
-                ${service.description}
-            </td>
-
-
-            <td>
-                ₱${service.price}
-            </td>
-
-
-            <td>
-                ${service.duration_minutes} mins
-            </td>
-
+            <td>${service.duration_minutes} mins</td>
 
             <td>
 
-                <button
-                class="delete-btn"
-                onclick="deleteService(${service.service_id})">
-
-                <i class="fa-solid fa-trash">
-                Delete
-                </i>
-
-                </button>
-
+                ${actions}
 
             </td>
-
 
         </tr>
 
-
         `;
-
 
     });
 
-
     table.innerHTML = html;
-
 
 }
 
@@ -133,7 +205,7 @@ function displayServices(services){
 function editService(id){
 
     window.location.href =
-    `edit-service.html?id=${id}`;
+    `service-form-edit.html?id=${id}`;
 
 }
 
@@ -187,5 +259,251 @@ async function deleteService(id){
 
     }
 
+
+}
+
+async function restoreService(id){
+
+    if(!confirm("Restore this service?"))
+        return;
+
+    const response = await fetch(
+
+        `http://localhost:3000/api/services/${id}/restore`,
+
+        {
+
+            method:"PUT",
+
+            headers:{
+
+                Authorization:`Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    loadServices();
+
+}
+
+async function loadPackages() {
+
+    const url = showArchivedPackages
+
+        ? "http://localhost:3000/api/packages/admin/all"
+
+        : "http://localhost:3000/api/packages";
+
+
+    const response = await fetch(
+        url,
+        {
+            headers:{
+                "Authorization":
+                "Bearer " + token
+            }
+        }
+    );
+
+    const packages = await response.json();
+
+    if (!response.ok) {
+
+        alert("Failed loading packages");
+        return;
+
+    }
+
+    displayPackages(packages);
+
+}
+
+function displayPackages(packages) {
+
+    const table =
+        document.getElementById("packageTable");
+
+    const count =
+        document.getElementById("packageCount");
+
+    count.textContent =
+        `${packages.length} Package${packages.length !== 1 ? "s" : ""}`;
+
+    let html = "";
+
+    packages.forEach(pkg => {
+
+        let actions = "";
+
+        if (!showArchivedPackages) {
+
+            actions = `
+
+                <button
+                class="edit-btn"
+                onclick="editPackage(${pkg.package_id})">
+
+                Edit
+
+                </button>
+
+                <button
+                class="delete-btn"
+                onclick="deletePackage(${pkg.package_id})">
+
+                Delete
+
+                </button>
+
+            `;
+
+        } else {
+
+            actions = Number(pkg.active_flag) === 1
+
+            ? `
+
+                <button
+                class="edit-btn"
+                onclick="editPackage(${pkg.package_id})">
+
+                Edit
+
+                </button>
+
+                <button
+                class="delete-btn"
+                onclick="deletePackage(${pkg.package_id})">
+
+                Delete
+
+                </button>
+
+            `
+
+            : `
+
+                <button
+                class="restore-btn"
+                onclick="restorePackage(${pkg.package_id})">
+
+                Restore
+
+                </button>
+
+            `;
+        }
+
+        html += `
+
+        <tr>
+
+            <td>${pkg.package_id}</td>
+
+            <td>${pkg.package_name}</td>
+
+            <td>${pkg.description}</td>
+
+            <td>₱${pkg.package_price}</td>
+
+            <td>${pkg.package_duration_minutes} mins</td>
+
+            <td>
+
+                ${actions}
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+    table.innerHTML = html;
+
+}
+
+function editPackage(id) {
+
+    window.location.href =
+        `package-form-edit.html?id=${id}`;
+
+}
+
+async function deletePackage(id){
+
+    if (!confirm("Archive this package?")) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3000/api/packages/${id}`,
+            {
+                method: "DELETE",
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            alert(data.message);
+            loadPackages();
+
+        } else {
+
+            alert(data.message || "Failed to archive package.");
+
+        }
+
+    } catch (err) {
+
+        alert("Server connection failed.");
+
+    }
+
+}
+
+async function restorePackage(id){
+
+    if(!confirm("Restore this package?"))
+        return;
+
+    const response = await fetch(
+
+        `http://localhost:3000/api/packages/${id}/restore`,
+
+        {
+
+            method:"PUT",
+
+            headers:{
+
+                Authorization:`Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    loadPackages();
 
 }

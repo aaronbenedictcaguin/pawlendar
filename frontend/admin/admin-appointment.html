@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawlendar | Grooming Status</title>
+    <title>Pawlendar | Appointment Management</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="admin-appointment.css">
@@ -21,6 +21,7 @@
                 <ul>
                     <li><a href="admin-dashboard.html">Dashboard</a></li>
                     <li><a class="active" href="admin-appointment.html">Appointments</a></li>
+                    <li><a href="admin-calendar.html">Calendar</a></li>
                     <li><a href="admin-services.html">Services</a></li>
                     <li><a href="admin-staff.html">Staff</a></li>
                 </ul>
@@ -31,7 +32,7 @@
 
         <section class="appointments-hero">
             <div class="appointments-hero-content">
-                <h1>Appointment Status</h1>
+                <h1>Appointment Management</h1>
 
                 <p>
                     Manage grooming appointments and update their progress
@@ -42,7 +43,34 @@
 
         <section class="appointments-dashboard">
 
-            <h2>Today's Grooming Queue</h2>
+            <h2>Appointment List</h2>
+
+            <div class="appointment-filters">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search pet or owner..."
+                >
+
+                <select id="statusFilter">
+                    <option value="All">All Status</option>
+                    <option>Scheduled</option>
+                    <option>Checked In</option>
+                    <option>In Progress</option>
+                    <option>Ready for Pickup</option>
+                    <option>Completed</option>
+                    <option>Cancelled</option>
+                </select>
+
+                <select id="dateFilter">
+                    <option value="all">All Dates</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+
+            </div>
 
             <div class="table-container">
 

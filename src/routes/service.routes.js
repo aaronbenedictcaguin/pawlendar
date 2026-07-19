@@ -10,8 +10,23 @@ const { validateService } = require("../middleware/service.validation");
 
 router.post("/", authMiddleware, adminMiddleware, validateService, serviceController.createService);
 router.get("/", serviceController.getServices);
+router.get(
+"/admin/all",
+authMiddleware,
+adminMiddleware,
+serviceController.getAllServicesAdmin
+);
 router.get("/:id", serviceController.getService);
 router.put("/:id", authMiddleware, adminMiddleware, validateService, serviceController.updateService);
 router.delete("/:id", authMiddleware, adminMiddleware, serviceController.deleteService);
+
+router.put(
+"/restore/:id",
+authMiddleware,
+adminMiddleware,
+serviceController.restoreService
+);
+
+
 
 module.exports = router;

@@ -7,6 +7,7 @@
 
     <title>Pawlendar | Services</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="admin-services.css">
     <link rel="stylesheet" href="../navbar.css">
     <link rel="stylesheet" href="../paw-pattern.css">
@@ -22,13 +23,14 @@
         <nav class="main-nav">
 
             <div class="logo">
-                🐾 Pawlendar
+                <i class="fa-solid fa-paw"></i> Pawlendar
             </div>
 
 
             <ul>
                 <li><a href="admin-dashboard.html">Dashboard</a></li>
                 <li><a href="admin-appointment.html">Appointments</a></li>
+                <li><a href="admin-calendar.html">Calendar</a></li>
                 <li><a class="active" href="admin-services.html">Services</a></li>
                 <li><a href="admin-staff.html">Staff</a></li>
             </ul>
@@ -55,8 +57,11 @@
             </p>
 
             <a href="service-form.html" class="add-service-btn">
-                <i class="fa-solid fa-plus"></i>
-                Add New Service
+                <i class="fa-solid fa-plus"></i>Add New Service
+            </a>
+
+            <a href="package-form.html" class="add-service-btn">
+                <i class="fa-solid fa-plus"></i>Add New Package
             </a>
 
         </div>
@@ -72,9 +77,27 @@
 
                 <h2>Available Services</h2>
 
-                <span id="serviceCount">0 Services</span>
+                <div class="title-actions">
+                    
+                    <span id="serviceCount">0 Services</span>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="serviceArchiveToggle">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
 
             </div>
+
+            <p class="toggle-label" id="serviceToggleText">
+                Showing Active Services
+            </p>
 
             <table class="services-table">
 
@@ -95,6 +118,63 @@
                 </thead>
 
                 <tbody id="serviceTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <section class="services-wrapper">
+
+        <div class="services-card">
+
+            <div class="services-title">
+
+                <h2>Available Packages</h2>
+
+                <div class="title-actions">
+
+                    <span id="packageCount">0 Packages</span>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="packageArchiveToggle">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <p class="toggle-label" id="packageToggleText">
+                Showing Active Packages
+            </p>
+
+            <table class="services-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Package</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="packageTable">
 
                 </tbody>
 

@@ -1,154 +1,305 @@
 @import url("../styles.css");
 
-/* ===========================
-   DASHBOARD
-=========================== */
-
 .dashboard{
 
     width:min(1400px,92%);
-    margin:70px auto;
+
+    margin:60px auto;
 
 }
 
-.dashboard h2{
 
-    text-align:center;
-    font-size:40px;
+
+/* MAIN CONTAINERS */
+
+.dashboard-section{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:30px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+    0 12px 30px rgba(74,35,40,.08);
+
+}
+
+
+
+.dashboard-section h2{
+
+    margin-bottom:30px;
+
     color:#4A2328;
-    margin-bottom:45px;
+
+    font-size:30px;
 
 }
 
-/* ===========================
-   STATISTICS
-=========================== */
+
+
+
+
+/* STAT CARDS */
+
 
 .stats-grid{
 
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    grid-template-columns:
+    repeat(3,1fr);
+
     gap:25px;
 
 }
 
+
+
 .stat-card{
 
-    background:#fff;
+    background:#FFF9F0;
 
-    border-radius:24px;
+    padding:30px;
 
-    padding:35px 25px;
+    border-radius:22px;
 
     text-align:center;
 
-    border-top:6px solid #F5AC53;
-
-    box-shadow:0 12px 30px rgba(74,35,40,.08);
-
-    transition:.25s;
-
 }
 
-.stat-card:hover{
 
-    transform:translateY(-6px);
-
-    box-shadow:0 18px 40px rgba(74,35,40,.15);
-
-}
 
 .stat-card h3{
 
-    font-size:54px;
+    font-size:45px;
 
     color:#F5AC53;
 
-    margin-bottom:12px;
+    margin:0;
 
 }
 
+
+
 .stat-card p{
 
-    color:#5C3338;
+    margin-top:10px;
 
-    font-size:17px;
+    color:#5C3338;
 
     font-weight:600;
 
 }
 
-.updated{
 
-    margin-top:35px;
 
-    text-align:center;
 
-    color:#8A8A8A;
 
-    font-size:15px;
+/* BUSINESS */
+
+
+.business-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
 
 }
 
-/* ===========================
-   LOWER SECTION
-=========================== */
+
+
+.business-card{
+
+    background:#FAF2E5;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+}
+
+
+
+.business-card h3{
+
+    font-size:45px;
+
+    color:#4A2328;
+
+}
+
+
+
+.business-card.revenue{
+
+    background:#F5AC53;
+
+}
+
+
+
+.business-card.revenue h3,
+.business-card.revenue p{
+
+    color:white;
+
+}
+
+
+
+
+
+/* OVERVIEW */
+
+
+.overview-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+
+.overview-card{
+
+    padding:35px;
+
+    background:#FFF4D2;
+
+    border-radius:25px;
+
+    text-align:center;
+
+}
+
+
+
+.overview-card h3{
+
+    font-size:45px;
+
+    color:#4A2328;
+
+}
+
+
+
+
+
+/* LOYALTY */
+
+
+.loyalty-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+.loyalty-card{
+
+    padding:35px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:white;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+.loyalty-card h3{
+
+    font-size:45px;
+
+}
+
+
+
+.bronze{
+
+    border-top:8px solid #CD7F32;
+
+}
+
+
+
+.silver{
+
+    border-top:8px solid silver;
+
+}
+
+
+
+.gold{
+
+    border-top:8px solid gold;
+
+}
+
+
+
+
+/* LOWER */
+
 
 .dashboard-lower{
 
     display:grid;
 
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:
+    2fr 1fr;
 
     gap:30px;
 
-    margin-top:60px;
-
 }
+
 
 .dashboard-panel{
 
     background:#fff;
 
-    border-radius:25px;
-
     padding:30px;
 
-    box-shadow:0 12px 30px rgba(74,35,40,.08);
+    border-radius:25px;
 
 }
-
-.dashboard-panel h2{
-
-    margin:0 0 25px;
-
-    text-align:left;
-
-    font-size:28px;
-
-    color:#4A2328;
-
-}
-
-/* ===========================
-   TABLE
-=========================== */
 
 .mini-table{
 
     width:100%;
-
     border-collapse:collapse;
 
 }
 
-.mini-table thead{
-
-    background:#FFF4D2;
-
-}
 
 .mini-table th{
+
+    background:#FFF4D2;
 
     padding:15px;
 
@@ -156,110 +307,40 @@
 
     color:#4A2328;
 
-    font-size:15px;
-
 }
+
 
 .mini-table td{
 
     padding:15px;
 
+    border-bottom:1px solid #eee;
+
     color:#5C3338;
 
-    border-bottom:1px solid #F0F0F0;
-
 }
 
-.mini-table tbody tr{
 
-    transition:.2s;
-
-}
-
-.mini-table tbody tr:hover{
+.mini-table tr:hover{
 
     background:#FFF9F0;
 
 }
 
-/* ===========================
-   ACTIVITY
-=========================== */
 
-.activity-item{
 
-    display:flex;
+@media(max-width:1000px){
 
-    flex-direction:column;
 
-    gap:5px;
+.stats-grid,
+.business-grid,
+.overview-grid,
+.loyalty-grid,
+.dashboard-lower{
 
-    padding:16px 0;
-
-    border-bottom:1px solid #F0F0F0;
+    grid-template-columns:1fr;
 
 }
 
-.activity-item:last-child{
-
-    border-bottom:none;
-
-}
-
-.activity-item strong{
-
-    color:#4A2328;
-
-}
-
-.activity-item small{
-
-    color:#999;
-
-    font-size:13px;
-
-}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-
-@media(max-width:1100px){
-
-    .dashboard-lower{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
-
-@media(max-width:900px){
-
-    .dashboard{
-
-        width:95%;
-
-        margin:50px auto;
-
-    }
-
-    .dashboard h2{
-
-        font-size:32px;
-
-    }
-
-    .stats-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .dashboard-panel{
-
-        overflow-x:auto;
-
-    }
 
 }

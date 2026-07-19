@@ -10,13 +10,28 @@ module.exports.validateService = (req, res, next) => {
 
     if (
     !service_name ||
+    service_name.trim() === "" ||
     !category ||
+    category.trim() === "" ||
     !description ||
+    description.trim() === "" ||
     price == null ||
     duration_minutes == null
     ) {
         return res.status(400).json({
             message: "Missing required service information"
+        });
+    }
+
+    if (isNaN(price)) {
+        return res.status(400).json({
+            message: "Price must be a number."
+        });
+    }
+
+    if (isNaN(duration_minutes)) {
+        return res.status(400).json({
+            message: "Duration must be a number."
         });
     }
 

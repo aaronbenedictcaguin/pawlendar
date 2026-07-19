@@ -1,12 +1,18 @@
 exports.validateAppointment = (req, res, next) => {
 
-    const { pet_id, start_datetime, service_ids } = req.body;
+    const { 
+        pet_id,
+        start_datetime,
+        service_ids = [],
+        package_ids = [] } = req.body;
 
     // Required fields
-    if (!pet_id || !start_datetime || !service_ids) {
+    if (!pet_id || !start_datetime) {
+
         return res.status(400).json({
-            message: "pet_id, start_datetime, and at least one service are required"
+            message: "pet_id and start_datetime are required."
         });
+
     }
 
     // pet_id must be a positive integer
@@ -17,7 +23,7 @@ exports.validateAppointment = (req, res, next) => {
     }
 
     // service_ids must be a non-empty array
-    if (!Array.isArray(service_ids) || service_ids.length === 0) {
+    if ((!Array.isArray(service_ids) || service_ids.length === 0) && (!Array.isArray(package_ids) || package_ids.length === 0)) {
         return res.status(400).json({
             message: "At least one service must be selected"
         });
@@ -28,6 +34,17 @@ exports.validateAppointment = (req, res, next) => {
         return res.status(400).json({
             message: "All service IDs must be positive integers"
         });
+    }
+
+    if (
+        Array.isArray(package_ids) &&
+        package_ids.some(id => !Number.isInteger(Number(id)) || Number(id) <= 0)
+    ) {
+
+        return res.status(400).json({
+            message: "Invalid package IDs."
+        });
+
     }
 
     // Date must be valid

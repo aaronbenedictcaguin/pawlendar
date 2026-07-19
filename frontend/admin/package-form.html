@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawlendar | Service Form</title>
+    <title>Pawlendar | Package Form</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="service-form.css">
+    <link rel="stylesheet" href="package-form.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../navbar.css">
@@ -70,56 +70,36 @@
 
 
         <h2>
-            Add New Service
+            Add New Package
         </h2>
 
         <p class="subtitle">
-            Fill in the details below to add a new grooming service to the Pawlendar catalog.
+            Create a grooming package by combining multiple services into one offer.
         </p>
 
-        <form id="serviceForm">
+        <form id="packageForm">
 
             <div class="input-group">
                 <label>
-                    Service Name
+                    Package Name
                 </label>
 
                 <input
-                    id="service_name"
+                    id="package_name"
                     type="text"
-                    placeholder="Enter service name" 
+                    placeholder="Enter package name" 
                     required>
             </div>
 
             <div class="input-group">
                 <label>
-                    Category
-                </label>
-
-                <select id="category" required>
-
-                <option value="">Select a category</option>
-
-                <option>Bath</option>
-                <option>Hair</option>
-                <option>Nails</option>
-                <option>Ear Care</option>
-                <option>Dental</option>
-                <option>Skin Care</option>
-                <option>Spa</option>
-
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label>
-                    Service Description
+                    Package Description
                 </label>
 
                 <textarea
                     id="description"
                     rows="5"
-                    placeholder="Describe the service..."
+                    placeholder="Describe the package..."
                     required></textarea>
             </div>
 
@@ -132,7 +112,7 @@
                     </label>
 
                     <input
-                        id="price"
+                        id="package_price"
                         type="number"
                         placeholder="Set starting price"
                         required>
@@ -141,29 +121,82 @@
 
                 <div class="input-group">
 
-                    <label>
-                        Duration (Minutes)
-                    </label>
+                    <label>Total Duration</label>
 
-                    <input
-                        id="duration_minutes"
-                        type="number"
-                        placeholder="Enter duration in minutes"
-                        required>
+                    <div id="packageDuration" class="readonly-input">
+                        0 minutes
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Included Services</label>
+
+                <input
+                    type="text"
+                    id="serviceSearch"
+                    placeholder="Search services...">
+
+                <div id="serviceList" class="service-list">
+
+                    Loading services...
+
+                </div>
+
+            </div>
+
+            <div class="package-summary">
+
+                <div class="summary-row">
+
+                    <span>Selected Services</span>
+
+                    <strong id="selectedCount">0</strong>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>Total Duration</span>
+
+                    <strong id="summaryDuration">0 mins</strong>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>Total Service Price</span>
+
+                    <strong id="serviceTotal">₱0</strong>
+
+                </div>
+
+                <div class="summary-row savings">
+
+                    <span>Customer Savings</span>
+
+                    <strong id="packageSavings">₱0</strong>
 
                 </div>
 
             </div>
 
             <button
-                type="submit">
-                Save Service
+                id="savePackageBtn"
+                type="submit"
+                disabled>
+
+                Save Package
+
             </button>
 
         </form>
     </div>
 </div>
 
-<script src="service-form.js"></script>
+<script src="package-form.js"></script>
 </body>
 </html>

@@ -25,8 +25,9 @@ exports.findAvailableStaff = (startDatetime, endDatetime, requestedStaffId = nul
         });
 
         const sql = `
-            SELECT s.staff_id, s.first_name,
-                s.last_name, s.max_daily_appointments,
+            SELECT s.staff_id, 
+                s.first_name,
+                s.last_name,
                 COUNT(DISTINCT a.appointment_id) AS dailyAppointments
 
             FROM staff s
@@ -56,8 +57,6 @@ exports.findAvailableStaff = (startDatetime, endDatetime, requestedStaffId = nul
                 )
 
             GROUP BY s.staff_id
-
-            HAVING dailyAppointments < s.max_daily_appointments
 
             ORDER BY dailyAppointments ASC, s.staff_id ASC
 

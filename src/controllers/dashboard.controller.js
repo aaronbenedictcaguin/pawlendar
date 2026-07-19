@@ -5,7 +5,12 @@ exports.getDashboardStats = (req, res) => {
     const statsSql = `
         SELECT
 
-            COUNT(*) AS todayAppointments,
+            COUNT(
+                CASE 
+                WHEN status <> 'Cancelled'
+                THEN 1
+                END
+            ) AS todayAppointments,
 
             SUM(status = 'Checked In') AS checkedInPets,
 
@@ -23,11 +28,78 @@ exports.getDashboardStats = (req, res) => {
                     THEN total_price
                     ELSE 0
                 END
-            ) AS todayRevenue
+            ) AS todayRevenue,
+
+            AVG(
+                CASE
+                    WHEN payment_status = 'Paid'
+                    THEN total_price
+                END
+            ) AS averageSale
 
         FROM appointments
 
-        WHERE DATE(start_datetime) = CURDATE()
+        WHERE DATE(start_datetime)=CURDATE()
+    `;
+
+    const monthlyRevenueSql = `
+        SELECT
+            COALESCE(SUM(total_price),0) AS monthlyRevenue
+        FROM appointments
+        WHERE payment_status='Paid'
+        AND MONTH(start_datetime)=MONTH(CURDATE())
+        AND YEAR(start_datetime)=YEAR(CURDATE())
+    `;
+
+    const customerSql = `
+        SELECT COUNT(*) AS totalCustomers
+        FROM user
+        WHERE role='Customer'
+        AND active_flag=TRUE
+    `;
+
+    const petSql = `
+        SELECT COUNT(*) AS totalPets
+        FROM pet
+        WHERE active_flag=TRUE
+    `;
+
+    const groomerSql = `
+        SELECT COUNT(*) AS activeGroomers
+        FROM staff
+        WHERE active_flag=TRUE
+    `;
+
+    const loyaltySql = `
+        SELECT
+
+        SUM(completed BETWEEN 0 AND 2) AS bronzeMembers,
+
+        SUM(completed BETWEEN 3 AND 5) AS silverMembers,
+
+        SUM(completed >= 6) AS goldMembers
+
+        FROM(
+
+            SELECT
+
+                u.user_id,
+
+                COUNT(a.appointment_id) AS completed
+
+            FROM user u
+
+            LEFT JOIN pet p
+                ON u.user_id=p.user_id
+                AND p.active_flag=TRUE
+
+            LEFT JOIN appointments a
+                ON p.pet_id=a.pet_id
+                AND a.status='Completed'
+
+            GROUP BY u.user_id
+
+        ) loyalty
     `;
 
     const upcomingSql = `
@@ -52,17 +124,19 @@ exports.getDashboardStats = (req, res) => {
         FROM appointments a
 
         JOIN pet p
-            ON a.pet_id = p.pet_id
+            ON a.pet_id=p.pet_id
 
         JOIN user u
-            ON p.user_id = u.user_id
+            ON p.user_id=u.user_id
 
         LEFT JOIN staff s
-            ON a.staff_id = s.staff_id
+            ON a.staff_id=s.staff_id
 
         WHERE
-            DATE(a.start_datetime) = CURDATE()
-            AND a.status <> 'Cancelled'
+
+            DATE(a.start_datetime)=CURDATE()
+
+            AND a.status<>'Cancelled'
 
         ORDER BY a.start_datetime
 
@@ -83,69 +157,127 @@ exports.getDashboardStats = (req, res) => {
         FROM appointments a
 
         JOIN pet p
-            ON a.pet_id = p.pet_id
+            ON a.pet_id=p.pet_id
 
         ORDER BY a.updated_at DESC
 
-        LIMIT 5
+        LIMIT 8
     `;
 
-    db.query(statsSql, (err, statsResult) => {
+    db.query(statsSql,(err,statsResult)=>{
 
         if(err){
-            return res.status(500).json({
-                error: err.message
-            });
+            return res.status(500).json({error:err.message});
         }
 
-        db.query(upcomingSql, (err, upcomingResult)=>{
+        db.query(monthlyRevenueSql,(err,monthlyResult)=>{
 
             if(err){
-                return res.status(500).json({
-                    error: err.message
-                });
+                return res.status(500).json({error:err.message});
             }
 
-            db.query(activitySql,(err,activityResult)=>{
+            db.query(customerSql,(err,customerResult)=>{
 
                 if(err){
-                    return res.status(500).json({
-                        error: err.message
-                    });
+                    return res.status(500).json({error:err.message});
                 }
 
-                res.json({
+                db.query(petSql,(err,petResult)=>{
 
-                    stats:{
+                    if(err){
+                        return res.status(500).json({error:err.message});
+                    }
 
-                        todayAppointments:
-                        statsResult[0].todayAppointments,
+                    db.query(groomerSql,(err,groomerResult)=>{
 
-                        checkedInPets:
-                        statsResult[0].checkedInPets || 0,
+                        if(err){
+                            return res.status(500).json({error:err.message});
+                        }
 
-                        groomingPets:
-                        statsResult[0].groomingPets || 0,
+                        db.query(loyaltySql,(err,loyaltyResult)=>{
 
-                        readyForPickup:
-                        statsResult[0].readyForPickup || 0,
+                            if(err){
+                                return res.status(500).json({error:err.message});
+                            }
 
-                        completedAppointments:
-                        statsResult[0].completedAppointments || 0,
+                            db.query(upcomingSql,(err,upcomingResult)=>{
 
-                        cancelledAppointments:
-                        statsResult[0].cancelledAppointments || 0,
+                                if(err){
+                                    return res.status(500).json({error:err.message});
+                                }
 
-                        todayRevenue:
-                        statsResult[0].todayRevenue || 0
+                                db.query(activitySql,(err,activityResult)=>{
 
-                    },
+                                    if(err){
+                                        return res.status(500).json({error:err.message});
+                                    }
 
-                    upcoming:
-                    upcomingResult,
+                                    res.json({
 
-                    activity:
-                    activityResult
+                                        stats:{
+
+                                            todayAppointments:
+                                            statsResult[0].todayAppointments,
+
+                                            checkedInPets:
+                                            statsResult[0].checkedInPets || 0,
+
+                                            groomingPets:
+                                            statsResult[0].groomingPets || 0,
+
+                                            readyForPickup:
+                                            statsResult[0].readyForPickup || 0,
+
+                                            completedAppointments:
+                                            statsResult[0].completedAppointments || 0,
+
+                                            cancelledAppointments:
+                                            statsResult[0].cancelledAppointments || 0,
+
+                                            todayRevenue:
+                                            statsResult[0].todayRevenue || 0,
+
+                                            averageSale:
+                                            Number(statsResult[0].averageSale || 0).toFixed(2),
+
+                                            monthlyRevenue:
+                                            monthlyResult[0].monthlyRevenue || 0,
+
+                                            totalCustomers:
+                                            customerResult[0].totalCustomers,
+
+                                            totalPets:
+                                            petResult[0].totalPets,
+
+                                            activeGroomers:
+                                            groomerResult[0].activeGroomers,
+
+                                            bronzeMembers:
+                                            loyaltyResult[0].bronzeMembers || 0,
+
+                                            silverMembers:
+                                            loyaltyResult[0].silverMembers || 0,
+
+                                            goldMembers:
+                                            loyaltyResult[0].goldMembers || 0
+
+                                        },
+
+                                        upcoming:
+                                        upcomingResult,
+
+                                        activity:
+                                        activityResult
+
+                                    });
+
+                                });
+
+                            });
+
+                        });
+
+                    });
 
                 });
 

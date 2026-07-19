@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-        window.location.href = "http://localhost:3000/admin";
+        window.location.href = "/admin";
         return;
     }
 
@@ -30,7 +30,7 @@ async function loadServices() {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/api/services"
+            "/api/services"
         );
 
         const services = await response.json();
@@ -164,7 +164,7 @@ async function submitPackage(e) {
 
     if (!token) {
 
-        window.location.href = "http://localhost:3000/admin";
+        window.location.href = "/admin";
         return;
 
     }
@@ -198,7 +198,7 @@ async function submitPackage(e) {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/api/packages",
+            "/api/packages",
             {
 
                 method: "POST",

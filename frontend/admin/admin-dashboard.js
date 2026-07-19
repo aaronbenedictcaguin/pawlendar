@@ -8,7 +8,7 @@ async function loadDashboard(){
 
     if(!token){
 
-        window.location.href = "http://localhost:3000/admin";
+        window.location.href = "/admin";
         return;
 
     }
@@ -18,7 +18,7 @@ async function loadDashboard(){
 
 
         const response = await fetch(
-            "http://localhost:3000/api/admin/stats",
+            "/api/admin/stats",
             {
                 headers:{
                     "Authorization":"Bearer " + token
@@ -36,7 +36,7 @@ async function loadDashboard(){
             localStorage.removeItem("token");
 
             window.location.replace(
-                "http://localhost:3000/admin"
+                "/admin"
             );
 
             return;

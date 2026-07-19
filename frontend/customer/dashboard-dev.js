@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ---------------- OWNER ----------------
     async function loadOwner() {
         try {
-            const res = await fetch("http://localhost:3000/api/users/me", {
+            const res = await fetch("/api/users/me", {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
 
-            const res = await fetch("http://localhost:3000/api/pets", {
+            const res = await fetch("/api/pets", {
 
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadAppointments() {
 
-        const res = await fetch("http://localhost:3000/api/appointments", {
+        const res = await fetch("/api/appointments", {
             headers: {
                 "Authorization": `Bearer ${token}`
             }

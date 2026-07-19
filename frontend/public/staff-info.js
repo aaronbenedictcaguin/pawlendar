@@ -63,7 +63,7 @@ async function loadStaff() {
 
     try {
 
-        const response = await fetch("http://localhost:3000/api/groomers");
+        const response = await fetch("/api/groomers");
 
         if (!response.ok) {
             throw new Error("Failed to fetch staff.");

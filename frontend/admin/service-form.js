@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     if(!token){
 
-        window.location.href="http://localhost:3000/admin";
+        window.location.href="/admin";
         return;
 
     }
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
             alert("Please login again.");
 
-            window.location.href="http://localhost:3000/admin";
+            window.location.href="/admin";
 
         }
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
             const response = await fetch(
-                "http://localhost:3000/api/services",
+                "/api/services",
                 {
 
                     method:"POST",

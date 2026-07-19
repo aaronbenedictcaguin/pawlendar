@@ -63,7 +63,7 @@ function renderServices(services){
 async function loadPackages(){
 
     const response =
-    await fetch("http://localhost:3000/api/packages");
+    await fetch("/api/packages");
 
     const packages =
     await response.json();
@@ -75,7 +75,7 @@ async function loadPackages(){
 async function loadServices(){
 
     const response =
-    await fetch("http://localhost:3000/api/services");
+    await fetch("/api/services");
 
     const services =
     await response.json();

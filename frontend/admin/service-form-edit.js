@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-        window.location.href = "http://localhost:3000/admin";
+        window.location.href = "/admin";
         return;
     }
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
 
             const response = await fetch(
-                `http://localhost:3000/api/services/${serviceId}`
+                `/api/services/${serviceId}`
             );
 
             const service = await response.json();
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const response = await fetch(
 
-                `http://localhost:3000/api/services/${serviceId}`,
+                `/api/services/${serviceId}`,
 
                 {
 

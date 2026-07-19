@@ -4,7 +4,7 @@ if (!token) {
     window.location.href = "../public/login.html";
 }
 
-fetch("http://localhost:3000/api/auth/profile", {
+fetch("/api/auth/profile", {
     headers: {
         Authorization: `Bearer ${token}`
     }
@@ -40,7 +40,7 @@ function showOtherPet() {
 
 async function loadOwner() {
 
-    const res = await fetch("http://localhost:3000/api/users/me", {
+    const res = await fetch("/api/users/me", {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -63,7 +63,7 @@ async function loadOwner() {
 async function loadPet() {
 
     const res = await fetch(
-        `http://localhost:3000/api/pets/${petId}`,
+        `/api/pets/${petId}`,
         {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -93,7 +93,7 @@ let services = [];
 async function loadServices() {
     
     const res = await fetch(
-        "http://localhost:3000/api/services"
+        "/api/services"
     );
 
     if (!res.ok) return;
@@ -158,7 +158,7 @@ let packages = [];
 async function loadPackages(){
 
     const res = await fetch(
-        "http://localhost:3000/api/packages"
+        "/api/packages"
     );
 
 
@@ -319,7 +319,7 @@ async function loadAvailableSlots(){
 
     const res = await fetch(
 
-        `http://localhost:3000/api/appointments/available-slots?date=${date}&duration=${duration}`,
+        `/api/appointments/available-slots?date=${date}&duration=${duration}`,
 
         {
             headers:{
@@ -459,7 +459,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         staff_id:null
     };
 
-    const res = await fetch("http://localhost:3000/api/appointments", {
+    const res = await fetch("/api/appointments", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

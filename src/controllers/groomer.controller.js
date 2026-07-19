@@ -8,8 +8,7 @@ exports.createGroomer = (req, res) => {
         email,
         phone_number,
         specialization,
-        hire_date,
-        max_daily_appointments
+        hire_date
     } = req.body;
 
     const sql = `
@@ -20,8 +19,7 @@ exports.createGroomer = (req, res) => {
             email,
             phone_number,
             specialization,
-            hire_date,
-            max_daily_appointments
+            hire_date
         ) 
         VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
@@ -34,8 +32,7 @@ exports.createGroomer = (req, res) => {
             email,
             phone_number,
             specialization,
-            hire_date,
-            max_daily_appointments
+            hire_date
         ],
         (err, result) => {
             if (err) {
@@ -65,7 +62,6 @@ exports.getGroomers = (req, res) => {
             phone_number,
             specialization,
             hire_date,
-            max_daily_appointments,
             active_flag,
             created_at,
             updated_at
@@ -100,7 +96,6 @@ exports.getGroomerById = (req, res) => {
             phone_number,
             specialization,
             hire_date,
-            max_daily_appointments,
             active_flag,
             created_at,
             updated_at
@@ -137,7 +132,6 @@ exports.updateGroomer = (req, res) => {
         phone_number,
         specialization,
         hire_date,
-        max_daily_appointments,
         active_flag
     } = req.body;
 
@@ -149,7 +143,6 @@ exports.updateGroomer = (req, res) => {
             phone_number = ?,
             specialization = ?,
             hire_date = ?,
-            max_daily_appointments = ?,
             active_flag = ?
         WHERE staff_id = ?
         `;
@@ -163,7 +156,6 @@ exports.updateGroomer = (req, res) => {
             phone_number,
             specialization,
             hire_date,
-            max_daily_appointments,
             active_flag,
             id
         ],

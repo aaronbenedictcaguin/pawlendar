@@ -1,43 +1,56 @@
-const token = localStorage.getItem("token");
-if (!token) {
-    window.location.replace("../public/login.html");
-    return;
-}
+document.addEventListener("DOMContentLoaded", () => {
 
+    const token = localStorage.getItem("token");
 
-let showArchivedServices = false;
-let showArchivedPackages = false;
+    if (!token) {
+        window.location.replace("../public/login.html");
+        return;
+    }
 
-loadServices();
-loadPackages();
-
-document
-.getElementById("serviceArchiveToggle")
-.addEventListener("change", (e) => {
-
-    showArchivedServices = e.target.checked;
-
-    document.getElementById("serviceToggleText").textContent =
-        showArchivedServices
-        ? "Showing All Services"
-        : "Showing Active Services";
+    let showArchivedServices = false;
+    let showArchivedPackages = false;
 
     loadServices();
-
-});
-
-document
-.getElementById("packageArchiveToggle")
-.addEventListener("change", (e) => {
-
-    showArchivedPackages = e.target.checked;
-
-    document.getElementById("packageToggleText").textContent =
-        showArchivedPackages
-        ? "Showing All Packages"
-        : "Showing Active Packages";
-
     loadPackages();
+
+    document.getElementById("serviceArchiveToggle")
+        .addEventListener("change", (e) => {
+            showArchivedServices = e.target.checked;
+
+            document.getElementById("serviceToggleText").textContent =
+                showArchivedServices
+                    ? "Showing All Services"
+                    : "Showing Active Services";
+
+            loadServices();
+        });
+
+    document.getElementById("packageArchiveToggle")
+        .addEventListener("change", (e) => {
+            showArchivedPackages = e.target.checked;
+
+            document.getElementById("packageToggleText").textContent =
+                showArchivedPackages
+                    ? "Showing All Packages"
+                    : "Showing Active Packages";
+
+            loadPackages();
+        });
+
+    // logout button
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (!confirm("Are you sure you want to log out?")) return;
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("owner");
+        localStorage.removeItem("admin");
+
+        window.location.href = "../public/login.html";
+    });
 
 });
 
@@ -517,24 +530,4 @@ document.querySelectorAll(".nav-list a").forEach(link => {
     if (link.getAttribute("href") === currentPage) {
         link.classList.add("active");
     }
-});
-
-const logoutBtn = document.getElementById("logoutBtn");
-
-logoutBtn.addEventListener("click", (e) => {
-
-    e.preventDefault();
-
-    const confirmed = confirm("Are you sure you want to log out?");
-
-    if (!confirmed) return;
-
-    localStorage.removeItem("token");
-
-    // remove anything else you may store later
-    localStorage.removeItem("owner");
-    localStorage.removeItem("admin");
-
-    window.location.href = "../public/login.html";
-
 });

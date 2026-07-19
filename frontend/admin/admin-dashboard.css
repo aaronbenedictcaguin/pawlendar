@@ -1,346 +1,180 @@
 @import url("../styles.css");
 
 .dashboard{
-
     width:min(1400px,92%);
-
     margin:60px auto;
-
 }
-
-
 
 /* MAIN CONTAINERS */
 
 .dashboard-section{
-
     background:white;
-
     padding:35px;
-
     border-radius:30px;
-
     margin-bottom:35px;
-
-    box-shadow:
-    0 12px 30px rgba(74,35,40,.08);
-
+    box-shadow: 0 12px 30px rgba(74,35,40,.08);
 }
-
-
 
 .dashboard-section h2{
-
     margin-bottom:30px;
-
     color:#4A2328;
-
     font-size:30px;
-
 }
-
-
-
-
 
 /* STAT CARDS */
 
-
 .stats-grid{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap:25px;
-
 }
-
-
 
 .stat-card{
-
     background:#FFF9F0;
-
     padding:30px;
-
     border-radius:22px;
-
     text-align:center;
-
 }
-
-
 
 .stat-card h3{
-
     font-size:45px;
-
     color:#F5AC53;
-
     margin:0;
-
 }
-
-
 
 .stat-card p{
-
     margin-top:10px;
-
     color:#5C3338;
-
     font-weight:600;
-
 }
-
-
-
-
 
 /* BUSINESS */
 
-
 .business-grid{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap:25px;
-
 }
-
-
 
 .business-card{
-
     background:#FAF2E5;
-
     padding:35px;
-
     border-radius:25px;
-
     text-align:center;
-
 }
-
-
 
 .business-card h3{
-
     font-size:45px;
-
     color:#4A2328;
-
 }
-
-
 
 .business-card.revenue{
-
     background:#F5AC53;
-
 }
-
-
 
 .business-card.revenue h3,
 .business-card.revenue p{
-
     color:white;
-
 }
-
-
-
-
 
 /* OVERVIEW */
 
-
 .overview-grid{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap:25px;
-
 }
-
-
 
 .overview-card{
-
     padding:35px;
-
     background:#FFF4D2;
-
     border-radius:25px;
-
     text-align:center;
-
 }
-
-
 
 .overview-card h3{
-
     font-size:45px;
-
     color:#4A2328;
-
 }
-
-
-
-
 
 /* LOYALTY */
 
-
 .loyalty-grid{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap:25px;
-
 }
-
 
 .loyalty-card{
-
     padding:35px;
-
     border-radius:25px;
-
     text-align:center;
-
     background:white;
-
-    box-shadow:
-    0 8px 20px rgba(0,0,0,.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
 
 }
-
 
 .loyalty-card h3{
-
     font-size:45px;
-
 }
-
-
 
 .bronze{
-
     border-top:8px solid #CD7F32;
-
 }
-
-
 
 .silver{
-
     border-top:8px solid silver;
-
 }
-
-
 
 .gold{
-
     border-top:8px solid gold;
-
 }
-
-
-
 
 /* LOWER */
 
-
 .dashboard-lower{
-
     display:grid;
-
-    grid-template-columns:
-    2fr 1fr;
-
+    grid-template-columns:2fr 1fr;
     gap:30px;
-
 }
 
-
 .dashboard-panel{
-
     background:#fff;
-
     padding:30px;
-
     border-radius:25px;
-
 }
 
 .mini-table{
-
     width:100%;
     border-collapse:collapse;
-
 }
 
 
 .mini-table th{
-
     background:#FFF4D2;
-
     padding:15px;
-
     text-align:left;
-
     color:#4A2328;
-
 }
 
-
 .mini-table td{
-
     padding:15px;
-
     border-bottom:1px solid #eee;
-
     color:#5C3338;
-
 }
 
 
 .mini-table tr:hover{
-
     background:#FFF9F0;
-
 }
 
-
-
 @media(max-width:1000px){
-
 
 .stats-grid,
 .business-grid,
 .overview-grid,
 .loyalty-grid,
 .dashboard-lower{
-
     grid-template-columns:1fr;
-
 }
-
-
 }

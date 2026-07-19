@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +9,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="admin-appointment.css">
     <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
 </head>
+
 <body>
 
     <div id="app" style="display:none;">
 
-        <header>
-            <nav class="main-nav">
-                <div class="logo"><i class="fa-solid fa-paw"></i> Pawlendar</div>
+        <header class="navbar">
+            <a href="index.html" class="brand brand-dark">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                    <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                    <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                    <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+                </svg>
+                <span>Pawlendar</span>
+            </a>
 
-                <ul>
-                    <li><a href="admin-dashboard.html">Dashboard</a></li>
-                    <li><a class="active" href="admin-appointment.html">Appointments</a></li>
-                    <li><a href="admin-calendar.html">Calendar</a></li>
-                    <li><a href="admin-services.html">Services</a></li>
-                    <li><a href="admin-staff.html">Staff</a></li>
-                </ul>
-
-                <button class="nav-btn">Logout</button>
+            <nav class="nav-list">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-appointment.html">Appointments</a>
+                <a href="admin-calendar.html">Calendar</a>
+                <a href="admin-services.html">Services</a>
+                <a href="admin-staff.html">Staff</a>
             </nav>
+
+            <div class="nav-auth">
+                <a href="../public/login.html" class="btn-ghost-small">Logout</a>
+            </div>
         </header>
 
-        <section class="appointments-hero">
+        <section class="appointments-hero paws-bg">
             <div class="appointments-hero-content">
                 <h1>Appointment Management</h1>
 
@@ -47,11 +56,7 @@
 
             <div class="appointment-filters">
 
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search pet or owner..."
-                >
+                <input type="text" id="searchInput" placeholder="Search pet or owner...">
 
                 <select id="statusFilter">
                     <option value="All">All Status</option>
@@ -104,4 +109,5 @@
     <script src="admin-appointment.js"></script>
 
 </body>
+
 </html>

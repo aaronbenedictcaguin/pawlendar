@@ -549,3 +549,12 @@ async function changePaymentStatus(id, paymentStatus){
 
     await loadAppointments();
 }
+
+// Highlight current navbar page
+const currentPage = window.location.pathname.split("/").pop();
+
+document.querySelectorAll(".nav-list a").forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+    }
+});

@@ -507,3 +507,12 @@ async function restorePackage(id){
     loadPackages();
 
 }
+
+// Highlight current navbar page
+const currentPage = window.location.pathname.split("/").pop();
+
+document.querySelectorAll(".nav-list a").forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+    }
+});

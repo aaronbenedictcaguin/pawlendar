@@ -8,26 +8,34 @@
     <link rel="stylesheet" href="date-booking.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
 </head>
 <body class="booking-time-page">
-    <header>
-        <nav class="main-nav">
-            <div class="logo">
-                <i class="fa-solid fa-paw"></i> Pawlendar
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="staff-info.html">Staff</a></li>
-                <li><a href="appointment.html">Appointments</a></li>
-            </ul>
-            <a href="registration.html" class="nav-btn">Login or Sign-Up</a>
+    <header class="navbar">
+        <a href="../public/index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
+
+        <nav class="nav-list">
+            <a href="../public/index.html">Home</a>
+            <a href="../public/about.html" class="active">About</a>
+            <a href="../public/service.html">Services</a>
+            <a href="../public/staff-info.html">Staff</a>
+            <a href="../public/appointment.html">Appointments</a>
         </nav>
+
+        <div class="nav-auth">
+            <a href="../public/login.html" class="btn-ghost-small">Login</a>
+            <a href="../public/registration.html" class="btn-gold">Sign Up</a>
+        </div>
     </header>
 
-    <main class="page-wrap booking-page">
+    <main class="page-wrap booking-page paws-bg">
         <section class="booking-hero">
             <div class="booking-hero-content">
                 <h1>Choose your appointment time</h1>
@@ -106,48 +114,6 @@
         </section>
     </main>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const selectedDateEl = document.getElementById('selectedDate');
-        const fullNotice = document.getElementById('fullNotice');
-        const bookingForm = document.getElementById('bookingForm');
-        const serviceTime = document.getElementById('serviceTime');
-        const timeSlot = document.getElementById('timeSlot');
-        const fullDates = ['2026-06-10', '2026-06-14', '2026-06-25'];
-
-        const dateParam = params.get('date');
-        const bookingDate = dateParam || new Date().toISOString().split('T')[0];
-
-        selectedDateEl.textContent = new Date(bookingDate).toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-        serviceTime.value = timeSlot.value;
-
-        const isFull = fullDates.includes(bookingDate);
-        if (isFull) {
-            fullNotice.classList.remove('hidden');
-            bookingForm.querySelectorAll('input, select, textarea, button').forEach(el => {
-                if (el.id !== 'confirmBooking') el.disabled = true;
-            });
-            document.getElementById('confirmBooking').disabled = true;
-        }
-
-        bookingForm.addEventListener('submit', event => {
-            event.preventDefault();
-            const data = new FormData(bookingForm);
-            const query = new URLSearchParams({
-                date: bookingDate,
-                name: data.get('customerName'),
-                service: data.get('serviceType'),
-                pet: data.get('petName'),
-                email: data.get('emailAddress'),
-                time: data.get('serviceTime'),
-                notes: data.get('serviceNotes') || ''
-            });
-            window.location.href = `booking-summary.html?${query.toString()}`;
-        });
-
-        timeSlot.addEventListener('change', () => {
-            serviceTime.value = timeSlot.value;
-        });
-    </script>
+    <script src="date-booking.js"></script>
 </body>
 </html>

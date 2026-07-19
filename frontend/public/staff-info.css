@@ -183,14 +183,18 @@
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 28px;
 }
 
 .staff-card {
+    width: 100%;
+    max-width: 320px;
     min-height: 400px;
+
     display: flex;
     flex-direction: column;
+
     background: var(--paper);
     border-radius: 22px;
     padding: 32px 24px;
@@ -198,6 +202,8 @@
     box-shadow: 0 12px 30px rgba(143, 78, 58, .08);
     border-top: 4px solid var(--gold);
     transition: transform .2s ease, box-shadow .2s ease;
+
+    justify-self: center;
 }
 
 .staff-card:hover {

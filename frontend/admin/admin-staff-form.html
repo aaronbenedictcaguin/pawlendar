@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pawlendar | Dashboard</title>
+
+    <link rel="stylesheet" href="../navbar.css">
+    <link rel="stylesheet" href="admin-staff.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body data-active-nav="staff">
+
+    <header class="navbar">
+        <a href="index.html" class="brand brand-dark">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+            </svg>
+            <span>Pawlendar</span>
+        </a>
+
+        <nav class="nav-list">
+            <a href="admin-dashboard.html">Dashboard</a>
+            <a href="admin-appointment.html">Appointments</a>
+            <a href="admin-calendar.html">Calendar</a>
+            <a href="admin-services.html">Services</a>
+            <a href="admin-staff.html" class="active">Staff</a>
+        </nav>
+
+        <div class="nav-auth">
+            <a href="#" id="logoutBtn" class="btn-ghost-small">Logout</a>
+        </div>
+    </header>
+
+    <main class="dashboard-layout">
+
+        <section class="content-panel">
+
+            <div class="content-wrapper">
+
+                <header class="dashboard-header">
+
+                    <h1>Add New Staff</h1>
+
+                    <p>
+                        Fill in the staff member's information below to add them to your Pawlendar team.
+                    </p>
+
+                </header>
+
+                <hr>
+
+                <form id="staffForm">
+
+                    <div class="form-row two-columns">
+
+                        <div class="input-group">
+
+                            <label for="first_name">First Name</label>
+
+                            <input type="text" id="first_name" placeholder="Enter first name" required>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label for="last_name">Last Name</label>
+
+                            <input type="text" id="last_name" placeholder="Enter last name" required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row two-columns">
+
+                        <div class="input-group">
+
+                            <label for="email">Email</label>
+
+                            <input type="email" id="email" placeholder="staff@pawlendar.com" required>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label for="phone_number">Phone Number</label>
+
+                            <input type="tel" id="phone_number" placeholder="09XX XXX XXXX" maxlength="15">
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row two-columns">
+
+                        <div class="input-group">
+
+                            <label for="specialization">Specialization</label>
+
+                            <input type="text" id="specialization" placeholder="e.g. Dog Grooming, Cat Grooming">
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label for="hire_date">Hire Date</label>
+
+                            <input type="date" id="hire_date">
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="max_daily_appointments">Max Daily Appointments</label>
+
+                        <input type="number" id="max_daily_appointments" min="1" step="1" placeholder="e.g. 8">
+
+                    </div>
+
+                    <p id="formError" class="form-error" style="display:none;"></p>
+
+                    <div class="panel-buttons">
+
+                        <a href="dashboard-dev.html" class="outline-btn">
+
+                            Cancel
+
+                        </a>
+
+                        <button type="submit" class="main-btn" id="saveStaffBtn">Save Staff</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="admin-staff.js"></script>
+
+</body>
+
+</html>

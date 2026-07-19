@@ -1,135 +1,280 @@
-document.addEventListener("DOMContentLoaded", () => {
+const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem("token");
+if (!token) {
+    window.location.replace("../public/login.html");
+}
 
-    if (!token) {
-        window.location.replace("../public/login.html");
+let groomers = [];
+
+loadGroomers();
+
+async function loadGroomers() {
+
+    const response = await fetch(
+        "/api/admin/groomers",
+        {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+
+        alert(data.message);
+
         return;
     }
 
+    groomers = data;
 
-    function handleAuthError(res) {
+    document.getElementById("app").style.display = "block";
 
-        if (res.status === 401 || res.status === 403) {
+    displayGroomers(groomers);
 
-            localStorage.removeItem("token");
-            window.location.href = "login.html";
+}
 
-            return true;
-        }
+function displayGroomers(list){
 
-        return false;
-    }
+    const table =
+    document.getElementById("staffTableBody");
 
-    const form = document.getElementById("staffForm");
-    const saveBtn = document.getElementById("saveStaffBtn");
-    const errorEl = document.getElementById("formError");
+    let html = "";
 
-    function showError(message) {
-        errorEl.textContent = message;
-        errorEl.style.display = "block";
-    }
+    list.forEach(staff=>{
 
-    function clearError() {
-        errorEl.textContent = "";
-        errorEl.style.display = "none";
-    }
+        html +=`
 
-    form.addEventListener("submit", async (e) => {
+        <tr>
 
-        e.preventDefault();
-        clearError();
+        <td>${staff.staff_id}</td>
 
-        const staff = {
-            first_name: document.getElementById("first_name").value.trim(),
-            last_name: document.getElementById("last_name").value.trim(),
-            email: document.getElementById("email").value.trim(),
-            phone_number: document.getElementById("phone_number").value.trim() || null,
-            specialization: document.getElementById("specialization").value.trim() || null,
-            hire_date: document.getElementById("hire_date").value || null,
-            max_daily_appointments: document.getElementById("max_daily_appointments").value || null
-        };
+        <td>
 
-        if (!staff.first_name || !staff.last_name || !staff.email) {
-            showError("First name, last name, and email are required.");
-            return;
-        }
+        ${staff.first_name}
+        ${staff.last_name}
 
-        saveBtn.disabled = true;
-        saveBtn.textContent = "Saving...";
+        </td>
 
-        try {
+        <td>${staff.specialization}</td>
 
-            const res = await fetch("/api/staff", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify(staff)
-            });
+        <td>${staff.phone_number}</td>
 
-            if (handleAuthError(res)) return;
+        <td>${staff.email ?? "-"}</td>
 
-            const data = await res.json().catch(() => ({}));
+        <td>
 
-            if (res.ok) {
-                alert("Staff added successfully!");
-                window.location.href = "dashboard-dev.html";
-            } else {
-                showError(data.error || data.message || "Failed to add staff.");
+        <button
+        onclick="viewStaff(${staff.staff_id})">
+
+        View
+
+        </button>
+
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+    table.innerHTML = html;
+
+}
+
+async function viewStaff(id){
+
+    const response =
+    await fetch(
+        `/api/admin/groomers/${id}`,
+        {
+            headers:{
+                Authorization:"Bearer "+token
             }
-
-        } catch (err) {
-
-            console.error(err);
-            showError("Something went wrong. Please try again.");
-
-        } finally {
-
-            saveBtn.disabled = false;
-            saveBtn.textContent = "Save Staff";
-
         }
+    );
 
-    });
+    const staff =
+    await response.json();
 
-    const footer = document.getElementById("footer");
+    if(!response.ok){
 
-    if (footer) {
-        fetch("footer.html")
-            .then(response => response.text())
-            .then(data => {
-                footer.innerHTML = data;
-            });
+        alert(staff.message);
+
+        return;
+
     }
-    const logoutBtn = document.getElementById("logoutBtn");
 
-    logoutBtn.addEventListener("click", (e) => {
+    const availabilityResponse =
+    await fetch(
+        `/api/admin/groomers/${id}/availability`,
+        {
+            headers:{
+                Authorization:"Bearer "+token
+            }
+        }
+    );
 
-        e.preventDefault();
+    const availability =
+    await availabilityResponse.json();
 
-        const confirmed = confirm("Are you sure you want to log out?");
+    let availabilityHTML="";
 
-        if (!confirmed) return;
+    availability.forEach(slot=>{
 
-        localStorage.removeItem("token");
+        availabilityHTML+=`
 
-        // remove anything else you may store later
-        localStorage.removeItem("owner");
-        localStorage.removeItem("admin");
+        <tr>
 
-        window.location.href = "../public/login.html";
+        <td>${slot.day_of_week}</td>
+
+        <td>${slot.start_time}</td>
+
+        <td>${slot.end_time}</td>
+
+        </tr>
+
+        `;
 
     });
+
+    document
+    .getElementById("staffDetails")
+    .style.display="block";
+
+    document
+    .getElementById("detailsContainer")
+    .innerHTML=`
+
+    <h3>
+
+    ${staff.first_name}
+    ${staff.last_name}
+
+    </h3>
+
+    <p>
+
+    <strong>Email:</strong>
+
+    ${staff.email}
+
+    </p>
+
+    <p>
+
+    <strong>Phone:</strong>
+
+    ${staff.phone_number}
+
+    </p>
+
+    <p>
+
+    <strong>Specialization:</strong>
+
+    ${staff.specialization}
+
+    </p>
+
+    <p>
+
+    <strong>Hire Date:</strong>
+
+    ${new Date(staff.hire_date).toLocaleDateString()}
+
+    </p>
+
+    <hr>
+
+    <h3>
+
+    Weekly Availability
+
+    </h3>
+
+    <table class="appointment-table">
+
+    <thead>
+
+    <tr>
+
+    <th>Day</th>
+    <th>Start</th>
+    <th>End</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    ${availabilityHTML}
+
+    </tbody>
+
+    </table>
+
+    <br>
+
+    <button onclick="editStaff(${staff.staff_id})">
+
+    Edit Groomer
+
+    </button>
+
+    <button onclick="deleteStaff(${staff.staff_id})">
+
+    Delete Groomer
+
+    </button>
+
+    `;
+
+}
+
+document
+.getElementById("searchInput")
+.addEventListener("input",function(){
+
+    const value =
+    this.value.toLowerCase();
+
+    const filtered =
+    groomers.filter(g=>
+
+        (`${g.first_name} ${g.last_name}`)
+        .toLowerCase()
+        .includes(value)
+
+    );
+
+    displayGroomers(filtered);
 
 });
 
-// Highlight current navbar page
 const currentPage = window.location.pathname.split("/").pop();
 
-document.querySelectorAll(".nav-list a").forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
+document.querySelectorAll(".nav-list a").forEach(link=>{
+
+    if(link.getAttribute("href")==currentPage){
+
         link.classList.add("active");
+
     }
+
+});
+
+document.getElementById("logoutBtn")
+.addEventListener("click",e=>{
+
+    e.preventDefault();
+
+    localStorage.removeItem("token");
+
+    window.location.href="../public/login.html";
+
 });

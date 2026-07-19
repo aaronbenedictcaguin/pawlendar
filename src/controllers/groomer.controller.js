@@ -210,3 +210,37 @@ exports.deactivateGroomer = (req, res) => {
         });
     });
 };
+
+exports.getAvailability = (req,res)=>{
+
+    db.query(
+        `
+        SELECT
+            day_of_week,
+            start_time,
+            end_time
+        FROM staff_availability
+        WHERE staff_id=?
+        ORDER BY FIELD(
+            day_of_week,
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday'
+        )
+        `,
+        [req.params.id],
+        (err,results)=>{
+
+            if(err)
+                return res.status(500).json({error:err.message});
+
+            res.json(results);
+
+        }
+    );
+
+};

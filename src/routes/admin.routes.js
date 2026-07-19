@@ -35,6 +35,12 @@ router.get("/users", authMiddleware, adminMiddleware, userController.getUsers);
 // admin routes for groomers
 router.post("/groomers", authMiddleware, adminMiddleware, validateGroomer, groomerController.createGroomer);
 router.get("/groomers", authMiddleware, adminMiddleware, groomerController.getGroomers);
+router.get(
+    "/groomers/:id/availability",
+    authMiddleware,
+    adminMiddleware,
+    groomerController.getAvailability
+);
 router.get("/groomers/:id", authMiddleware, adminMiddleware, groomerController.getGroomerById);
 router.put("/groomers/:id", authMiddleware, adminMiddleware, validateGroomer, groomerController.updateGroomer);
 router.delete("/groomers/:id", authMiddleware, adminMiddleware, groomerController.deactivateGroomer);

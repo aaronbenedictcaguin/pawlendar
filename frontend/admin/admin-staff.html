@@ -1,159 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pawlendar | Dashboard</title>
+        <title>Pawlendar | Staff Management</title>
 
-    <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="admin-staff.css">
+        <link rel="stylesheet" href="../navbar.css">
+        <link rel="stylesheet" href="admin-staff.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
+    </head>
 
-<body data-active-nav="staff">
+    <body>
 
-    <header class="navbar">
-        <a href="index.html" class="brand brand-dark">
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
-                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
-                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
-                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
-            </svg>
-            <span>Pawlendar</span>
-        </a>
+    <div id="app" style="display:none;">
 
-        <nav class="nav-list">
-            <a href="admin-dashboard.html">Dashboard</a>
-            <a href="admin-appointment.html">Appointments</a>
-            <a href="admin-calendar.html">Calendar</a>
-            <a href="admin-services.html">Services</a>
-            <a href="admin-staff.html" class="active">Staff</a>
-        </nav>
+        <header class="navbar">
 
-        <div class="nav-auth">
-            <a href="#" id="logoutBtn" class="btn-ghost-small">Logout</a>
-        </div>
-    </header>
+            <a href="admin-dashboard.html" class="brand brand-dark">
+                <span>Pawlendar</span>
+            </a>
 
-    <main class="dashboard-layout">
+            <nav class="nav-list">
 
-        <section class="content-panel">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-appointment.html">Appointments</a>
+                <a href="admin-calendar.html">Calendar</a>
+                <a href="admin-services.html">Services</a>
+                <a href="admin-staff.html">Staff</a>
 
-            <div class="content-wrapper">
+            </nav>
 
-                <header class="dashboard-header">
+            <div class="nav-auth">
+                <a href="#" id="logoutBtn">Logout</a>
+            </div>
 
-                    <h1>Add New Staff</h1>
+        </header>
 
-                    <p>
-                        Fill in the staff member's information below to add them to your Pawlendar team.
-                    </p>
 
-                </header>
+        <section class="appointments-hero paws-bg">
 
-                <hr>
+            <div class="appointments-hero-content">
 
-                <form id="staffForm">
+                <h1>Staff Management</h1>
 
-                    <div class="form-row two-columns">
-
-                        <div class="input-group">
-
-                            <label for="first_name">First Name</label>
-
-                            <input type="text" id="first_name" placeholder="Enter first name" required>
-
-                        </div>
-
-                        <div class="input-group">
-
-                            <label for="last_name">Last Name</label>
-
-                            <input type="text" id="last_name" placeholder="Enter last name" required>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-row two-columns">
-
-                        <div class="input-group">
-
-                            <label for="email">Email</label>
-
-                            <input type="email" id="email" placeholder="staff@pawlendar.com" required>
-
-                        </div>
-
-                        <div class="input-group">
-
-                            <label for="phone_number">Phone Number</label>
-
-                            <input type="tel" id="phone_number" placeholder="09XX XXX XXXX" maxlength="15">
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-row two-columns">
-
-                        <div class="input-group">
-
-                            <label for="specialization">Specialization</label>
-
-                            <input type="text" id="specialization" placeholder="e.g. Dog Grooming, Cat Grooming">
-
-                        </div>
-
-                        <div class="input-group">
-
-                            <label for="hire_date">Hire Date</label>
-
-                            <input type="date" id="hire_date">
-
-                        </div>
-
-                    </div>
-
-                    <div class="input-group">
-
-                        <label for="max_daily_appointments">Max Daily Appointments</label>
-
-                        <input type="number" id="max_daily_appointments" min="1" step="1" placeholder="e.g. 8">
-
-                    </div>
-
-                    <p id="formError" class="form-error" style="display:none;"></p>
-
-                    <div class="panel-buttons">
-
-                        <a href="dashboard-dev.html" class="outline-btn">
-
-                            Cancel
-
-                        </a>
-
-                        <button type="submit" class="main-btn" id="saveStaffBtn">Save Staff</button>
-
-                    </div>
-
-                </form>
+                <p>
+                    View groomers and their weekly availability.
+                </p>
 
             </div>
 
         </section>
 
-    </main>
 
-    <div id="footer"></div>
+
+        <section class="appointments-dashboard">
+
+            <h2>Groomers</h2>
+
+            <div class="appointment-filters">
+
+                <input
+                type="text"
+                id="searchInput"
+                placeholder="Search groomer...">
+
+                <button id="addBtn">
+                <i class="fa fa-plus"></i>
+                Add Groomer
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="appointment-table">
+
+                <thead>
+
+                    <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="staffTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+            </section>
+
+
+            <section
+            id="staffDetails"
+            style="display:none;"
+            class="appointments-dashboard">
+
+            <h2>Groomer Details</h2>
+
+            <div id="detailsContainer"></div>
+
+        </section>
+
+    </div>
 
     <script src="admin-staff.js"></script>
 
-</body>
-
+    </body>
 </html>

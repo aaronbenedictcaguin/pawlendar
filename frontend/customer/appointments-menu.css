@@ -1,16 +1,30 @@
 .dashboard-layout {
-    min-height: calc(100vh - 150px);
+
+    min-height: 100vh;
     display: flex;
     gap: 25px;
     padding: 25px;
+    gap: 25px;
+    padding: 25px;
     background: #FFF9E6;
+    box-sizing: border-box;
+
 }
 
-.content-panel {
-    flex: 1;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 12px 30px rgba(74, 35, 40, .08);
+
+
+/* ---------- CONTENT ---------- */
+
+.content-panel{
+
+    flex:1;
+
+    /* background:white; */
+
+    border-radius:36px;
+
+    box-shadow:0 12px 30px rgba(74,35,40,.08); 
+
 }
 
 .content-wrapper {

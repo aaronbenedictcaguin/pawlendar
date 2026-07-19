@@ -10,7 +10,11 @@ const { validateAppointment } = require("../middleware/appointments.validation")
 router.post("/", authMiddleware, validateAppointment, appointmentController.bookAppointment);
 router.get("/", authMiddleware, appointmentController.getAppointments);
 router.get("/availability", authMiddleware, appointmentController.checkAvailability);
-
+router.get(
+    "/available-slots",
+    authMiddleware,
+    appointmentController.getAvailableSlots
+);
 router.get("/calendar", authMiddleware, appointmentController.getCalendarAppointments);
 
 router.get("/:id", authMiddleware,appointmentController.getAppointmentById);

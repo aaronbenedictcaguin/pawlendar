@@ -1,6 +1,6 @@
 const token = localStorage.getItem("token");
 if (!token) {
-    window.location.href = "http://localhost:3000/admin";
+    window.location.href = "/admin";
 }
 
 let showArchivedServices = false;
@@ -43,9 +43,9 @@ async function loadServices(){
 
     const url = showArchivedServices
 
-        ? "http://localhost:3000/api/services/admin/all"
+        ? "/api/services/admin/all"
 
-        : "http://localhost:3000/api/services";
+        : "/api/services";
 
     const response = await fetch(
         url,
@@ -222,7 +222,7 @@ async function deleteService(id){
 
     const response = await fetch(
 
-        `http://localhost:3000/api/services/${id}`,
+        `/api/services/${id}`,
 
         {
 
@@ -269,7 +269,7 @@ async function restoreService(id){
 
     const response = await fetch(
 
-        `http://localhost:3000/api/services/${id}/restore`,
+        `/api/services/${id}/restore`,
 
         {
 
@@ -297,9 +297,9 @@ async function loadPackages() {
 
     const url = showArchivedPackages
 
-        ? "http://localhost:3000/api/packages/admin/all"
+        ? "/api/packages/admin/all"
 
-        : "http://localhost:3000/api/packages";
+        : "/api/packages";
 
 
     const response = await fetch(
@@ -447,7 +447,7 @@ async function deletePackage(id){
     try {
 
         const response = await fetch(
-            `http://localhost:3000/api/packages/${id}`,
+            `/api/packages/${id}`,
             {
                 method: "DELETE",
                 headers: {
@@ -484,7 +484,7 @@ async function restorePackage(id){
 
     const response = await fetch(
 
-        `http://localhost:3000/api/packages/${id}/restore`,
+        `/api/packages/${id}/restore`,
 
         {
 

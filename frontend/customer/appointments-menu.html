@@ -23,47 +23,61 @@
 
             <div class="sidebar-profile">
 
-                <img src="images/default-profile.svg" alt="Profile Picture" class="profile-picture">
+                <div class="profile-picture-ring">
+                    <img src="images/default-profile.svg"
+                        alt="Profile Picture"
+                        class="profile-picture">
+                </div>
 
-                <p class="welcome-text">
-                    Welcome!
-                </p>
+                <p class="welcome-text">Welcome!</p>
 
-                <h2 class="owner-name">
-                    John Smith
-                </h2>
+                <h2 class="owner-name">Loading...</h2>
 
-                <p class="owner-email">
-                    testaccount@gmail.com
-                </p>
+                <div class="owner-contact">
 
-                <p class="owner-phone">
-                    09123456789
-                </p>
+                    <p class="owner-email">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Loading...</span>
+                    </p>
+
+                    <p class="owner-phone">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>Loading...</span>
+                    </p>
+
+                </div>
 
             </div>
 
             <nav class="sidebar-nav">
 
                 <a href="dashboard-dev.html" class="nav-item">
-                    <i class="fa-solid fa-house"></i>
+                    <div class="nav-icon">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
                     <span>Overview</span>
                 </a>
 
                 <a href="add-pets-menu.html" class="nav-item">
-                    <i class="fa-solid fa-paw"></i>
-                    <span>My Pets</span>
+                    <div class="nav-icon">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <span>Pets</span>
                 </a>
 
-                <a href="appointments-menu.html" class="nav-item">
-                    <i class="fa-solid fa-calendar-days active"></i>
+                <a href="appointments-menu.html" class="nav-item active">
+                    <div class="nav-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
                     <span>Appointments</span>
                 </a>
 
-                <button class="nav-item logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                <a href="#" id="logoutBtn" class="nav-item logout">
+                    <div class="nav-icon">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </div>
                     <span>Log Out</span>
-                </button>
+                </a>
 
             </nav>
 
@@ -178,17 +192,6 @@
 
     </main>
 
-    <footer>
-
-        <h3>Pawlendar Grooming Scheduler</h3>
-
-        <p>Making every paw happy.</p>
-
-        <p>©2026 Pawlendar. All rights reserved.</p>
-
-    </footer>
-
-    <script src="sidebar.js"></script>
     <script src="appointments-menu.js"></script>
 
 </body>

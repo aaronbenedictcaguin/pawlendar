@@ -12,31 +12,6 @@
 </head>
 <body>
 
-    <header class="navbar">
-        <a href="../public/index.html" class="brand brand-dark">
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
-                <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
-                <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
-                <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
-            </svg>
-            <span>Pawlendar</span>
-        </a>
-
-        <nav class="nav-list">
-            <a href="../public/index.html">Home</a>
-            <a href="../public/about.html">About</a>
-            <a href="../public/service.html">Services</a>
-            <a href="../public/staff-info.html">Staff</a>
-            <a href="../public/appointment.html" class="active">Appointments</a>
-        </nav>
-
-        <div class="nav-auth">
-            <a href="../public/login.html" class="btn-ghost-small">Login</a>
-            <a href="../public/registration.html" class="btn-gold">Sign Up</a>
-        </div>
-    </header>
-
     <main class="main-container">
 
         <div class="left-panel paws-bg">
@@ -59,22 +34,24 @@
                     <li>
                         <span class="step-num">1</span>
                         <div>
-                            <h4>Tell us about your pet</h4>
-                            <p>Confirm your details and pick a service.</p>
+                            <h4>Select a package or service</h4>
+                            <p>Choose the grooming package and any additional services for your pet.</p>
                         </div>
                     </li>
+
                     <li>
                         <span class="step-num">2</span>
                         <div>
-                            <h4>Check groomer availability</h4>
-                            <p>Browse open slots and choose a date and time.</p>
+                            <h4>Choose a date and time</h4>
+                            <p>Select your preferred appointment date, then pick one of the available time slots.</p>
                         </div>
                     </li>
+
                     <li>
                         <span class="step-num">3</span>
                         <div>
-                            <h4>Confirm your booking</h4>
-                            <p>We'll take it from there and get everything ready.</p>
+                            <h4>Review and book</h4>
+                            <p>Review your appointment details and submit your booking request.</p>
                         </div>
                     </li>
                 </ul>
@@ -92,32 +69,6 @@
 
         <div class="right-panel">
             <div class="booking-content">
-                <aside class="availability-panel">
-                    <h3><i class="fa-solid fa-calendar-days"></i> Staff Availability</h3>
-
-                    <div class="availability-controls">
-                        <div class="control-row">
-                            <select id="calendar-view">
-                                <option value="month">Month</option>
-                                <option value="week">Week</option>
-                                <option value="day">Day</option>
-                            </select>
-                            <select id="calendar-groomer">
-                                <option value="">All groomers</option>
-                            </select>
-                        </div>
-                        <input type="date" id="calendar-date">
-                    </div>
-
-                    <div class="availability-nav">
-                        <button type="button" id="calendar-prev"><i class="fa-solid fa-chevron-left"></i> Prev</button>
-                        <button type="button" id="calendar-next">Next <i class="fa-solid fa-chevron-right"></i></button>
-                    </div>
-
-                    <div id="calendar-loading" class="calendar-loading">Loading...</div>
-                    <div id="calendar-message" class="calendar-message"></div>
-                    <div id="calendar-container" class="calendar-container"></div>
-                </aside>
 
                 <div class="form-box">
 
@@ -167,20 +118,46 @@
                         </div>
 
                         <div class="input-group">
-                            <label>Services</label>
+                            <label>Packages</label>
+                            <div id="packageList"></div>
+
+                        </div>
+
+                        <div class="input-group">
+                            <label>Individual Services</label>
                             <div id="serviceList"></div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Appointment Date</label>
-                                <input type="date" id="appointment_date">
+                        <div class="input-group">
+
+                            <label>
+                                Appointment Date
+                            </label>
+
+                            <input 
+                                type="date"
+                                id="appointment_date"
+                                disabled>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Available Time Slots
+                            </label>
+
+
+                            <div id="slotContainer">
+
+                                <p>
+                                Select services first to see available slots.
+                                </p>
+
                             </div>
 
-                            <div class="input-group">
-                                <label>Appointment Time</label>
-                                <input type="time" id="appointment_time">
-                            </div>
+
                         </div>
 
                         <div class="input-group">
@@ -215,7 +192,6 @@
 
     </main>
 
-    <script src="staff-calendar.js"></script>
     <script src="booking.js"></script>
 
 </body>

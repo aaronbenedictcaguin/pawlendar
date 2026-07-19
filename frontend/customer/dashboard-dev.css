@@ -1,9 +1,10 @@
 .dashboard-layout {
-    min-height: calc(100vh - 150px);
+    min-height: 100vh;
     display: flex;
     gap: 25px;
     padding: 25px;
     background: #FFF9E6;
+    box-sizing: border-box;
 }
 
 .content-panel {

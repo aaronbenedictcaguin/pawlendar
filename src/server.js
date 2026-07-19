@@ -38,6 +38,7 @@ const packageRoutes = require("./routes/package.routes");
 const appointmentRoutes = require("./routes/appointments.routes");
 const adminRoutes = require("./routes/admin.routes");
 const loyaltyRoutes = require("./routes/loyalty.routes");
+const groomerRoutes = require("./routes/groomer.routes");
 
 
 app.use("/api/users", userRoutes);
@@ -48,6 +49,7 @@ app.use("/api/packages", packageRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/loyalty", loyaltyRoutes);
+app.use("/api/groomers", groomerRoutes);
 
 app.use((req, res) => {
     res.status(404).json({

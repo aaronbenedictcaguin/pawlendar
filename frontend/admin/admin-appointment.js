@@ -1,6 +1,6 @@
 const token = localStorage.getItem("token");
 if (!token) {
-    window.location.href = "http://localhost:3000/admin";
+    window.location.href = "/admin";
 }
 
 loadAppointments();
@@ -14,7 +14,7 @@ let allAppointments = [];
 async function loadAppointments(){
 
     const response = await fetch(
-        "http://localhost:3000/api/admin/appointments",
+        "/api/admin/appointments",
         {
             headers:{
                 "Authorization":"Bearer " + token
@@ -27,7 +27,7 @@ async function loadAppointments(){
 
     if(!response.ok){
 
-        window.location.replace("http://localhost:3000/admin");
+        window.location.replace("/admin");
 
         alert(data.message || "Failed to load appointments");
 
@@ -414,7 +414,7 @@ async function changeStatus(id,currentStatus){
 
     const response = await fetch(
 
-        `http://localhost:3000/api/admin/appointments/${id}/status`,
+        `/api/admin/appointments/${id}/status`,
 
         {
 
@@ -512,7 +512,7 @@ async function changePaymentStatus(id, paymentStatus){
 
     const response = await fetch(
 
-        `http://localhost:3000/api/admin/appointments/${id}/payment`,
+        `/api/admin/appointments/${id}/payment`,
 
         {
 

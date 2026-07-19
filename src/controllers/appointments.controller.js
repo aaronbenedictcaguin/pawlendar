@@ -926,3 +926,115 @@ exports.getCalendarAppointments = (req, res) => {
     });
 
 };
+
+exports.getAvailableSlots = async (req,res)=>{
+
+    try {
+
+        const {
+            date,
+            duration
+        } = req.query;
+
+
+        if(!date || !duration){
+
+            return res.status(400).json({
+                message:"Date and duration are required."
+            });
+
+        }
+
+
+        const slots=[];
+
+
+        let current =
+        new Date(`${date}T10:00:00`);
+
+
+        const closing =
+        new Date(`${date}T19:00:00`);
+
+
+
+        while(current < closing){
+
+
+            const start = new Date(current);
+
+
+            const end = new Date(start);
+
+            end.setMinutes(
+                end.getMinutes()
+                +
+                Number(duration)
+            );
+
+
+            // prevents extending past closing time
+            if(end > closing){
+                break;
+            }
+
+
+
+            const staff =
+                await findAvailableStaff(
+                    start,
+                    end
+                );
+
+
+
+            if(staff){
+
+                const pad = n => String(n).padStart(2, "0");
+
+                const mysqlDate =
+                    `${start.getFullYear()}-${
+                        pad(start.getMonth() + 1)
+                    }-${
+                        pad(start.getDate())
+                    } ${
+                        pad(start.getHours())
+                    }:${
+                        pad(start.getMinutes())
+                    }:00`;
+
+                slots.push({
+                    start_datetime: mysqlDate,
+                    time: start.toLocaleTimeString([], {
+                        hour: "numeric",
+                        minute: "2-digit"
+                    })
+                });
+
+            }
+
+
+
+            current.setMinutes(
+                current.getMinutes()+30
+            );
+
+
+        }
+
+
+
+        res.json(slots);
+
+
+
+    }
+    catch(err){
+
+        res.status(500).json({
+            error:err.message
+        });
+
+    }
+
+};

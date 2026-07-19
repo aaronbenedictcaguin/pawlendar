@@ -1,46 +1,90 @@
-const fullDates = [
-    '2026-06-10',
-    '2026-06-14',
-    '2026-06-25'
-];
+const staffGrid = document.getElementById("staffGrid");
 
-const calendarDays = document.querySelectorAll('.calendar-day');
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
-calendarDays.forEach(day => {
+function renderStaff(staffList) {
 
-    if (day.classList.contains('inactive')) return;
+    staffGrid.innerHTML = "";
 
-    const numberEl = day.querySelector('.day-number');
-    if (!numberEl) return;
-
-    const dayNumber = Number(numberEl.textContent.trim());
-    if (!dayNumber) return;
-
-    const dateValue = `2026-06-${String(dayNumber).padStart(2, '0')}`;
-
-    day.classList.add('clickable');
-
-    if (fullDates.includes(dateValue)) {
-
-        day.classList.remove('clickable');
-        day.classList.add('full-day');
-
-        const badge = document.createElement('div');
-        badge.className = 'day-status';
-        badge.textContent = 'FULL';
-
-        day.appendChild(badge);
+    if (!staffList.length) {
+        staffGrid.innerHTML = `
+            <p class="services-empty">
+                Our grooming team information will be available soon.
+            </p>
+        `;
+        return;
     }
 
-    day.addEventListener('click', () => {
+    staffList.forEach(staff => {
 
-        if (day.classList.contains('full-day')) {
-            alert('This date is fully booked. Please choose another available date.');
-            return;
-        }
+        staffGrid.innerHTML += `
 
-        window.location.href = `date-booking.html?date=${encodeURIComponent(dateValue)}`;
+        <div class="staff-card">
 
+            <div class="staff-avatar">
+                <img src="images/default-profile.svg"
+                     alt="${escapeHtml(staff.first_name)}">
+            </div>
+
+            <h3>
+                ${escapeHtml(staff.first_name)}
+                ${escapeHtml(staff.last_name)}
+            </h3>
+
+            <p>${escapeHtml(staff.specialization)}</p>
+
+            <ul>
+                <li>
+                    Daily Capacity:
+                    ${staff.max_daily_appointments} appointments
+                </li>
+
+                <li>
+                    Working Hours:
+                    10:00 AM – 7:00 PM
+                </li>
+            </ul>
+
+        </div>
+
+        `;
     });
 
-});
+}
+
+async function loadStaff() {
+
+    try {
+
+        const response = await fetch("/api/groomers");
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch staff.");
+        }
+
+        const staff = await response.json();
+
+        renderStaff(staff);
+
+    } catch (err) {
+
+        console.error(err);
+
+        staffGrid.innerHTML = `
+            <p class="services-empty">
+                Unable to load our grooming team at the moment.
+            </p>
+        `;
+
+    }
+
+}
+
+loadStaff();

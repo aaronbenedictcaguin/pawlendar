@@ -64,10 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".owner-name").textContent =
                 `${owner.first_name} ${owner.last_name}`;
 
-            document.querySelector(".owner-email").textContent =
+            document.querySelector(".owner-email span").textContent =
                 owner.email;
 
-            document.querySelector(".owner-phone").textContent =
+            document.querySelector(".owner-phone span").textContent =
                 owner.phone_number;
 
         } catch (err) {

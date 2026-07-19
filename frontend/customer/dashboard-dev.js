@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-        window.location.href = "../public/login.html";
+        window.location.href = "login.html";
         return;
     }
 
     function handleAuthError(res) {
         if (res.status === 401 || res.status === 403) {
             localStorage.removeItem("token");
-            window.location.href = "../public/login.html";
+            window.location.href = "login.html";
             return true;
         }
         return false;
@@ -64,10 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".owner-name").textContent =
                 `${owner.first_name} ${owner.last_name}`;
 
-            document.querySelector(".owner-email").textContent =
+            document.querySelector(".owner-email span").textContent =
                 owner.email;
 
-            document.querySelector(".owner-phone").textContent =
+            document.querySelector(".owner-phone span").textContent =
                 owner.phone_number;
 
         } catch (err) {
@@ -109,6 +109,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <small>${pet.breed}</small>
                 `;
 
+                card.addEventListener("click", () => {
+                    window.location.href = `booking.html?pet_id=${pet.pet_id}`;
+                });
+
                 petList.appendChild(card);
 
             });
@@ -140,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const appointments = await res.json();
 
-        const container = document.getElementById(".appointments-grid");
+        const container = document.querySelector(".appointments-grid");
 
         container.innerHTML = "";
 

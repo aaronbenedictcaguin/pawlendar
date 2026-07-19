@@ -148,136 +148,18 @@ body {
 
 .right-panel {
     flex: 1;
-    min-width: 0;
     background: var(--paper);
-    padding: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    padding: 35px 50px;
 }
 
 .booking-content {
-    display: flex;
-    gap: 25px;
     width: 100%;
-    align-items: flex-start;
-}
-
-.availability-panel {
-    flex: 0 0 350px;
-    min-width: 260px;
-    position: sticky;
-    top: 96px;
-    background: var(--cream);
-    border: 1px solid var(--cream-alt);
-    border-radius: 22px;
-    padding: 20px;
-    box-shadow: 0 10px 26px rgba(143, 78, 58, 0.06);
-}
-
-.availability-panel h3 {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 18px;
-    color: var(--pine);
-    font-family: 'Fraunces', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.availability-panel h3 i {
-    color: var(--clay);
-    font-size: .95rem;
-}
-
-.availability-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 16px;
-}
-
-.control-row {
-    display: flex;
-    gap: 14px;
-}
-
-.control-row select:first-child {
-    flex: 1;
-}
-
-.control-row select:last-child {
-    flex: 1.4;
-}
-
-.availability-controls select,
-.availability-controls input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid var(--cream-alt);
-    border-radius: 12px;
-    background: var(--paper);
-    color: var(--pine);
-    font-size: .88rem;
-}
-
-.availability-controls select:focus,
-.availability-controls input:focus {
-    outline: none;
-    border-color: var(--gold-deep, #e8ac3d);
-}
-
-.availability-nav {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 16px;
-}
-
-.availability-nav button {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border: none;
-    border-radius: 12px;
-    padding: 11px 0;
-    background: var(--gold);
-    color: var(--pine);
-    font-weight: 700;
-    font-size: .88rem;
-    cursor: pointer;
-    transition: background .2s ease, transform .15s ease;
-}
-
-.availability-nav button:hover {
-    background: var(--gold-deep, #e8ac3d);
-    transform: translateY(-1px);
-}
-
-.calendar-loading,
-.calendar-message {
-    margin-bottom: 12px;
-    color: #8A6A5C;
-    min-height: 22px;
-    font-size: .85rem;
-}
-
-.calendar-container {
-    min-height: 260px;
-    background: var(--paper);
-    border: 1px solid var(--cream-alt);
-    border-radius: 16px;
-    padding: 14px;
-    overflow: auto;
 }
 
 .form-box {
-    flex: 1;
-    min-width: 0;
-    padding-left: 36px;
-    border-left: 1px solid var(--cream-alt);
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 form {
@@ -439,13 +321,15 @@ select {
     font-size: 0.9rem;
 }
 
-#serviceList {
+#serviceList,
+#packageList {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-#serviceList label {
+#serviceList label,
+#packageList label {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -457,21 +341,15 @@ select {
     transition: border-color .2s ease, background .2s ease;
 }
 
-#serviceList label:hover {
+#serviceList label:hover,
+#packageList label:hover {
     border-color: var(--gold-deep, #e8ac3d);
     background: var(--cream-alt);
 }
 
-#serviceList input {
+#serviceList input,
+#packageList input {
     width: auto;
-}
-
-@media (max-width: 1100px) {
-
-    .availability-panel {
-        position: static;
-    }
-
 }
 
 @media (max-width: 900px) {
@@ -502,12 +380,6 @@ select {
         flex-direction: column;
     }
 
-    .availability-panel {
-        flex: 1 1 auto;
-        width: 100%;
-        min-width: auto;
-    }
-
     .form-box {
         padding-left: 0;
         border-left: none;
@@ -521,7 +393,40 @@ select {
         font-size: 1.8rem;
     }
 
-    .control-row {
-        flex-direction: column;
-    }
+}
+
+#slotContainer{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+
+}
+
+
+.slot-btn{
+
+    padding:12px 18px;
+
+    border-radius:20px;
+
+    border:1px solid var(--cream-alt);
+
+    background:var(--cream);
+
+    cursor:pointer;
+
+    color:var(--pine);
+
+    font-weight:600;
+
+}
+
+
+
+.slot-btn:hover,
+.slot-btn.selected{
+
+    background:var(--gold);
+
 }

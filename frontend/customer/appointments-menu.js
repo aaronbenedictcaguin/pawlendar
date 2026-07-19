@@ -75,54 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ---------------- PETS ----------------
-    async function loadPets() {
-
-        try {
-
-            const res = await fetch("/api/pets", {
-
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-
-            });
-
-            if (handleAuthError(res)) return;
-
-            if (!res.ok) return;
-
-            const pets = await res.json();
-
-            petList.innerHTML = "";
-
-            pets.forEach(pet => {
-
-                const card = document.createElement("div");
-
-                card.className = "pet-card";
-
-                card.innerHTML = `
-                    <img src="${pet.photo_url || "images/default-profile.svg"}">
-                    <h4>${pet.pet_name}</h4>
-                    <p>${pet.species}</p>
-                    <small>${pet.breed}</small>
-                `;
-
-                petList.appendChild(card);
-
-            });
-
-        }
-
-        catch (err) {
-
-            console.error(err);
-
-        }
-
-    }
-
     async function loadAppointments() {
 
         const res = await fetch("/api/appointments", {
@@ -140,7 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const appointments = await res.json();
 
-        const container = document.getElementById(".appointments-grid");
+        console.log(appointments);
+
+        const container = document.querySelector(".appointments-grid");
 
         container.innerHTML = "";
 
@@ -174,14 +128,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const date = new Date(appointment.start_datetime);
 
+            const groomer =
+                appointment.staff_first_name && appointment.staff_last_name
+                    ? `${appointment.staff_first_name} ${appointment.staff_last_name}`
+                    : "Not assigned";
+
             card.innerHTML = `
-                <strong>
-                    ${date.toLocaleDateString()}
-                </strong>
+                <h3>${date.toLocaleDateString()}</h3>
 
-                <p>${appointment.pet_name || "Pet"}</p>
+                <p>
+                    <strong>Time:</strong>
+                    ${date.toLocaleTimeString([], {
+                        hour: "numeric",
+                        minute: "2-digit"
+                    })}
+                </p>
 
-                <small>${appointment.service_name || ""}</small>
+                <p>
+                    <strong>Pet:</strong>
+                    ${appointment.pet_name}
+                </p>
+
+                <p>
+                    <strong>Groomer:</strong>
+                    ${groomer}
+                </p>
+
+                <p>
+                    <strong>Total:</strong>
+                    ₱${Number(appointment.total_price).toFixed(2)}
+                </p>
+
+                <p>
+                    <strong>Payment:</strong>
+                    ${appointment.payment_status}
+                </p>
 
                 <span class="status ${getStatusClass(appointment.status)}">
                     ${appointment.status}
@@ -195,7 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     loadOwner();
-    loadPets();
     loadAppointments();
 
 });

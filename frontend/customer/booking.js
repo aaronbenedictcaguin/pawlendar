@@ -1,7 +1,7 @@
 const token = localStorage.getItem("token");
 
 if (!token) {
-    window.location.href = "login.html";
+    window.location.href = "../public/login.html";
 }
 
 fetch("/api/auth/profile", {
@@ -12,14 +12,14 @@ fetch("/api/auth/profile", {
 .then(async response => {
     if (!response.ok) {
         localStorage.removeItem("token");
-        window.location.href = "login.html";
+        window.location.href = "../public/login.html";
         return;
     }
 
     // Token is valid.
 })
 .catch(() => {
-    window.location.href = "login.html";
+    window.location.href = "../public/login.html";
 });
 
 const params = new URLSearchParams(window.location.search);

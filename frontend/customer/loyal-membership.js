@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
 
   if (!token && backendReady) {
-    window.location.href = "login.html";
+    window.location.href = "../public/login.html";
     return;
   }
 

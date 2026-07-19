@@ -405,11 +405,18 @@ exports.getAppointments = (req, res) => {
     const user_id = req.user.user_id;
 
     const sql = `
-        SELECT a.*
-        FROM appointments a
-        JOIN pet p
+        SELECT
+        a.*,
+        p.pet_name,
+        s.first_name AS staff_first_name,
+        s.last_name AS staff_last_name
+    FROM appointments a
+    JOIN pet p
         ON a.pet_id = p.pet_id
-        WHERE p.user_id = ?
+    LEFT JOIN staff s
+        ON a.staff_id = s.staff_id
+    WHERE p.user_id = ?
+    ORDER BY a.start_datetime ASC;
     `;
 
     db.query(sql, [user_id], (err, results) => {

@@ -10,160 +10,151 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
 </head>
 
 <body>
 
-<div id="app" style="display:none;">
-    <header>
-        <nav class="main-nav">
-            <div class="register-logo">
-                <i class="fa-solid fa-paw"></i> Pawlendar
+    <div id="app" style="display:none;">
+        <header class="navbar">
+            <a href="index.html" class="brand brand-dark">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                    <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                    <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                    <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+                </svg>
+                <span>Pawlendar</span>
+            </a>
+
+            <nav class="nav-list">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-appointment.html" class="active">Appointments</a>
+                <a href="admin-calendar.html">Calendar</a>
+                <a href="admin-services.html">Services</a>
+                <a href="admin-staff.html">Staff</a>
+            </nav>
+
+            <div class="nav-auth">
+                <a href="../public/login.html" class="btn-ghost-small">Logout</a>
             </div>
-            <ul>
-                <li><a href="admin-dashboard.html">Dashboard</a></li>
-                <li><a href="admin-appointment.html">Appointments</a></li>
-                <li><a href="admin-calendar.html">Calendar</a></li>
-                <li><a class="active" href="admin-services.html">Services</a></li>
-                <li><a href="admin-staff.html">Staff</a></li>
-            </ul>
-            <button class="nav-btn service-logout-btn">Logout</button>
-        </nav>
-    </header>
+        </header>
 
-    <div class="register-container">
+        <div class="register-container">
 
 
 
 
-    <div class="register-left">
+            <div class="register-left paws-bg">
 
 
-        <div class="logo">
-            <i class="fa-solid fa-paw"></i> Pawlendar
-        </div>
+                <div class="logo">
+                    <i class="fa-solid fa-paw"></i> Pawlendar
+                </div>
 
-        <h1>
-            Manage Grooming Services
-        </h1>
+                <h1>
+                    Manage Grooming Services
+                </h1>
 
-        <p>
-            Create new grooming services for customers. Fill in the service details,
-            pricing, and estimated duration before saving them to the catalog.
-        </p>
-
-
-        <div class="pet-image">
-
-            <img src="images/trixie.jpg" alt="Trixie the cat">
-
-        </div>
+                <p>
+                    Create new grooming services for customers. Fill in the service details,
+                    pricing, and estimated duration before saving them to the catalog.
+                </p>
 
 
-    </div>
+                <div class="pet-image">
 
-
-
-
-    <div class="register-right">
-
-
-        <h2>
-            Edit Service
-        </h2>
-
-        <p class="subtitle">
-            Fill in the details below to add a new grooming service to the Pawlendar catalog.
-        </p>
-
-        <form id="serviceForm">
-
-            <div class="input-group">
-                <label>
-                    Service Name
-                </label>
-
-                <input
-                    id="service_name"
-                    type="text"
-                    placeholder="Enter service name" 
-                    required>
-            </div>
-
-            <div class="input-group">
-                <label>
-                    Category
-                </label>
-
-                <select id="category" required>
-
-                <option value="">Select a category</option>
-
-                <option>Bath</option>
-                <option>Hair</option>
-                <option>Nails</option>
-                <option>Ear Care</option>
-                <option>Dental</option>
-                <option>Skin Care</option>
-                <option>Spa</option>
-
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label>
-                    Service Description
-                </label>
-
-                <textarea
-                    id="description"
-                    rows="5"
-                    placeholder="Describe the service..."
-                    required></textarea>
-            </div>
-
-            <div class="input-row">
-
-                <div class="input-group">
-
-                    <label>
-                        Price (₱)
-                    </label>
-
-                    <input
-                        id="price"
-                        type="number"
-                        placeholder="Set starting price"
-                        required>
+                    <img src="images/trixie.jpg" alt="Trixie the cat">
 
                 </div>
 
-                <div class="input-group">
-
-                    <label>
-                        Duration (Minutes)
-                    </label>
-
-                    <input
-                        id="duration_minutes"
-                        type="number"
-                        placeholder="Enter duration in minutes"
-                        required>
-
-                </div>
 
             </div>
 
-            <button
-                type="submit">
-                Update Service
-            </button>
 
-        </form>
-    </div>
-</div>
 
-<script src="service-form-edit.js"></script>
+
+            <div class="register-right">
+
+
+                <h2>
+                    Edit Service
+                </h2>
+
+                <p class="subtitle">
+                    Fill in the details below to add a new grooming service to the Pawlendar catalog.
+                </p>
+
+                <form id="serviceForm">
+
+                    <div class="input-group">
+                        <label>
+                            Service Name
+                        </label>
+
+                        <input id="service_name" type="text" placeholder="Enter service name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>
+                            Category
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">Select a category</option>
+
+                            <option>Bath</option>
+                            <option>Hair</option>
+                            <option>Nails</option>
+                            <option>Ear Care</option>
+                            <option>Dental</option>
+                            <option>Skin Care</option>
+                            <option>Spa</option>
+
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>
+                            Service Description
+                        </label>
+
+                        <textarea id="description" rows="5" placeholder="Describe the service..." required></textarea>
+                    </div>
+
+                    <div class="input-row">
+
+                        <div class="input-group">
+
+                            <label>
+                                Price (₱)
+                            </label>
+
+                            <input id="price" type="number" placeholder="Set starting price" required>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label>
+                                Duration (Minutes)
+                            </label>
+
+                            <input id="duration_minutes" type="number" placeholder="Enter duration in minutes" required>
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit">
+                        Update Service
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+        <script src="service-form-edit.js"></script>
 </body>
+
 </html>

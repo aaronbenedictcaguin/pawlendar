@@ -1,190 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Pawlendar | Calendar</title>
 
 
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="admin-calendar.css">
-
     <link rel="stylesheet" href="../navbar.css">
-    <link rel="stylesheet" href="../paw-pattern.css">
 
-
-    <link 
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-    rel="stylesheet">
-
-
-    <link 
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 
 
 <body>
+    <div id="app">
+        <header class="navbar">
+            <a href="index.html" class="brand brand-dark">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                    <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                    <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                    <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+                </svg>
+                <span>Pawlendar</span>
+            </a>
 
+            <nav class="nav-list">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-appointment.html">Appointments</a>
+                <a href="admin-calendar.html">Calendar</a>
+                <a href="admin-services.html">Services</a>
+                <a href="admin-staff.html">Staff</a>
+            </nav>
 
-<div id="app">
+            <div class="nav-auth">
+                <a href="../public/login.html" class="btn-ghost-small">Logout</a>
+            </div>
+        </header>
 
+        <section class="appointments-hero paws-bg">
+            <div class="appointments-hero-content">
+                <h1>Grooming Calendar</h1>
+                <p>View and monitor scheduled appointments across the grooming shop.</p>
+            </div>
+        </section>
 
+        <section class="calendar-container">
+            <h2>Appointment Schedule</h2>
 
-    <!-- NAVBAR -->
+            <div id="calendar"></div>
 
-    <header>
+            <div id="appointmentModal" class="modal">
 
-        <nav class="main-nav">
+                <div class="modal-card">
 
+                    <span id="closeModal">&times;</span>
 
-            <div class="logo">
+                    <h2>Appointment Details</h2>
 
-                <i class="fa-solid fa-paw"></i>
-                Pawlendar
+                    <div class="detail">
+
+                        <strong>Pet</strong>
+
+                        <p id="modalPet"></p>
+
+                    </div>
+
+                    <div class="detail">
+
+                        <strong>Owner</strong>
+
+                        <p id="modalOwner"></p>
+
+                    </div>
+
+                    <div class="detail">
+
+                        <strong>Groomer</strong>
+
+                        <p id="modalGroomer"></p>
+
+                    </div>
+
+                    <div class="detail">
+
+                        <strong>Status</strong>
+
+                        <p id="modalStatus"></p>
+
+                    </div>
+
+                    <button id="manageBtn" class="main-btn">
+
+                        Manage Appointment
+
+                    </button>
+
+                </div>
 
             </div>
 
+        </section>
 
+    </div>
 
-            <ul>
-                    <li><a href="admin-dashboard.html">Dashboard</a></li>
-                    <li><a href="admin-appointment.html">Appointments</a></li>
-                    <li><a class="active" href="admin-calendar.html">Calendar</a></li>
-                    <li><a href="admin-services.html">Services</a></li>
-                    <li><a href="admin-staff.html">Staff</a></li>
-                </ul>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 
-
-
-            <button class="nav-btn">
-                Logout
-            </button>
-
-
-
-        </nav>
-
-    </header>
-
-
-
-
-
-    <!-- HERO SECTION -->
-
-    <section class="appointments-hero">
-
-
-        <div class="appointments-hero-content">
-
-
-            <h1>
-                Grooming Calendar
-            </h1>
-
-
-            <p>
-                View and monitor scheduled appointments across the grooming shop.
-            </p>
-
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-
-
-    <!-- CALENDAR -->
-
-    <section class="calendar-container">
-
-
-        <h2>
-            Appointment Schedule
-        </h2>
-
-
-
-        <div id="calendar"></div>
-
-        <div id="appointmentModal" class="modal">
-
-            <div class="modal-card">
-
-                <span id="closeModal">&times;</span>
-
-                <h2>Appointment Details</h2>
-
-                <div class="detail">
-
-                    <strong>Pet</strong>
-
-                    <p id="modalPet"></p>
-
-                </div>
-
-                <div class="detail">
-
-                    <strong>Owner</strong>
-
-                    <p id="modalOwner"></p>
-
-                </div>
-
-                <div class="detail">
-
-                    <strong>Groomer</strong>
-
-                    <p id="modalGroomer"></p>
-
-                </div>
-
-                <div class="detail">
-
-                    <strong>Status</strong>
-
-                    <p id="modalStatus"></p>
-
-                </div>
-
-                <button
-                    id="manageBtn"
-                    class="main-btn">
-
-                    Manage Appointment
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-
-
-</div>
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-
-<script src="admin-calendar.js"></script>
+    <script src="admin-calendar.js"></script>
 
 
 </body>

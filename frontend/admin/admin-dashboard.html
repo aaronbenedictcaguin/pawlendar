@@ -19,45 +19,33 @@
 <body>
 
 <div id="app" style="display:none;">
+    <header class="navbar">
+            <a href="index.html" class="brand brand-dark">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                    <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                    <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                    <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+                </svg>
+                <span>Pawlendar</span>
+            </a>
 
+            <nav class="nav-list">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-appointment.html">Appointments</a>
+                <a href="admin-calendar.html">Calendar</a>
+                <a href="admin-services.html">Services</a>
+                <a href="admin-staff.html">Staff</a>
+            </nav>
 
-    <!-- NAVBAR -->
-
-    <header>
-
-        <nav class="main-nav">
-
-            <div class="logo">
-                <i class="fa-solid fa-paw"></i>
-                Pawlendar
+            <div class="nav-auth">
+                <a href="../public/login.html" class="btn-ghost-small">Logout</a>
             </div>
-
-
-            <ul>
-                <li><a class="active" href="admin-dashboard.html">Dashboard</a></li>
-                <li><a href="admin-appointment.html">Appointments</a></li>
-                <li><a href="admin-calendar.html">Calendar</a></li>
-                <li><a href="admin-services.html">Services</a></li>
-                <li><a href="admin-staff.html">Staff</a></li>
-            </ul>
-
-
-            <button class="nav-btn">
-                Logout
-            </button>
-
-
-        </nav>
-
-    </header>
-
-
-
-
+        </header>
 
     <!-- HERO -->
 
-    <section class="appointments-hero">
+    <section class="appointments-hero paws-bg">
 
         <div class="appointments-hero-content">
 
@@ -74,12 +62,6 @@
         </div>
 
     </section>
-
-
-
-
-
-
 
     <section class="dashboard">
 

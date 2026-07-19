@@ -17,7 +17,7 @@
 }
 
 body {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Fraunces', serif;
     color: var(--ink);
     background: var(--cream);
 }
@@ -30,7 +30,7 @@ h3 {
 }
 
 .label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fraunces', serif;
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -103,7 +103,7 @@ footer {
 }
 
 .nav-list a {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Fraunces', serif;
     font-size: 13px;
     font-weight: 600;
     color: #3E3A32;
@@ -128,7 +128,7 @@ footer {
 }
 
 .btn-ghost-small {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Fraunces', serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--clay);
@@ -171,14 +171,14 @@ footer {
 }
 
 .sidebar-tag {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fraunces', serif;
     font-size: 11px;
     color: rgba(250, 244, 231, 0.35);
     text-align: center;
 }
 
 .main {
-    max-width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
     min-height: 100vh;
 }
@@ -430,7 +430,7 @@ footer {
     align-items: center;
     justify-content: center;
     color: white;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Fraunces', serif;
     font-weight: 700;
     font-size: 15px;
 }

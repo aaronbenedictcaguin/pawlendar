@@ -15,188 +15,179 @@
 
 <body>
 
-<div id="app" style="display:none;">
-    <header>
-        <nav class="main-nav">
-            <div class="register-logo">
-                <i class="fa-solid fa-paw"></i> Pawlendar
+    <div id="app" style="display:none;">
+        <header class="navbar">
+            <a href="index.html" class="brand brand-dark">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <ellipse cx="15" cy="18" rx="6.5" ry="5.5" fill="var(--clay)" />
+                    <circle cx="8.5" cy="9.5" r="3" fill="var(--clay)" />
+                    <circle cx="15" cy="6.5" r="3" fill="var(--clay)" />
+                    <circle cx="21.5" cy="9.5" r="3" fill="var(--clay)" />
+                </svg>
+                <span>Pawlendar</span>
+            </a>
+
+            <nav class="nav-list">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-appointment.html" class="active">Appointments</a>
+                <a href="admin-calendar.html">Calendar</a>
+                <a href="admin-services.html">Services</a>
+                <a href="admin-staff.html">Staff</a>
+            </nav>
+
+            <div class="nav-auth">
+                <a href="../public/login.html" class="btn-ghost-small">Logout</a>
             </div>
-            <ul>
-                <li><a href="admin-dashboard.html">Dashboard</a></li>
-                <li><a href="admin-appointment.html">Appointments</a></li>
-                <li><a href="admin-calendar.html">Calendar</a></li>
-                <li><a class="active" href="admin-services.html">Services</a></li>
-                <li><a href="admin-staff.html">Staff</a></li>
-            </ul>
-            <button class="nav-btn service-logout-btn">Logout</button>
-        </nav>
-    </header>
+        </header>
 
-    <div class="register-container">
+        <div class="register-container">
 
 
 
 
-    <div class="register-left">
+            <div class="register-left paws-bg">
 
 
-        <div class="logo">
-            <i class="fa-solid fa-paw"></i> Pawlendar
-        </div>
+                <div class="logo">
+                    <i class="fa-solid fa-paw"></i> Pawlendar
+                </div>
 
-        <h1>
-            Manage Grooming Services
-        </h1>
+                <h1>
+                    Manage Grooming Services
+                </h1>
 
-        <p>
-            Create new grooming services for customers. Fill in the service details,
-            pricing, and estimated duration before saving them to the catalog.
-        </p>
-
-
-        <div class="pet-image">
-
-            <img src="images/trixie.jpg" alt="Trixie the cat">
-
-        </div>
+                <p>
+                    Create new grooming services for customers. Fill in the service details,
+                    pricing, and estimated duration before saving them to the catalog.
+                </p>
 
 
-    </div>
+                <div class="pet-image">
 
-
-
-
-    <div class="register-right">
-
-
-        <h2>
-            Add New Package
-        </h2>
-
-        <p class="subtitle">
-            Create a grooming package by combining multiple services into one offer.
-        </p>
-
-        <form id="packageForm">
-
-            <div class="input-group">
-                <label>
-                    Package Name
-                </label>
-
-                <input
-                    id="package_name"
-                    type="text"
-                    placeholder="Enter package name" 
-                    required>
-            </div>
-
-            <div class="input-group">
-                <label>
-                    Package Description
-                </label>
-
-                <textarea
-                    id="description"
-                    rows="5"
-                    placeholder="Describe the package..."
-                    required></textarea>
-            </div>
-
-            <div class="input-row">
-
-                <div class="input-group">
-
-                    <label>
-                        Price (₱)
-                    </label>
-
-                    <input
-                        id="package_price"
-                        type="number"
-                        placeholder="Set starting price"
-                        required>
+                    <img src="images/trixie.jpg" alt="Trixie the cat">
 
                 </div>
 
-                <div class="input-group">
 
-                    <label>Total Duration</label>
+            </div>
 
-                    <div id="packageDuration" class="readonly-input">
-                        0 minutes
+
+
+
+            <div class="register-right">
+
+
+                <h2>
+                    Add New Package
+                </h2>
+
+                <p class="subtitle">
+                    Create a grooming package by combining multiple services into one offer.
+                </p>
+
+                <form id="packageForm">
+
+                    <div class="input-group">
+                        <label>
+                            Package Name
+                        </label>
+
+                        <input id="package_name" type="text" placeholder="Enter package name" required>
                     </div>
 
-                </div>
+                    <div class="input-group">
+                        <label>
+                            Package Description
+                        </label>
 
+                        <textarea id="description" rows="5" placeholder="Describe the package..." required></textarea>
+                    </div>
+
+                    <div class="input-row">
+
+                        <div class="input-group">
+
+                            <label>
+                                Price (₱)
+                            </label>
+
+                            <input id="package_price" type="number" placeholder="Set starting price" required>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label>Total Duration</label>
+
+                            <div id="packageDuration" class="readonly-input">
+                                0 minutes
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Included Services</label>
+
+                        <input type="text" id="serviceSearch" placeholder="Search services...">
+
+                        <div id="serviceList" class="service-list">
+
+                            Loading services...
+
+                        </div>
+
+                    </div>
+
+                    <div class="package-summary">
+
+                        <div class="summary-row">
+
+                            <span>Selected Services</span>
+
+                            <strong id="selectedCount">0</strong>
+
+                        </div>
+
+                        <div class="summary-row">
+
+                            <span>Total Duration</span>
+
+                            <strong id="summaryDuration">0 mins</strong>
+
+                        </div>
+
+                        <div class="summary-row">
+
+                            <span>Total Service Price</span>
+
+                            <strong id="serviceTotal">₱0</strong>
+
+                        </div>
+
+                        <div class="summary-row savings">
+
+                            <span>Customer Savings</span>
+
+                            <strong id="packageSavings">₱0</strong>
+
+                        </div>
+
+                    </div>
+
+                    <button id="savePackageBtn" type="submit" disabled>
+
+                        Save Package
+
+                    </button>
+
+                </form>
             </div>
+        </div>
 
-            <div class="input-group">
-
-                <label>Included Services</label>
-
-                <input
-                    type="text"
-                    id="serviceSearch"
-                    placeholder="Search services...">
-
-                <div id="serviceList" class="service-list">
-
-                    Loading services...
-
-                </div>
-
-            </div>
-
-            <div class="package-summary">
-
-                <div class="summary-row">
-
-                    <span>Selected Services</span>
-
-                    <strong id="selectedCount">0</strong>
-
-                </div>
-
-                <div class="summary-row">
-
-                    <span>Total Duration</span>
-
-                    <strong id="summaryDuration">0 mins</strong>
-
-                </div>
-
-                <div class="summary-row">
-
-                    <span>Total Service Price</span>
-
-                    <strong id="serviceTotal">₱0</strong>
-
-                </div>
-
-                <div class="summary-row savings">
-
-                    <span>Customer Savings</span>
-
-                    <strong id="packageSavings">₱0</strong>
-
-                </div>
-
-            </div>
-
-            <button
-                id="savePackageBtn"
-                type="submit"
-                disabled>
-
-                Save Package
-
-            </button>
-
-        </form>
-    </div>
-</div>
-
-<script src="package-form.js"></script>
+        <script src="package-form.js"></script>
 </body>
+
 </html>

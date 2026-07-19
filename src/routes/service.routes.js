@@ -21,7 +21,7 @@ router.put("/:id", authMiddleware, adminMiddleware, validateService, serviceCont
 router.delete("/:id", authMiddleware, adminMiddleware, serviceController.deleteService);
 
 router.put(
-"/restore/:id",
+"/:id/restore",
 authMiddleware,
 adminMiddleware,
 serviceController.restoreService

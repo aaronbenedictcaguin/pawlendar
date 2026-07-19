@@ -14,7 +14,7 @@
 .loyalty-page {
     width: 100%;
     background: var(--cream);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Fraunces', serif;
     color: var(--ink);
 }
 
@@ -453,7 +453,7 @@
     color: var(--clay);
     font-size: 20px;
     font-weight: 700;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Fraunces', serif;
 }
 
 .tier-card p {

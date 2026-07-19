@@ -12,17 +12,12 @@
     <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="appointments-menu.css">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link rel="stylesheet" href="../paw-pattern.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
-<body>
+<body data-active-nav="appointments">
 
     <main class="dashboard-layout">
-
-        <!-- SIDEBAR -->
 
         <aside class="sidebar">
 
@@ -88,8 +83,6 @@
 
         </aside>
 
-        <!-- CONTENT -->
-
         <section class="content-panel">
 
             <div class="content-wrapper">
@@ -110,21 +103,19 @@
 
                     <div class="appointments-toolbar">
 
-                        <input
-                            type="text"
-                            placeholder="Search appointments..."
-                        >
+                        <input type="text" id="appointmentSearch" placeholder="Search appointments...">
 
-                        <button class="search-btn">
+                        <a href="book-appointment.html" class="search-btn">
                             Book Appointment
-                        </button>
+                        </a>
 
                     </div>
 
-                    <div class="appointments-grid">
+                    <div class="appointments-grid" id="appointmentsGrid">
 
                         <div class="appointment-card">
-                            <h3>July 20, 2026</h3>
+
+                            <strong>July 20, 2026</strong>
                             <p>9:00 AM – 10:00 AM</p>
 
                             <hr>
@@ -137,19 +128,61 @@
                             <span class="status pending">Scheduled</span>
 
                             <div class="appointment-actions">
-                                <button class="primary-btn">View</button>
-                                <button
-                                    class="secondary-btn"
-                                    data-id="${appointment.appointment_id}">
-                                    Cancel
-                                </button>
+
+                                <button class="primary-btn" data-id="1">View</button>
+                                <button class="secondary-btn" data-id="1">Cancel</button>
+
                             </div>
+
                         </div>
+
+                        <div class="appointment-card">
+
+                            <strong>July 25, 2026</strong>
+                            <p>1:00 PM – 2:00 PM</p>
+
+                            <hr>
+
+                            <p><strong>Pet:</strong> Trixie</p>
+                            <p><strong>Groomer:</strong> Maria Santos</p>
+                            <p><strong>Total:</strong> ₱450.00</p>
+                            <p><strong>Payment:</strong> Paid</p>
+
+                            <span class="status confirmed">Confirmed</span>
+
+                            <div class="appointment-actions">
+
+                                <button class="primary-btn" data-id="2">View</button>
+                                <button class="secondary-btn" data-id="2">Cancel</button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="appointment-card">
+
+                            <strong>August 2, 2026</strong>
+                            <p>10:30 AM – 11:00 AM</p>
+
+                            <hr>
+
+                            <p><strong>Pet:</strong> Mochi</p>
+                            <p><strong>Groomer:</strong> John Smith</p>
+                            <p><strong>Total:</strong> ₱250.00</p>
+                            <p><strong>Payment:</strong> Pending</p>
+
+                            <span class="status progress">In Progress</span>
+
+                            <div class="appointment-actions">
+
+                                <button class="primary-btn" data-id="3">View</button>
+                                <button class="secondary-btn" data-id="3">Cancel</button>
+
+                            </div>
 
                         </div>
 
                     </div>
-                    
 
                 </section>
 
@@ -160,7 +193,7 @@
     </main>
 
     <script src="appointments-menu.js"></script>
-    
+
 </body>
 
 </html>
